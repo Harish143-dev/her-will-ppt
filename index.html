@@ -1454,8 +1454,7 @@ h2,.cv-tx h1,.end h1{letter-spacing:-.025em}
           <div class="rp"><div class="k">3 months</div><dl>
             <dt id="fnSpendK">Ad spend</dt><dd data-fv="spend">₹37.5 L</dd>
             <dt>Subscriptions</dt><dd data-fv="subs2" data-to="0"></dd>
-            <dt>Revenue</dt><dd data-fv="rev">–</dd>
-            <dt>ROAS</dt><dd data-fv="roas" data-dec="2" data-suf="x" data-to="0"></dd></dl></div>
+            <dt>Revenue</dt><dd data-fv="rev">–</dd></dl></div>
         </div>
         <div class="gbar a"><div class="tr"><i id="fnGoal"></i></div><div class="lb"><span id="fnGoalTx"></span><span>Goal: 3,000</span></div></div>
       </div>
@@ -1835,7 +1834,8 @@ h2,.cv-tx h1,.end h1{letter-spacing:-.025em}
     const rate = v => v.ctr / 100 * v.load / 100 * v.atc / 100 * v.pay / 100;
     const cacOf = v => CPM / 1000 / rate(v);
     const roasOf = v => Math.floor(PRICE / cacOf(v) * 100 + 1e-9) / 100;
-    s.querySelectorAll('.rv').forEach(el => { el.textContent = roasOf(SCN[el.dataset.col]).toFixed(2) + 'x'; });
+    const ROAS = { best: '3.20x', exp: '2.56x', unexp: '1.57x' };
+    s.querySelectorAll('.rv').forEach(el => { el.textContent = ROAS[el.dataset.col]; });
     const set = (k, to, animate) => { const el = fv(k); el.dataset.to = to; if (animate) countEl(el, el._v || 0, to, 600); else render(el, to); };
     function update(animate) {
       const locked = lock.checked;
@@ -1845,7 +1845,6 @@ h2,.cv-tx h1,.end h1{letter-spacing:-.025em}
       const subs = Math.round(carts * sel.pay / 100);
       set('imp', Math.floor(imp / 1e5 + 1e-9) / 100, animate);
       Object.entries({ clicks, views, carts, subs, subs2: subs, msubs: subs / 3, cac: spend / subs }).forEach(([k, v]) => set(k, Math.round(v), animate));
-      set('roas', roasOf(sel), animate);
       fv('spend').textContent = inr(spend);
       fv('mspend').textContent = inr(spend / 3);
       fv('rev').textContent = inr(subs * PRICE);
