@@ -1,0 +1,1981 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Her Will Growth Plan</title>
+<meta name="description" content="Her Will growth plan: website fixes inside TagMango and the paid marketing plan to reach 3,000 subscriptions by 31 January 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&family=Caveat:wght@500&family=Anek+Kannada:wght@500&family=Playfair+Display:wght@600&display=swap">
+<style>
+:root{
+  --ink:#16101A; --plum:#241530; --plum2:#33203E; --ivory:#F7F1E8; --paper:#FFFBF5;
+  --pink:#EC5F94; --pink2:#F6A3C0; --pink-ink:#C93F7A; --blush:#F4D9DD; --blush-2:#FBEDEF;
+  --gold:#C7A15F; --gold-ink:#9C7A3C;
+  --text:#241829; --muted:#76697C; --line:rgba(36,24,41,.13); --line-2:rgba(36,24,41,.22); --plum-tint:rgba(36,21,48,.06);
+  --green:#2F8A73; --green-bg:#E1F0EA; --amber:#A87B2F; --amber-bg:#F5E9D2; --red:#C8324F; --red-bg:#F8E0E5;
+  --serif:'Poppins','Segoe UI',Arial,sans-serif;
+  --sans:'Inter','Segoe UI',Arial,sans-serif;
+  --panel:linear-gradient(180deg,#241530,#16101A);
+  --ease:cubic-bezier(.2,.75,.2,1);
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#0B070D;font-family:var(--sans);color:var(--text);-webkit-font-smoothing:antialiased;overflow:hidden}
+html{font-variant-numeric:lining-nums}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+
+/* ================= deck frame ================= */
+.deck{position:absolute;left:50%;top:50%;width:1280px;height:720px;transform:translate(-50%,-50%) scale(var(--s,1));overflow:hidden;background:var(--ivory)}
+.slide{position:absolute;inset:0;padding:30px 64px 0;display:grid;grid-template-rows:44px auto 1fr 50px;overflow:hidden;color:var(--text);
+  background:radial-gradient(680px 430px at 92% -6%,rgba(236,95,148,.12),transparent 60%),radial-gradient(540px 340px at -4% 108%,rgba(199,161,95,.14),transparent 60%),var(--ivory);
+  opacity:0;visibility:hidden;transition:opacity .45s ease,visibility .45s}
+.slide::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.06;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.slide.active{opacity:1;visibility:visible}
+.slide.plain{display:block;padding:0}
+.slide.dark{color:#F5EEE6;background:radial-gradient(740px 470px at 88% 6%,rgba(236,95,148,.20),transparent 62%),radial-gradient(600px 400px at 0% 105%,rgba(199,161,95,.13),transparent 60%),var(--ink)}
+
+/* header + footer (built by script) */
+.hd{display:flex;align-items:center;justify-content:space-between}
+.trk{display:flex;gap:22px;font-size:10.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase}
+.trk span{opacity:.38;white-space:nowrap}
+.trk span.on{opacity:1;color:var(--pink)}
+.dark .trk span.on{color:var(--pink2)}
+.trk span.on::before{content:"";display:inline-block;width:22px;height:1px;background:currentColor;vertical-align:middle;margin-right:8px}
+.mark{width:40px;height:40px;background:url(assets/herwill-mark.png) center/contain no-repeat}
+.ft{display:flex;flex-direction:column;justify-content:flex-end;gap:5px;padding-bottom:16px}
+.ft-note{font-size:11.5px;color:var(--muted);line-height:1.35}
+.ft-note:empty{display:none}
+.ft-note b{color:var(--text);font-weight:700}
+.ft-brand{display:flex;justify-content:space-between;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;opacity:.55}
+.dark .ft-note{color:rgba(245,238,230,.6)}
+.dark .ft-note b{color:#F5EEE6}
+
+h2{font-family:var(--serif);font-weight:600;font-size:42px;line-height:1.06;letter-spacing:-.01em;margin:12px 0 20px;color:var(--text)}
+h2 em{font-style:italic;font-weight:500;color:var(--pink)}
+.dark h2{color:#F5EEE6}
+.dark h2 em{color:var(--pink2)}
+.bd{position:relative;min-height:0;padding-bottom:10px}
+
+/* ================= motion ================= */
+.a{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--d,0s)}
+.in .a{opacity:1;transform:none}
+.gx{transform:scaleX(0);transform-origin:left center;transition:transform 1s var(--ease) var(--d,0s)}
+.in .gx{transform:none}
+.gy{transform:scaleY(0);transform-origin:center bottom;transition:transform 1s var(--ease) var(--d,0s)}
+.in .gy{transform:none}
+.fb{clip-path:inset(0 50% 0 50% round 6px);transition:clip-path .9s var(--ease) var(--d,0s),filter .2s}
+.in .fb{clip-path:inset(-8px -8px -8px -8px round 10px)}
+
+/* ================= shared pieces ================= */
+.k{font-size:10px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--pink-ink)}
+.dark .k{color:var(--gold)}
+.u{font-family:var(--sans);font-size:.48em;font-weight:700;color:var(--pink);letter-spacing:0;margin:0 .08em}
+.card{background:#fff;border:1px solid rgba(36,24,41,.12);border-radius:6px;box-shadow:0 14px 34px -18px rgba(36,21,48,.22)}
+.dark .card{background:rgba(255,255,255,.045);border-color:rgba(199,161,95,.28);box-shadow:none}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:30px;font-size:11.5px;font-weight:700;white-space:nowrap;border:1px solid transparent}
+.chip.g{background:var(--green-bg);color:#1E6B57}
+.chip.r{background:var(--red-bg);color:#A3243F}
+.chip.am{background:var(--amber-bg);color:#7F5A1C}
+.chip.p{border-color:var(--plum);color:var(--plum)}
+.chip.k2{border-color:var(--pink);color:var(--pink-ink)}
+.dark .chip.p{border-color:var(--pink2);color:var(--pink2)}
+.dark .chip.am{background:transparent;border-color:var(--gold);color:var(--gold)}
+.note{font-size:12.5px;color:var(--muted);line-height:1.45}
+.note b{color:var(--text)}
+
+.tile{background:#fff;border:1px solid rgba(36,24,41,.12);border-radius:6px;padding:18px 20px;box-shadow:0 14px 34px -20px rgba(36,21,48,.22)}
+.tile .k{margin-bottom:10px}
+.tile .v{font-family:var(--serif);font-weight:600;font-size:46px;line-height:1;letter-spacing:-.01em;color:var(--text);font-variant-numeric:lining-nums}
+.tile .s{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.45}
+.tile.hero{background:var(--panel);border-color:transparent;color:#F5EEE6;box-shadow:0 20px 44px -20px rgba(36,21,48,.55)}
+.tile.hero .k{color:var(--gold)}
+.tile.hero .v{color:#fff}
+.tile.hero .u{color:var(--pink2)}
+.tile.hero .s{color:rgba(245,238,230,.72)}
+.dark .tile{background:rgba(255,255,255,.045);border-color:rgba(199,161,95,.3);box-shadow:none}
+.dark .tile .v{color:#fff}
+.dark .tile .s{color:rgba(245,238,230,.7)}
+.dark .tile .u{color:var(--pink2)}
+.dark .tile.hero{background:linear-gradient(160deg,rgba(236,95,148,.32),rgba(236,95,148,.08));border-color:rgba(246,163,192,.5)}
+
+/* tables */
+.tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:13.5px}
+.tbl th{font-size:9.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:left;padding:0 12px 9px;border-bottom:1px solid var(--line-2);white-space:nowrap}
+.tbl td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle;line-height:1.4;transition:background .2s}
+.tbl .r,.tbl th.r{text-align:right;font-variant-numeric:tabular-nums lining-nums}
+.tbl tbody tr:hover td{background:rgba(236,95,148,.05)}
+.tbl tr.hl td{background:rgba(236,95,148,.09);font-weight:700;color:var(--text)}
+.tbl tr.hl td:first-child{box-shadow:inset 3px 0 0 var(--pink)}
+.tbl tr.hi td{background:rgba(36,21,48,.07)}
+.tbl td.lab{font-family:var(--serif);font-weight:600;font-size:15.5px;color:var(--text);width:150px}
+.tbl b{color:var(--text)}
+
+/* website two-column */
+.split{display:grid;grid-template-columns:500px 1fr;gap:52px;height:100%}
+.label{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--pink-ink);margin-bottom:12px}
+.label::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--pink)}
+ul.found{list-style:none;margin:0 0 18px;padding:0;display:grid;gap:9px}
+ul.found li{position:relative;padding-left:20px;font-size:15px;line-height:1.48}
+ul.found li::before{content:"";position:absolute;left:0;top:11px;width:9px;height:1.5px;background:var(--gold)}
+ul.found b{color:var(--text);font-weight:800}
+.do{background:var(--panel);color:#F5EEE6;border-radius:6px;padding:18px 22px 20px;box-shadow:0 20px 44px -22px rgba(36,21,48,.6)}
+.do .label{color:var(--gold)}
+.do .label::before{background:var(--gold)}
+.do ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.do li{position:relative;padding-left:30px;font-size:14.5px;line-height:1.42;color:rgba(245,238,230,.88)}
+.do li::before{content:"";position:absolute;left:0;top:1px;width:19px;height:19px;border-radius:50%;background:var(--pink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.6 6.2l2.2 2.2 4.6-4.9' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/11px no-repeat}
+.do b{color:#fff}
+.vis{position:relative}
+.browser{position:absolute;background:#fff;border:1px solid rgba(36,24,41,.14);border-radius:6px;overflow:hidden;box-shadow:0 22px 46px -18px rgba(36,21,48,.35)}
+.browser .bar{height:28px;background:#F3ECE4;border-bottom:1px solid rgba(36,24,41,.1);display:flex;align-items:center;gap:5px;padding:0 10px}
+.browser .bar i{width:8px;height:8px;border-radius:50%;background:#D8CBC0}
+.browser .bar span{margin-left:8px;flex:1;background:#fff;border-radius:4px;font-size:10.5px;color:var(--muted);padding:2px 9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.browser img{display:block;width:100%}
+.crop{position:relative;overflow:hidden}
+.crop img{position:absolute;left:0;width:100%}
+.phone{position:absolute;border:8px solid var(--ink);border-radius:30px;overflow:hidden;background:#fff;box-shadow:0 26px 50px -16px rgba(22,16,26,.5);z-index:2}
+.phone img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.cap{position:absolute;left:10px;bottom:10px;background:rgba(22,16,26,.92);color:#F5EEE6;font-size:11.5px;font-weight:700;padding:6px 10px;border-radius:3px;border-left:3px solid var(--pink);line-height:1.25;max-width:calc(100% - 20px);z-index:3}
+.cap.red{background:var(--red);border-left-color:#fff;color:#fff}
+.speed{position:absolute;padding:14px 18px}
+.speed .row{display:flex;gap:28px;margin-top:10px}
+.speed b{display:block;font-family:var(--serif);font-weight:600;font-size:34px;line-height:1;color:var(--red);font-variant-numeric:lining-nums}
+.speed b .u{color:var(--red)}
+.speed small{display:block;font-size:11.5px;color:var(--muted);margin-top:5px}
+.path{position:absolute;left:0;top:0;width:100%;display:grid;grid-template-columns:1fr 26px 1fr 26px 1.3fr}
+.step{position:relative;border:1px solid rgba(36,24,41,.12);border-radius:6px;padding:14px 16px;background:#fff;box-shadow:0 14px 30px -20px rgba(36,21,48,.25)}
+.step b{display:block;font-family:var(--serif);font-weight:600;font-size:32px;line-height:1;color:var(--text);margin-top:8px;font-variant-numeric:lining-nums}
+.step small{display:block;font-size:11.5px;color:var(--muted);margin-top:6px}
+.step.hot{background:var(--panel);border-color:transparent;color:#F5EEE6}
+.step.hot .k{color:var(--gold)}
+.step.hot b{color:#fff}
+.step.hot .u{color:var(--pink2)}
+.step.hot small{color:rgba(245,238,230,.65)}
+.pct{display:inline-block;vertical-align:middle;margin-left:8px;font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:0;color:#fff;background:var(--pink);padding:4px 9px;border-radius:30px}
+.arrow{display:grid;place-items:center;color:var(--gold);font-size:18px;font-weight:700}
+.miss{position:absolute;padding:16px 20px}
+.miss ul{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:10px}
+.miss li{position:relative;padding-left:28px;font-size:14.5px;line-height:1.35}
+.miss li::before{content:"";position:absolute;left:0;top:0;width:19px;height:19px;border-radius:50%;background:var(--red-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3.5 3.5l5 5M8.5 3.5l-5 5' fill='none' stroke='%23C8324F' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E") center/11px no-repeat}
+.miss .foot{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line-2);font-size:13px;line-height:1.4}
+.miss.wide ul{grid-template-columns:1fr 1fr;gap:10px 20px;margin-top:10px}
+.miss.wide .foot{margin-top:12px;padding-top:10px}
+.zero{position:absolute;left:0;width:100%;height:104px;display:flex;align-items:center;gap:24px;padding:0 26px}
+.zero b{font-family:var(--serif);font-weight:600;font-size:66px;line-height:1;color:var(--red);width:48px;text-align:center}
+.zero span{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--text);line-height:1.2}
+.zero span em{display:block;font-family:var(--sans);font-style:normal;font-weight:400;font-size:13px;color:var(--muted);margin-top:3px}
+.bridge{position:absolute;left:0;width:100%;background:var(--panel);color:#F5EEE6;border-radius:6px;padding:24px 28px;box-shadow:0 24px 50px -24px rgba(36,21,48,.6)}
+.bridge .k{color:var(--gold)}
+.bridge p{margin:8px 0 0;font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.4;color:#F5EEE6}
+.go-btn{margin-top:16px;display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;background:var(--pink);color:#fff;border:0;padding:9px 16px;border-radius:30px;cursor:pointer;transition:transform .2s}
+.go-btn:hover{transform:translateX(3px)}
+
+/* ================= cover + closing ================= */
+.cv-by{position:absolute;left:80px;top:40px;font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.cv-ring{position:absolute;right:107px;top:72px;width:400px;height:400px;border-radius:50%;border:1px solid rgba(199,161,95,.55)}
+.cv-ring.r2{right:87px;top:52px;width:440px;height:440px;border-color:rgba(236,95,148,.28)}
+.cv-mark{position:absolute;right:133px;top:98px;width:347px;height:347px;background:url(assets/herwill-mark.png) center/contain no-repeat;filter:drop-shadow(0 20px 54px rgba(236,95,148,.35))}
+.cv-tx{position:absolute;left:80px;top:122px;width:640px}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.cv-tx h1{font-family:var(--serif);font-weight:600;font-size:104px;line-height:.98;letter-spacing:-.02em;margin:22px 0 0;color:#F5EEE6}
+.cv-tx h1 em{font-style:italic;font-weight:500;color:var(--pink2)}
+.cv-tx p{font-family:var(--serif);font-style:italic;font-size:24px;line-height:1.38;color:#E9DDD3;margin:22px 0 0;max-width:610px}
+.cv-flow{position:absolute;left:80px;right:80px;bottom:70px;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(199,161,95,.6)}
+.cv-flow>div{padding-top:16px}
+.cv-flow .n{display:block;font-family:var(--serif);font-style:italic;font-size:34px;line-height:1;color:var(--pink2)}
+.cv-flow b{display:block;margin-top:8px;font-size:12.5px;font-weight:800;letter-spacing:.22em;text-transform:uppercase}
+.cv-hint,.end-hint{position:absolute;left:80px;bottom:26px;font-size:11px;letter-spacing:.04em;color:rgba(245,238,230,.5)}
+kbd{font-family:var(--sans);font-size:10px;font-weight:800;border:1px solid rgba(199,161,95,.5);border-radius:4px;padding:1px 6px;color:var(--gold)}
+.end{position:absolute;left:80px;top:150px;width:640px}
+.end h1{font-family:var(--serif);font-weight:600;font-size:120px;line-height:.95;letter-spacing:-.02em;color:#F5EEE6;margin:22px 0 34px}
+.end h1 em{font-style:italic;font-weight:500;color:var(--pink2)}
+.end .rowx{display:grid;grid-template-columns:1fr 1fr;gap:30px;border-top:1px solid rgba(199,161,95,.6);padding-top:16px}
+.end .rowx h4{margin:8px 0 0;font-size:15px;font-weight:700;line-height:1.6;color:#F5EEE6}
+
+/* ================= goal ================= */
+.tiles4{display:grid;grid-template-columns:1.15fr 1fr 1fr 1fr;gap:14px}
+#goal .tile{min-height:178px;padding:24px}
+.tl-card{margin-top:26px;padding:28px 30px 24px}
+.tl-ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;margin-bottom:14px}
+.tl{display:flex;height:14px;border-radius:30px;overflow:hidden;background:var(--line)}
+.dark .tl{background:rgba(255,255,255,.08)}
+.tl i{display:block;height:100%}
+.tl-lab{display:flex;margin-top:12px}
+.tl-lab div{font-size:12px;color:var(--muted);padding-left:2px}
+.tl-lab b{display:block;font-family:var(--serif);font-weight:600;font-size:18px;color:var(--text)}
+.dark .tl-lab div{color:rgba(245,238,230,.6)}
+.dark .tl-lab b{color:#fff}
+.goal-sub{margin-top:22px;font-family:var(--serif);font-style:italic;font-size:18px;color:var(--muted)}
+.goal-sub b{font-weight:600}
+.dark .goal-sub{color:rgba(245,238,230,.75)}
+.dark .goal-sub b{color:var(--pink2)}
+
+/* ================= engine ================= */
+.engine{display:grid;grid-template-columns:1fr 30px 1fr 30px 1fr 30px 1fr;align-items:stretch}
+.eng{position:relative;min-height:340px;padding:24px 22px 22px;display:flex;flex-direction:column;gap:10px;cursor:pointer;text-align:left;transition:transform .25s var(--ease),border-color .25s}
+.eng:hover{transform:translateY(-4px);border-color:var(--pink2)}
+.eng.soon{cursor:default}
+.eng.soon:hover{transform:none;border-color:rgba(199,161,95,.28)}
+.eng .ic{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(246,163,192,.5);color:var(--pink2)}
+.eng .ic svg{width:22px;height:22px}
+.eng .num{font-family:var(--serif);font-style:italic;font-size:30px;line-height:1;color:var(--pink2);margin-top:4px}
+.eng h3{margin:0;font-family:var(--serif);font-weight:600;font-size:25px;line-height:1.08}
+.eng .role{font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.eng p{margin:0;font-size:13.5px;line-height:1.55;opacity:.8}
+.eng .chip{margin-top:auto;align-self:flex-start}
+.eng-arrow{display:grid;place-items:center;color:var(--gold);font-size:20px}
+.loop{margin-top:18px;position:relative}
+.loop svg{display:block;width:100%;height:56px}
+.loop span{position:absolute;left:50%;bottom:2px;transform:translateX(-50%);background:var(--ink);padding:0 14px;font-family:var(--serif);font-style:italic;font-size:17px;color:var(--pink2);white-space:nowrap}
+
+/* ================= paid: P1 ladder ================= */
+.p1{display:grid;grid-template-columns:470px 1fr;gap:44px;height:100%}
+.ladder{position:relative;height:430px}
+.rung{position:absolute;width:330px;padding:16px 18px}
+.rung .pr{font-family:var(--serif);font-weight:600;font-size:36px;line-height:1;color:var(--text);font-variant-numeric:lining-nums}
+.rung h4{margin:6px 0 4px;font-family:var(--serif);font-weight:600;font-size:19px;color:var(--text)}
+.rung p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.45}
+.rung .chip{position:absolute;top:16px;right:16px}
+.rung.top{background:var(--panel);border-color:transparent}
+.rung.top .pr,.rung.top h4{color:#fff}
+.rung.top .u{color:var(--pink2)}
+.rung.top p{color:rgba(245,238,230,.7)}
+.rung.top .chip{background:var(--pink);color:#fff}
+.up{display:inline-block;margin-top:10px;font-size:11.5px;font-weight:700;color:var(--pink-ink);border:1px dashed var(--pink);border-radius:30px;padding:4px 10px}
+.src{margin-top:14px}
+
+/* ================= paid: P2 funnel ================= */
+.reach{display:flex;align-items:center;margin-bottom:16px}
+.reach .pill{display:flex;align-items:baseline;gap:8px;background:#fff;border:1px solid rgba(36,24,41,.12);border-radius:6px;padding:9px 16px;white-space:nowrap}
+.reach .pill b{font-family:var(--serif);font-weight:600;font-size:22px;color:var(--text);font-variant-numeric:lining-nums}
+.reach .pill span{font-size:12px;color:var(--muted)}
+.reach .pill.inv{background:var(--panel);border-color:transparent}
+.reach .pill.inv b{color:#fff}
+.reach .pill.inv .u{color:var(--pink2)}
+.reach .pill.inv span{color:rgba(245,238,230,.7)}
+.reach .link{flex:1;position:relative;height:1px;background:linear-gradient(90deg,var(--line-2),var(--gold));margin:0 12px}
+.reach .link::after{content:"";position:absolute;right:-2px;top:-4px;border:4.5px solid transparent;border-left:7px solid var(--gold);border-right:0}
+.reach .link i{position:absolute;left:50%;top:-21px;transform:translateX(-50%);font-family:var(--serif);font-size:13.5px;color:var(--pink-ink);white-space:nowrap}
+.p2{display:grid;grid-template-columns:640px 1fr;gap:40px}
+.funnel{display:flex;flex-direction:column;align-items:center}
+.frow{width:100%;display:flex;flex-direction:column;align-items:center;cursor:pointer}
+.frow .fb{height:40px;border-radius:6px;display:flex;align-items:center;justify-content:center;gap:10px;color:#fff}
+.frow .fb b{font-family:var(--serif);font-weight:600;font-size:20px;font-variant-numeric:lining-nums}
+.frow .fb b .u{color:var(--pink2)}
+.frow .fb span{font-size:12px;font-weight:700;opacity:.9}
+.frow.hi .fb{filter:brightness(1.1);box-shadow:0 0 0 3px var(--ivory),0 0 0 4.5px var(--gold)}
+.rate{margin:5px 0;font-size:11.5px;font-weight:700;color:var(--text);background:#fff;border:1px solid rgba(36,24,41,.12);border-radius:30px;padding:2px 10px}
+.rate::before{content:"↓ ";color:var(--pink)}
+.fnote{margin-top:10px;font-size:11.5px;color:var(--muted)}
+.fdetail{margin-top:16px;padding:16px 18px;background:var(--panel);color:#F5EEE6;border-radius:6px;min-height:96px}
+.fdetail .nm{font-size:10px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.fdetail .big{font-family:var(--serif);font-weight:600;font-size:32px;color:#fff;line-height:1.1;margin-top:4px;font-variant-numeric:lining-nums}
+.fdetail p{margin:4px 0 0;font-size:13px;color:rgba(245,238,230,.8)}
+.costs tbody tr{cursor:pointer}
+
+/* ================= paid: P3 budget ================= */
+.p3b{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+.box{padding:20px 22px}
+.splitbar{margin-top:10px;display:flex;height:44px;border-radius:4px;overflow:hidden}
+.splitbar div{display:flex;align-items:center;padding:0 14px;color:#fff;font-size:12.5px;font-weight:800;white-space:nowrap;overflow:hidden}
+.legend{display:flex;gap:16px;margin-top:10px;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.seg{display:inline-flex;background:rgba(36,21,48,.06);border-radius:30px;padding:4px;margin-bottom:14px}
+.seg button{border:0;background:transparent;padding:7px 14px;border-radius:30px;font-size:12px;font-weight:800;color:var(--muted);cursor:pointer;transition:background .2s,color .2s}
+.seg button.on{background:var(--plum);color:#fff}
+.cmp td.on,.cmp th.on{background:rgba(236,95,148,.09);color:var(--text);font-weight:800}
+
+/* ================= paid: P4 waterfall ================= */
+.p4{display:grid;grid-template-columns:640px 1fr;gap:40px}
+.wf{display:grid;gap:8px}
+.wrow{display:grid;grid-template-columns:200px 1fr 96px;align-items:center;gap:14px;height:52px}
+.wrow .nm{font-family:var(--serif);font-size:16px;font-weight:600;color:var(--text);line-height:1.2}
+.wrow .nm small{display:block;font-family:var(--sans);font-weight:400;color:var(--muted);font-size:11.5px;margin-top:2px}
+.wtrack{position:relative;height:32px;background:repeating-linear-gradient(90deg,transparent 0 calc(25% - 1px),var(--line) calc(25% - 1px) 25%)}
+.wbar{position:absolute;top:0;bottom:0;border-radius:3px}
+.wbar.tot{background:var(--plum)}
+.wbar.sub{background:#64294E}
+.wbar.neg{background:repeating-linear-gradient(135deg,#F7DDE5 0 6px,#EFC5D3 6px 12px)}
+.wbar.fin{background:var(--pink)}
+.wrow .val{text-align:right;font-family:var(--serif);font-weight:600;font-size:20px;color:var(--text);font-variant-numeric:lining-nums}
+.wrow .val.neg{color:var(--red)}
+.wrow.fin .nm{color:var(--pink-ink)}
+.placeholder{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+
+/* ================= paid: P5 months ================= */
+.p5{display:grid;grid-template-columns:1fr 360px;gap:34px}
+.mchart{position:relative;height:300px;padding:30px 12px 0;display:flex;align-items:flex-end;gap:22px;border-bottom:1px solid var(--line-2);margin-bottom:30px}
+.mcol{flex:1;height:100%;display:flex;align-items:flex-end;position:relative;cursor:pointer}
+.mbar{width:100%;border-radius:4px 4px 2px 2px;background:linear-gradient(180deg,var(--pink),var(--plum));position:relative;transition:filter .2s}
+.mbar b{position:absolute;left:50%;top:-26px;transform:translateX(-50%);font-family:var(--serif);font-weight:600;font-size:18px;color:var(--text);white-space:nowrap;font-variant-numeric:lining-nums}
+.mcol span{position:absolute;left:0;right:0;bottom:-24px;text-align:center;font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.mcol.hi .mbar{filter:brightness(1.15)}
+.target{position:absolute;left:0;right:0;border-top:1.5px dashed var(--gold);z-index:2}
+.target i{position:absolute;left:0;top:-22px;font-family:var(--serif);font-size:13.5px;color:var(--gold-ink);background:#fff;padding:0 4px}
+.months tbody tr{cursor:pointer}
+.wording{margin-top:18px;padding-top:14px;border-top:1px solid rgba(199,161,95,.6);font-family:var(--serif);font-style:italic;font-size:19px;color:var(--pink-ink);line-height:1.35}
+
+/* ================= paid: P6 targeting ================= */
+.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;position:relative}
+.phases::before{content:"";position:absolute;left:30px;right:30px;top:50%;height:1px;background:linear-gradient(90deg,var(--gold),var(--pink))}
+.phase{position:relative;padding:22px;display:flex;align-items:center;gap:16px}
+.phase svg{flex:none}
+.phase .when{font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--pink-ink)}
+.phase .where{font-family:var(--serif);font-weight:600;font-size:22px;color:var(--text);line-height:1.1;margin-top:3px}
+.phase small{display:block;margin-top:4px;font-size:11.5px;color:var(--muted)}
+.p6b{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+#p6 .p6b .box{min-height:300px}
+.rfun{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:14px}
+.rfun .fb{height:54px;border-radius:6px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;color:#fff;font-family:var(--serif);font-size:17px;font-weight:600}
+.rfun .fb small{font-family:var(--sans);font-size:11.5px;font-weight:700;opacity:.85}
+.stack{display:flex;height:40px;border-radius:4px;overflow:hidden;margin-top:12px}
+.stack div{height:100%}
+.lg{display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;margin-top:12px}
+.lg div{display:flex;align-items:center;gap:8px;font-size:13px}
+.lg i{width:10px;height:10px;border-radius:2px;flex:none}
+.lg b{margin-left:auto;font-family:var(--serif);font-size:15px;color:var(--text)}
+.why{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+
+/* ================= paid: P7 creatives ================= */
+.cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.cc{padding:18px;display:flex;flex-direction:column;gap:10px;min-height:244px;position:relative;border-top:3px solid var(--plum)}
+.cc.lead{border-top-color:var(--pink);background:linear-gradient(180deg,#FFF3F6,#fff)}
+.ph{width:42px;height:72px;border-radius:9px;border:3px solid var(--ink);background:linear-gradient(160deg,var(--blush),#fff);display:grid;place-items:center;color:var(--pink-ink)}
+.ph svg{width:19px;height:19px}
+.cc h4{margin:4px 0 0;font-family:var(--serif);font-weight:600;font-size:20px;color:var(--text);line-height:1.1}
+.cc p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.5}
+.cc .chip{position:absolute;top:18px;right:16px}
+.cc q{display:block;font-family:var(--serif);font-style:italic;font-size:16px;color:var(--pink-ink);quotes:"“" "”";line-height:1.3}
+.rules{margin-top:18px}
+#p7 .rules td{padding-top:13px;padding-bottom:13px}
+
+/* ================= paid: P8 scenarios ================= */
+.scen tbody tr{cursor:pointer}
+#p8 .scen td{padding:14px 12px}
+.sbar{display:inline-block;width:110px;height:6px;border-radius:30px;background:var(--line);overflow:hidden;vertical-align:middle;margin-left:10px}
+.sbar i{display:block;height:100%;border-radius:30px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;vertical-align:1px}
+.readout{margin-top:16px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 18px;border-radius:6px;background:var(--panel);color:#F5EEE6}
+.readout p{margin:0;font-size:14.5px;line-height:1.4}
+.readout b{color:#fff}
+.btn{border:0;background:var(--pink);color:#fff;font-size:12.5px;font-weight:800;padding:10px 16px;border-radius:30px;cursor:pointer;white-space:nowrap;transition:transform .2s}
+.btn:hover{transform:translateY(-1px)}
+.take{margin-top:12px;display:flex;gap:18px;align-items:flex-start}
+.take .note{flex:1}
+.take .msg{flex:1.3;font-family:var(--serif);font-style:italic;font-size:17px;color:var(--pink-ink);line-height:1.35;margin:0}
+.scrim{position:absolute;inset:0;background:rgba(22,16,26,.35);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;z-index:20}
+.drawer{position:absolute;top:0;right:0;bottom:0;width:480px;background:var(--paper);z-index:21;box-shadow:-30px 0 60px -30px rgba(22,16,26,.5);transform:translateX(102%);transition:transform .45s var(--ease);padding:30px 32px;display:flex;flex-direction:column;gap:14px}
+.wi-open .scrim{opacity:1;visibility:visible}
+.wi-open .drawer{transform:none}
+.dr-hd{display:flex;justify-content:space-between;align-items:flex-start}
+.dr-hd h3{margin:4px 0 0;font-family:var(--serif);font-weight:600;font-size:28px;color:var(--text)}
+.x{border:1px solid var(--line-2);background:#fff;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:18px;color:var(--text)}
+.presets{display:flex;gap:6px;flex-wrap:wrap}
+.presets button{border:1px solid var(--line-2);background:#fff;border-radius:30px;padding:5px 11px;font-size:11.5px;font-weight:800;color:var(--text);cursor:pointer}
+.presets button.on{background:var(--plum);color:#fff;border-color:var(--plum)}
+.sl{display:grid;grid-template-columns:118px 1fr 64px;align-items:center;gap:12px;font-size:12.5px;font-weight:700;color:var(--text)}
+.sl input{width:100%;accent-color:var(--pink)}
+.sl output{text-align:right;font-family:var(--serif);font-weight:600;font-size:17px;font-variant-numeric:lining-nums}
+.fixed{font-size:11.5px;color:var(--muted);border-top:1px dashed var(--line-2);padding-top:12px}
+.outs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:auto}
+.out{background:#fff;border:1px solid rgba(36,24,41,.1);border-radius:6px;padding:12px 14px}
+.out b{display:block;font-family:var(--serif);font-weight:600;font-size:28px;color:var(--text);line-height:1.1;margin-top:4px;font-variant-numeric:lining-nums}
+.out small{display:block;font-size:11.5px;color:var(--muted)}
+.out.main{background:var(--panel);border-color:transparent}
+.out.main .k{color:var(--gold)}
+.out.main b{color:#fff}
+.out.main small{color:rgba(245,238,230,.7)}
+
+/* ================= paid: P9 checklist ================= */
+.clhead{display:flex;align-items:center;gap:16px;margin-bottom:12px}
+.clprog{flex:1;height:6px;border-radius:30px;background:var(--line);overflow:hidden}
+.clprog i{display:block;height:100%;width:0;background:var(--green);border-radius:30px;transition:width .5s var(--ease)}
+.clcount{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--text);white-space:nowrap}
+.chk{width:26px;height:26px;border-radius:6px;border:1.5px solid var(--line-2);background:#fff;cursor:pointer;display:grid;place-items:center;transition:background .2s,border-color .2s;padding:0}
+.chk svg{width:13px;height:13px;opacity:0;transition:opacity .2s}
+.done .chk{background:var(--green);border-color:var(--green)}
+.done .chk svg{opacity:1}
+#p9 .checks td{padding-top:14px;padding-bottom:14px}
+.checks tr.done td{background:rgba(47,138,115,.06)}
+.checks tr.done .what{color:var(--muted)}
+.checks .what{font-size:14px}
+.checks .what b{color:var(--text)}
+
+/* ================= paid: P10 red flags ================= */
+.p10{display:grid;grid-template-columns:1fr 360px;gap:34px}
+.flags td{padding-top:11px;padding-bottom:11px}
+.gauge-card{padding:22px 24px;background:var(--panel);border-color:transparent;color:#F5EEE6}
+.gauge-card .k{color:var(--gold)}
+.gauge-card .big{font-family:var(--serif);font-weight:600;font-size:48px;color:#fff;line-height:1;margin-top:8px;font-variant-numeric:lining-nums}
+.gauge-card .big .u{color:var(--pink2)}
+.gauge-card .note{color:rgba(245,238,230,.7)}
+.gauge{position:relative;height:12px;border-radius:30px;margin:46px 0 54px;background:linear-gradient(90deg,rgba(47,138,115,.6) 0 62.5%,rgba(199,161,95,.6) 62.5% 90%,rgba(200,50,79,.75) 90% 100%)}
+.mk{position:absolute;top:-8px;width:2px;height:28px;background:#fff}
+.mk i{position:absolute;left:50%;transform:translateX(-50%);font-style:normal;font-size:11px;font-weight:700;white-space:nowrap;color:#fff}
+.mk.t i{top:-20px}
+.mk.b i{top:32px}
+.gl{display:grid;gap:8px;font-size:12.5px;color:rgba(245,238,230,.85)}
+.gl div{display:flex;align-items:center;gap:8px}
+.gl i{width:12px;height:12px;border-radius:3px}
+
+/* ================= paid: P11 checkpoints ================= */
+.cpt{position:relative;margin:30px 24px 0;height:110px}
+.cpline{position:absolute;left:0;right:0;top:38px;height:4px;border-radius:4px;background:var(--line)}
+.cpfill{position:absolute;inset:0;border-radius:4px;background:linear-gradient(90deg,var(--gold),var(--pink))}
+.cp{position:absolute;top:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;cursor:pointer;background:none;border:0;padding:0}
+.cp .dt{font-size:10.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--text);white-space:nowrap;height:22px}
+.cp .dt2{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--muted);white-space:nowrap}
+.cp .pin{width:20px;height:20px;border-radius:50%;background:var(--ivory);border:3px solid var(--pink);margin:3px 0 8px;transition:transform .2s}
+.cp.hi .pin{transform:scale(1.25);background:var(--pink)}
+.cp.start .pin{border-color:var(--gold)}
+.cp .tg{font-family:var(--serif);font-weight:600;font-size:19px;color:var(--text);white-space:nowrap;font-variant-numeric:lining-nums}
+.p11{display:grid;grid-template-columns:1fr 290px;gap:30px;margin-top:10px}
+.cps tbody tr{cursor:pointer}
+.pace{display:grid;gap:12px}
+.pace .tile{padding:14px 18px}
+.pace .tile .v{font-size:34px}
+.pace .tile .k{margin-bottom:6px}
+
+/* ================= paid: P12 benchmarks ================= */
+.p12{display:grid;grid-template-columns:1fr 360px;gap:30px}
+.bench{font-size:12.5px}
+#p12 .bench td{padding:8px 12px}
+.built{display:grid;gap:8px}
+.built div{display:flex;gap:12px;align-items:center;padding:10px 14px;border-radius:6px;background:#fff;border:1px solid rgba(36,24,41,.1);font-size:13px;font-weight:700;color:var(--text)}
+.built span{flex:none;width:24px;height:24px;border-radius:50%;background:var(--plum);color:#fff;display:grid;place-items:center;font-family:var(--serif);font-style:italic;font-size:13px}
+.sources{margin:14px 0 0;padding:0;list-style:none;columns:2;column-gap:16px;font-size:11.5px;line-height:1.8}
+.sources a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--line-2)}
+.sources a:hover{color:var(--pink-ink);border-color:var(--pink)}
+
+/* ================= act 3 ================= */
+.rm{display:grid;grid-template-columns:150px repeat(5,1fr);gap:14px 8px;align-items:stretch}
+.rm .ch{font-size:9.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);padding-bottom:6px;border-bottom:1px solid var(--line-2)}
+.rm .lane{display:flex;align-items:center;font-family:var(--serif);font-weight:600;font-size:17px;color:var(--text)}
+.rm .lane small{display:block;font-family:var(--serif);font-style:italic;font-weight:500;font-size:15px;color:var(--pink)}
+.rb{border-radius:6px;padding:10px 12px;font-size:12.5px;line-height:1.35;font-weight:700;min-height:66px;display:flex;flex-direction:column;justify-content:center}
+.rb small{display:block;font-weight:500;opacity:.8;font-size:11.5px}
+.rb.w{background:var(--plum);color:#fff}
+.rb.c{background:var(--blush);color:#8E2E5A}
+.rb.pd{background:#64294E;color:#fff}
+.rb.pd2{background:#8E335F;color:#fff}
+.rb.pd3{background:#BA4573;color:#fff}
+.rb.ghost{border:1px dashed var(--line-2);color:var(--muted);background:transparent;font-weight:600}
+.rb.cpk{background:#fff;border:1px solid rgba(36,24,41,.12);color:var(--text)}
+.rb.cpk b{font-family:var(--serif);font-size:19px;font-weight:600}
+.p-meas{display:grid;grid-template-columns:1fr 470px;gap:34px}
+.ba td:nth-child(2){color:var(--red);font-weight:800}
+.ba td:nth-child(3){color:var(--green);font-weight:800}
+#measure .ba td{padding-top:14px;padding-bottom:14px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.kpis .tile{padding:16px}
+.kpis .tile .v{font-size:32px}
+.kpis .tile .k{margin-bottom:6px;font-size:9px}
+.jump{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px;margin-top:12px;cursor:pointer;text-align:left;width:100%;transition:border-color .2s,transform .2s}
+.jump:hover{border-color:var(--pink);transform:translateX(3px)}
+.jump h4{margin:0;font-family:var(--serif);font-weight:600;font-size:19px;color:var(--text)}
+.jump p{margin:3px 0 0;font-size:12.5px;color:var(--muted)}
+.jump .ar{color:var(--pink);font-weight:700;font-size:18px}
+.need{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.need .card{padding:20px 22px}
+.need h3{margin:0 0 4px;font-family:var(--serif);font-weight:600;font-size:23px;color:var(--text)}
+.need .sub{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.nl{list-style:none;margin:0;padding:0;display:grid;gap:3px}
+.nl li{display:flex;align-items:center;gap:12px;padding:6px 4px;border-radius:6px;font-size:13.5px;line-height:1.3}
+.nl li.done span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line-2)}
+.nl .chk{width:22px;height:22px;flex:none}
+
+/* ================= chrome ================= */
+.prog{position:absolute;left:0;right:0;bottom:0;height:3px;z-index:30;pointer-events:none}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--gold));transition:width .45s var(--ease)}
+.ctrl{position:fixed;right:16px;bottom:14px;display:flex;align-items:center;gap:4px;background:rgba(22,16,26,.88);border:1px solid rgba(199,161,95,.35);border-radius:30px;padding:5px;z-index:30;opacity:.45;transition:opacity .25s}
+.ctrl button{border:0;background:transparent;height:32px;min-width:32px;border-radius:30px;cursor:pointer;color:#F5EEE6;font-size:14px;font-weight:700;padding:0 10px}
+.ctrl button:hover{background:rgba(255,255,255,.1)}
+.ctrl span{font-size:12px;font-weight:700;color:#F5EEE6;min-width:58px;text-align:center;font-variant-numeric:tabular-nums}
+.ctrl:hover,.ctrl:focus-within{opacity:1}
+.idle .ctrl{opacity:0;pointer-events:none}
+.idle .ctrl:focus-within{opacity:1;pointer-events:auto}
+.idle{cursor:none}
+.static .ctrl,.static .prog{display:none}
+.toc{position:fixed;top:0;right:0;bottom:0;width:340px;background:var(--paper);border-left:1px solid var(--line);box-shadow:-20px 0 50px -30px rgba(22,16,26,.5);z-index:40;transform:translateX(102%);transition:transform .4s var(--ease);display:flex;flex-direction:column}
+.toc.open{transform:none}
+.toc header{display:flex;justify-content:space-between;align-items:center;padding:22px 22px 12px}
+.toc header b{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--text)}
+.toc nav{overflow:auto;padding:0 12px 22px}
+.toc h5{margin:16px 10px 6px;font-size:10px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--pink-ink)}
+.toc nav button{display:flex;gap:12px;width:100%;text-align:left;border:0;background:transparent;padding:8px 10px;border-radius:6px;cursor:pointer;font-size:13.5px;color:var(--text)}
+.toc nav button i{font-family:var(--serif);font-style:italic;color:var(--muted);width:22px}
+.toc nav button:hover{background:rgba(36,21,48,.05)}
+.toc nav button.on{background:var(--blush);font-weight:700}
+
+/* ================= master deck additions ================= */
+.sublead{font-family:var(--serif);font-style:italic;font-size:16.5px;line-height:1.4;color:var(--pink-ink);margin:-6px 0 14px;max-width:1040px}
+.tl i.prep{background:repeating-linear-gradient(135deg,rgba(199,161,95,.65) 0 5px,rgba(199,161,95,.22) 5px 10px)}
+
+/* journey */
+.jpath{display:grid;grid-template-columns:repeat(5,1fr);gap:22px}
+.jn{position:relative;padding:16px;min-height:146px;transition:opacity .3s}
+.jn:not(:last-child)::after{content:"→";position:absolute;right:-17px;top:50%;transform:translateY(-50%);color:var(--gold);font-size:16px;font-weight:700}
+.jn .no{width:28px;height:28px;border-radius:50%;background:var(--plum);color:#fff;display:grid;place-items:center;font-family:var(--serif);font-style:italic;font-size:14px}
+.jn h4{margin:12px 0 5px;font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.15;color:var(--text)}
+.jn p{margin:0;font-size:12px;line-height:1.5;color:var(--muted)}
+.jn.win{background:var(--panel);border-color:transparent}
+.jn.win h4{color:#fff}
+.jn.win p{color:rgba(245,238,230,.75)}
+.jn.win .no{background:var(--pink)}
+.jn.off{opacity:.28}
+.jhd{display:flex;align-items:center;justify-content:space-between;margin:20px 0 10px}
+.jbr{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.jb{text-align:left;cursor:pointer;padding:14px 16px;border-top:3px solid var(--line-2);transition:border-color .25s,background .25s,transform .25s}
+.jb:hover{transform:translateY(-2px)}
+.jb .from{font-size:9.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.jb h5{margin:5px 0 4px;font-family:var(--serif);font-weight:600;font-size:17px;color:var(--text)}
+.jb p{margin:0;font-size:12px;line-height:1.5;color:var(--text)}
+.jb.sel{border-top-color:var(--pink);background:#FFF3F6}
+.jbuy{border:1px solid var(--plum);background:transparent;border-radius:30px;padding:6px 14px;font-size:11.5px;font-weight:800;cursor:pointer;color:var(--plum)}
+.jbuy.sel{background:var(--plum);color:#fff}
+.jstrip{margin-top:16px;display:grid;grid-template-columns:1.4fr 1fr;gap:24px;padding:16px 22px;border-radius:6px;background:var(--panel);color:#F5EEE6}
+.jstrip .k{color:var(--gold)}
+.jstrip p{margin:4px 0 0;font-size:13px;line-height:1.5;color:rgba(245,238,230,.85)}
+
+/* creatives: ad options */
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.opt{padding:16px;display:grid;grid-template-columns:132px 1fr;gap:14px;align-content:start}
+.opt img{width:132px;height:198px;object-fit:cover;object-position:top;border-radius:4px;display:block;box-shadow:0 10px 24px -14px rgba(36,21,48,.5)}
+.opt h4{margin:4px 0 4px;font-family:var(--serif);font-weight:600;font-size:17px;line-height:1.15;color:var(--text)}
+.opt dl{margin:0}
+.opt dt{font-size:9px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--pink-ink);margin-top:8px}
+.opt dd{margin:3px 0 0;font-size:12px;line-height:1.45;color:var(--text)}
+.opt q{grid-column:1/-1;display:block;font-family:var(--serif);font-style:italic;font-size:16px;line-height:1.35;color:var(--text);border-top:1px solid rgba(199,161,95,.55);padding-top:12px;quotes:"“" "”"}
+
+/* creatives: videos */
+.vids{display:grid;grid-template-columns:430px 1fr;gap:20px}
+.vc{padding:20px 22px}
+.vc h3{margin:6px 0 8px;font-family:var(--serif);font-weight:600;font-size:25px;line-height:1.1;color:var(--text)}
+.vc p{margin:0;font-size:13px;line-height:1.55}
+.vc.dk{background:var(--panel);border-color:transparent;color:#F5EEE6}
+.vc.dk h3{color:#fff}
+.vc.dk .k{color:var(--gold)}
+.vc.dk p{color:rgba(245,238,230,.85)}
+.tp{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
+.tp li{position:relative;padding-left:28px;font-size:13.5px;line-height:1.4}
+.tp li::before{content:"";position:absolute;left:0;top:0;width:19px;height:19px;border-radius:50%;background:var(--pink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.6 6.2l2.2 2.2 4.6-4.9' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/11px no-repeat}
+.vfmt{margin-top:16px;padding-top:12px;border-top:1px solid rgba(199,161,95,.4);font-size:12px;color:rgba(245,238,230,.7)}
+.frames{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:10px 0 8px}
+.frames img{width:100%;height:62px;object-fit:cover;border-radius:3px;display:block}
+.beats{width:100%;border-collapse:collapse;font-size:12px}
+.beats td{padding:5px 10px 5px 0;border-top:1px solid var(--line);vertical-align:top;line-height:1.4}
+.beats td:first-child{font-family:var(--serif);font-style:italic;color:var(--pink-ink);white-space:nowrap;width:58px}
+.beats td:nth-child(2){font-weight:800;white-space:nowrap;width:104px}
+.cuts{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:12px}
+
+/* creatives: brand + tone */
+.brand{display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:16px}
+.brand .card{padding:16px 20px}
+.sw{display:grid;grid-template-columns:32px 1fr;gap:2px 12px;align-items:center;padding:6px 0;border-top:1px solid var(--line);margin-top:6px}
+.sw i{width:32px;height:32px;border-radius:50%;grid-row:span 2;box-shadow:inset 0 0 0 1px rgba(36,24,41,.15)}
+.sw b{font-size:13px}
+.sw b small{font-weight:600;color:var(--muted);margin-left:6px;font-size:11px}
+.sw span{font-size:11.5px;color:var(--muted)}
+.ty{padding:9px 0;border-top:1px solid var(--line);margin-top:6px}
+.ty .k{font-size:9px}
+.ty .smp{font-size:22px;line-height:1.25;color:var(--text);margin-top:4px}
+.rulelist{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px}
+.rulelist li{position:relative;padding-left:18px;font-size:12.5px;line-height:1.4}
+.rulelist li::before{content:"";position:absolute;left:1px;top:6px;width:7px;height:7px;border-radius:50%;background:var(--pink)}
+.rulelist.no li::before{content:"×";background:none;color:var(--red);font-weight:800;font-size:15px;top:-2px;left:0;width:auto;height:auto}
+.tones{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.tone{padding:22px 22px 20px;border-top:3px solid var(--pink);min-height:170px}
+.tone p{font-size:13.5px!important}
+.tone h4{margin:0 0 6px;font-family:var(--serif);font-style:italic;font-weight:500;font-size:27px;color:var(--pink-ink)}
+.tone p{margin:0;font-size:12.5px;line-height:1.5}
+.tw{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.tw .card{padding:18px 22px}
+.tw .rulelist{gap:10px}
+.tw .rulelist li{font-size:14.5px}
+
+/* paid: funnel calculator */
+.fx{display:grid;grid-template-columns:590px 1fr;gap:34px}
+.fx .frow{cursor:default}
+.ctl{display:grid;gap:8px}
+.cg{display:grid;grid-template-columns:1fr auto;gap:2px 14px;align-items:center;padding:9px 12px;background:#fff;border:1px solid rgba(36,24,41,.12);border-radius:6px}
+.cg b{font-family:var(--serif);font-weight:600;font-size:15px;color:var(--text)}
+.cg small{grid-column:1;font-size:11px;color:var(--muted);line-height:1.35}
+.cg .seg{grid-row:1/span 2;grid-column:2;margin:0}
+.cg .seg button{padding:6px 11px}
+.fixd{font-size:11px;color:var(--muted);line-height:1.5;margin-top:2px}
+.res{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.rp{padding:12px 14px;border-radius:6px;background:var(--panel);color:#F5EEE6}
+.rp .k{color:var(--gold)}
+.rp.lt{background:#fff;color:var(--text);border:1px solid rgba(36,24,41,.12)}
+.rp.lt .k{color:var(--pink-ink)}
+.rp dl{margin:6px 0 0;display:grid;grid-template-columns:1fr auto;gap:3px 10px;align-items:baseline}
+.rp dt{font-size:11.5px;opacity:.8}
+.rp dd{margin:0;text-align:right;font-family:var(--serif);font-weight:600;font-size:18px}
+.rp dd .u{color:var(--pink)}
+.rp:not(.lt) dd .u{color:var(--pink2)}
+.gbar{margin-top:12px}
+.gbar .tr{height:8px;border-radius:30px;background:var(--line);overflow:hidden}
+.gbar .tr i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--pink));border-radius:30px;transition:width .6s var(--ease)}
+.gbar .lb{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted);margin-top:6px}
+
+/* paid: budget scenarios */
+.bs{display:grid;grid-template-columns:290px 1fr;gap:16px}
+.bsc{padding:18px;background:var(--panel);color:#F5EEE6;border-radius:6px;display:flex;flex-direction:column;gap:10px}
+.bsc .k{color:var(--gold)}
+.scb{display:grid;gap:7px}
+.scb button{display:flex;justify-content:space-between;align-items:center;gap:8px;text-align:left;border:1px solid rgba(199,161,95,.35);background:transparent;color:#F5EEE6;border-radius:6px;padding:9px 12px;cursor:pointer;font-family:var(--serif);font-size:17px;font-weight:600;transition:background .2s,border-color .2s}
+.scb button small{font-family:var(--sans);font-size:10.5px;font-weight:600;opacity:.75}
+.scb button.on{background:var(--pink);border-color:var(--pink)}
+.bsc .ass{margin:0;font-size:11.5px;line-height:1.5;color:rgba(245,238,230,.72)}
+.lock{display:flex;align-items:flex-start;gap:9px;font-size:12px;font-weight:700;line-height:1.4;cursor:pointer;margin-top:auto;padding-top:10px;border-top:1px solid rgba(199,161,95,.35)}
+.lock input{accent-color:var(--pink);width:15px;height:15px;margin:1px 0 0;flex:none}
+.bt{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.bt .tile{padding:14px 16px}
+.bt .tile .v{font-size:32px}
+.bt .tile .k{margin-bottom:8px}
+.bt .tile .s{margin-top:6px}
+.sct{margin-top:14px}
+.sct tbody tr{cursor:pointer}
+.sct tr.on td{background:rgba(236,95,148,.09);font-weight:700}
+.sct tr.on td:first-child{box-shadow:inset 3px 0 0 var(--pink)}
+.months tr.prep td{font-style:italic;color:var(--muted);background:rgba(199,161,95,.08)}
+
+/* paid: targeting */
+.tg3{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:16px}
+.tgc{padding:16px 20px}
+.tgc .big{font-family:var(--serif);font-weight:600;font-size:23px;color:var(--text);margin-top:6px;line-height:1.15}
+.tgc small{display:block;margin-top:8px;font-size:11.5px;color:var(--muted)}
+.states{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+#p6 .p6b .box{min-height:282px}
+
+/* social: competitors */
+.cmp3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.cpc{padding:15px 18px}
+.cpc h4{margin:0;font-family:var(--serif);font-weight:600;font-size:21px;color:var(--text)}
+.cpc h4::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--pink);margin-right:9px;vertical-align:middle}
+.cpc .mt{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.4}
+.cpc .k{display:block;margin-top:9px;font-size:9px}
+.cpc p{margin:3px 0 0;font-size:12.5px;line-height:1.45}
+.cpc p.tk{font-family:var(--serif);font-style:italic;font-size:14.5px}
+.band{margin-top:14px;display:grid;grid-template-columns:250px 1fr 280px;border-radius:6px;background:var(--panel);color:#F5EEE6;overflow:hidden}
+.band>div{padding:14px 20px;border-right:1px solid rgba(199,161,95,.3)}
+.band>div:last-child{border-right:0}
+.band .k{color:var(--gold);font-size:9px}
+.band .nums{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.band .num{font-family:var(--serif);font-weight:600;font-size:28px;line-height:1;color:#fff}
+.band .nl{font-size:10.5px;opacity:.72;margin-top:4px;line-height:1.3}
+.pb{margin-top:8px;display:grid;gap:6px}
+.pb .r{display:grid;grid-template-columns:92px 1fr;gap:10px;align-items:center}
+.pb .n{font-weight:700;font-size:12px;line-height:1.15}
+.pb .n small{display:block;font-weight:400;font-size:10px;opacity:.65}
+.pb .b{position:relative;height:20px}
+.pb .f{position:absolute;left:0;top:0;height:20px;border-radius:2px;background:rgba(245,238,230,.28)}
+.pb .f.her{background:var(--pink)}
+.pb .v{position:absolute;top:2px;font-weight:700;font-size:12px;white-space:nowrap}
+.band .ins{margin:0;font-size:12.5px;line-height:1.45}
+.band .itl{margin-top:10px;border-top:1px solid rgba(199,161,95,.4);padding-top:8px;font-family:var(--serif);font-style:italic;font-size:16px;line-height:1.3;color:var(--pink2)}
+
+/* social: followers */
+.fol{display:grid;grid-template-columns:400px 1fr;gap:24px}
+.folp{padding:22px 26px;background:var(--panel);color:#F5EEE6;border-radius:6px}
+.folp .k{color:var(--gold)}
+.folp .big{font-family:var(--serif);font-weight:600;font-size:62px;line-height:1;color:#fff;margin-top:10px}
+.folp .s{font-size:12.5px;opacity:.75;margin-top:6px}
+.fbars{display:flex;align-items:flex-end;gap:18px;height:160px;margin-top:40px;border-bottom:1px solid rgba(199,161,95,.45)}
+.fbars div{flex:1;position:relative;background:linear-gradient(180deg,var(--pink2),rgba(236,95,148,.3));border-radius:3px 3px 0 0}
+.fbars b{position:absolute;top:-24px;left:50%;transform:translateX(-50%);font-family:var(--serif);font-size:16px;color:#fff;white-space:nowrap}
+.fbars span{position:absolute;bottom:-22px;left:0;right:0;text-align:center;font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.7}
+.folp .warn{margin-top:40px;font-family:var(--serif);font-style:italic;font-size:16px;line-height:1.35;color:var(--pink2)}
+.steps3{display:grid;gap:12px;align-content:start}
+.st3{padding:16px 20px;display:grid;grid-template-columns:44px 1fr;gap:4px 12px}
+.st3 .n{grid-row:span 2;font-family:var(--serif);font-style:italic;font-size:30px;color:var(--pink);line-height:1}
+.st3 h4{margin:0;font-family:var(--serif);font-weight:600;font-size:19px;color:var(--text)}
+.st3 p{margin:0;font-size:13px;line-height:1.5}
+
+/* social: pillars */
+.prom{font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.3;margin:-6px 0 14px}
+.prom b{font-weight:600;color:var(--pink-ink)}
+.pl4{display:grid;grid-template-columns:repeat(4,1fr)}
+.pc{padding-right:18px;margin-right:18px;border-right:1px solid rgba(199,161,95,.45)}
+.pc:last-child{border-right:0;margin-right:0;padding-right:0}
+.hd2{display:flex;align-items:baseline;gap:8px}
+.hd2 .n{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--pink)}
+.hd2 .nm{font-family:var(--serif);font-weight:600;font-size:19px;line-height:1.1;color:var(--text)}
+.pc .sb,.mpc .sb{font-size:11px;font-weight:700;color:var(--gold-ink);margin-top:4px}
+.pc dl,.mpc dl{margin:0}
+.pc dt,.mpc dt{font-size:8.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--pink-ink);margin-top:9px}
+.pc dd,.mpc dd{margin:3px 0 0;font-size:12px;line-height:1.42}
+.pc ul,.mpc ul{list-style:none;margin:0;padding:0}
+.pc li,.mpc li{position:relative;padding-left:12px}
+.pc li::before,.mpc li::before{content:"";position:absolute;left:0;top:7px;width:4px;height:4px;border-radius:50%;background:var(--gold)}
+.pc .wk{display:inline-block;margin-top:10px;border:1px solid var(--pink);color:var(--pink-ink);border-radius:30px;padding:3px 11px;font-weight:700;font-size:11px}
+.strip2{margin-top:14px;display:grid;grid-template-columns:1.25fr 1fr;gap:26px;border-top:1px solid rgba(199,161,95,.6);padding-top:11px;font-size:12px;line-height:1.5}
+.strip2 b{font-family:var(--serif);font-weight:600;font-size:14px;color:var(--pink-ink)}
+.mp{display:grid;grid-template-columns:1fr 1fr 520px;gap:16px}
+.mpc{padding:18px 20px}
+.mpc .num{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--pink)}
+.mpc h4{margin:2px 0 0;font-family:var(--serif);font-weight:600;font-size:21px;color:var(--text)}
+.posts3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.pst img{width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:4px;display:block;box-shadow:0 12px 26px -16px rgba(36,21,48,.5)}
+.pst .k{display:block;margin-top:8px;font-size:9px}
+.pst p{margin:3px 0 0;font-family:var(--serif);font-style:italic;font-size:13px;line-height:1.3}
+
+/* social: post ideas */
+.ideas{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.ph2{border-top:3px solid var(--c);padding-top:7px}
+.pn{font-family:var(--serif);font-weight:600;font-size:17px;line-height:1.1;color:var(--text)}
+.pt{font-size:10.5px;font-weight:700;color:var(--muted);margin-top:2px}
+.idea{background:#fff;border:1px solid rgba(36,24,41,.1);border-top:2px solid var(--c);border-radius:5px;padding:9px 12px;margin-top:9px;box-shadow:0 8px 18px -14px rgba(36,21,48,.35)}
+.idea .nm{font-family:var(--serif);font-weight:600;font-size:14.5px;line-height:1.15;color:var(--text)}
+.idea p{margin:3px 0 0;font-size:11px;line-height:1.4}
+.idea .q{margin-top:5px;font-family:var(--serif);font-style:italic;font-size:12px;line-height:1.3;color:var(--muted)}
+
+/* social: calendar */
+.calbar{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-bottom:10px}
+.pf{border:1px solid var(--line-2);background:#fff;border-radius:30px;padding:5px 11px;font-size:11px;font-weight:800;cursor:pointer;color:var(--text);display:inline-flex;align-items:center;gap:6px}
+.pf i{width:9px;height:9px;border-radius:2px;background:var(--c)}
+.pf.on{background:var(--plum);color:#fff;border-color:var(--plum)}
+.php{border:1px solid rgba(199,161,95,.7);border-radius:30px;padding:4px 11px;font-size:11px}
+.php b{color:var(--gold-ink);margin-right:6px}
+.wd{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;font-size:9.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:5px}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.d{height:71px;background:#fff;border:1px solid rgba(36,24,41,.1);border-left:4px solid var(--c);border-radius:4px;padding:6px 8px;position:relative;transition:opacity .25s}
+.d.e{background:transparent;border:1px dashed rgba(36,24,41,.12)}
+.d.prep{background:#FBF5EC}
+.d.dim{opacity:.16}
+.d .dt{font-family:var(--serif);font-style:italic;font-size:15px;line-height:1;color:var(--text)}
+.d .dt small{font-family:var(--sans);font-style:normal;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-left:4px}
+.d .pl3{position:absolute;right:7px;top:7px;font-size:8.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--c)}
+.d .tt{font-size:11.5px;line-height:1.25;margin-top:5px;font-weight:700;color:var(--text)}
+.d .fl{position:absolute;right:5px;bottom:4px;font-size:8px;font-weight:800;letter-spacing:.12em;color:#fff;background:var(--gold-ink);padding:2px 6px;border-radius:2px}
+
+/* act 3 overrides */
+.rm{grid-template-columns:150px repeat(4,1fr)}
+.rb.s{background:#ECE5F3;color:#4B3570}
+.need{grid-template-columns:repeat(3,1fr)}
+.need .nl li{font-size:13px}
+
+/* ===== creatives v2 ===== */
+.loophd{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;margin:-6px 0 12px}
+.loophd .sublead{margin:0}
+.sublead b{color:var(--text)}
+.loopstrip{display:flex;align-items:center;gap:6px}
+.loopstrip span{border:1px solid var(--line-2);background:#fff;border-radius:30px;padding:5px 11px;font-size:11.5px;font-weight:700;white-space:nowrap}
+.loopstrip span.fin{background:var(--plum);border-color:var(--plum);color:#fff}
+.loopstrip i{font-style:normal;color:var(--pink);font-weight:700}
+.opts2{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.op{padding:14px 16px;display:flex;flex-direction:column}
+.optop{display:grid;grid-template-columns:112px 1fr;gap:12px;align-items:start}
+.optop img{width:112px;height:168px;object-fit:cover;object-position:top;border-radius:4px;box-shadow:0 10px 22px -14px rgba(36,21,48,.5)}
+.op h4{margin:3px 0 2px;font-family:var(--serif);font-weight:600;font-size:17px;line-height:1.15;color:var(--text)}
+.op .age{font-size:12px;color:var(--muted)}
+.op q{display:block;margin-top:9px;background:var(--blush);border-radius:6px;padding:8px 10px;font-family:var(--serif);font-weight:500;font-size:13.5px;line-height:1.3;color:#8E2E5A;quotes:"“" "”"}
+.op dl{margin:10px 0 0;border-top:1px solid var(--line);padding-top:4px}
+.op dt{font-size:9px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--pink-ink);margin-top:7px}
+.op dd{margin:3px 0 0;font-size:12.5px;line-height:1.5}
+.op dd .chip{margin-top:5px;font-size:10.5px;padding:3px 8px}
+.op .cr{margin-top:auto;padding-top:8px;font-size:11px;color:var(--muted)}
+.chiprow{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chiprow .chip{font-size:11px;padding:4px 10px}
+.sb6{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sbc{display:grid;grid-template-columns:112px 1fr;gap:14px;padding:12px;align-items:start}
+.sbc img{width:112px;height:131px;object-fit:cover;border-radius:4px;display:block}
+.sbc .t{font-size:10.5px;font-weight:800;letter-spacing:.08em;color:var(--pink-ink)}
+.sbc h5{margin:4px 0 4px;font-family:var(--serif);font-weight:600;font-size:17px;line-height:1.15;color:var(--text)}
+.sbc p{margin:0;font-size:12.5px;line-height:1.5}
+.fl2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.bxl,.bxd{border-radius:6px;padding:16px 20px}
+.bxl{background:var(--blush)}
+.bxd{background:var(--panel);color:#F5EEE6}
+.bxl h4,.bxd h4{margin:0 0 8px;font-family:var(--serif);font-weight:600;font-size:17px}
+.bxl h4{color:#8E2E5A}
+.bxd h4{color:#fff}
+.bxl ul,.bxd ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.65}
+.bxd ul{columns:2;column-gap:20px}
+.bxd b{color:var(--pink2)}
+.dd{display:grid;grid-template-columns:1fr 330px;gap:14px}
+.ddl{padding:14px 16px}
+.ddl .frames{margin-top:0}
+.ddl .frames img{height:92px}
+.ddl .beats{font-size:13px}
+.ddl .beats td{padding:8px 10px 8px 0}
+.ddr{display:grid;gap:12px;align-content:start}
+.ddr .bxd ul{columns:1}
+.says{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.says span{background:var(--blush);border-radius:6px;padding:12px 14px;font-family:var(--serif);font-weight:500;font-size:14.5px;color:#8E2E5A}
+
+/* ===== creatives = Janani's deck ===== */
+.cj h2{font-size:36px;margin:6px 0 14px}
+.eb{display:block;font-family:var(--sans);font-size:10.5px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--pink-ink);margin-bottom:8px;line-height:1.3}
+.jsub{margin:0 0 12px;font-size:14px;line-height:1.5;color:var(--muted);max-width:1000px}
+.jsub b{color:var(--text)}
+.loophd .jsub{margin:0}
+.jp3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.jp{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:16px;align-items:start}
+.jp img{width:130px;height:195px;object-fit:cover;object-position:top;border-radius:5px;display:block;box-shadow:0 10px 22px -14px rgba(36,21,48,.5)}
+.jp h4{margin:6px 0 8px;font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.2;color:var(--text)}
+.jp p{margin:0;font-size:13px;line-height:1.55}
+.bh{margin:0 0 6px;font-family:var(--serif);font-weight:600;font-size:18px;color:var(--text)}
+.tl2{font-size:11.5px;color:var(--muted)}
+.nlist{margin:6px 0 0;padding-left:20px;font-size:13px;line-height:1.7}
+.wbtn{margin-top:10px;background:#7B1531;color:#fff;border-radius:30px;text-align:center;padding:9px 0;font-size:13px;font-weight:800;letter-spacing:.2em}
+.nev{margin:0;font-size:12.5px;line-height:1.55}
+.tone.dk{background:#7B1531;border-color:#7B1531}
+.tone.dk h4{color:var(--pink2)}
+.tone.dk p{color:#F8E1E7}
+.saybox{background:var(--blush);border-color:transparent}
+.sayl{margin:10px 0 0;font-family:var(--serif);font-weight:500;font-size:17px;line-height:1.75;color:#8E2E5A}
+.dotl{margin:10px 0 0;padding-left:18px;font-size:14px;line-height:1.6}
+.cj .sb6 .sbc img{width:104px;height:122px}
+.cj .sbc{grid-template-columns:104px 1fr}
+.cj .fl2{margin-top:10px}
+.cj .bxd ul{columns:1}
+.cj .tone{min-height:150px}
+#cp .jp{grid-template-columns:170px 1fr;padding:18px;gap:18px}
+#cp .jp img{width:170px;height:255px}
+#cp .jp h4{font-size:20px}
+#cp .jp p{font-size:14px;line-height:1.6}
+#cp .jp3{margin-top:6px}
+#c4 .brand .card{padding:20px 22px}
+#c4 .sw{padding:8px 0}
+#c4 .sw b{font-size:14px}
+#c4 .sw span{font-size:12.5px}
+#c4 .ty{padding:12px 0}
+#c4 .nlist{font-size:14px;line-height:1.8}
+#c4 .nev{font-size:13.5px}
+#c4 .wbtn{padding:11px 0;margin-top:12px}
+
+/* funnel ROAS scenario row */
+.cg.roasr{background:var(--panel);border-color:transparent}
+.cg.roasr b{color:#fff}
+.cg.roasr small{color:rgba(245,238,230,.7)}
+.seg.scn{background:rgba(255,255,255,.1)}
+.seg.scn button{color:rgba(245,238,230,.8);padding:6px 10px}
+.seg.scn button i{font-style:normal;font-weight:800;color:var(--pink2);margin-left:3px}
+.seg.scn button.on{background:var(--pink);color:#fff}
+.seg.scn button.on i{color:#fff}
+#p2 .ctl{gap:7px}
+#p2 .cg{padding:8px 12px}
+
+/* funnel grid: common scenario columns */
+.fgrid{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid rgba(36,24,41,.12);border-radius:6px;overflow:hidden}
+.fgrid th{padding:8px 6px 6px;font-size:9.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--pink-ink);text-align:center;width:16%;border-bottom:1px solid var(--line-2)}
+.fgrid th:first-child{width:52%}
+.fgrid td{padding:5px 6px;border-top:1px solid var(--line);text-align:center}
+.fgrid tbody tr:first-child td{border-top:0}
+.fgrid td:first-child{text-align:left;padding:7px 8px 7px 14px;white-space:nowrap}
+.fgrid td b{display:block;font-family:var(--serif);font-weight:600;font-size:14.5px;color:var(--text)}
+.fgrid td small{display:block;font-size:10.5px;color:var(--muted);line-height:1.35}
+.fgrid td button{width:100%;max-width:84px;border:1px solid var(--line-2);background:#fff;border-radius:30px;padding:5px 0;font-family:var(--serif);font-size:14px;font-weight:600;color:var(--text);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.fgrid td button.on{background:var(--plum);border-color:var(--plum);color:#fff}
+.fgrid tr.roasr td{background:var(--panel);border-top:0}
+.fgrid tr.roasr td b{color:#fff}
+.fgrid tr.roasr td small{color:rgba(245,238,230,.7)}
+.fgrid tr.roasr td button{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff;font-size:15px}
+.fgrid tr.roasr td button.on{background:var(--pink);border-color:var(--pink)}
+
+/* ===== social = Thanujaa's corrected deck ===== */
+.pgrp{display:flex;gap:14px;align-items:baseline;font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-ink);margin:0 0 12px}
+.pgrp b{color:var(--pink-ink)}
+.pl3c{display:grid;grid-template-columns:repeat(3,1fr)}
+.pl3c .pc{padding-right:24px;margin-right:24px}
+.pl3c .pc:last-child{padding-right:0;margin-right:0;border-right:0}
+.pl3c .hd2 .nm{font-size:21px}
+.pl3c .hd2 .n{font-size:20px}
+.pl3c .pc .sb{font-size:12px}
+.pl3c .pc dt{font-size:9px;margin-top:10px}
+.pl3c .pc dd{font-size:13px;line-height:1.48}
+.strip2.one{grid-template-columns:1fr}
+.ideas.six{grid-template-columns:repeat(6,1fr);gap:10px}
+.ideas.six .pn{font-size:14.5px}
+.ideas.six .idea{padding:9px 10px;margin-top:8px}
+.ideas.six .idea .nm{font-size:13.5px}
+.ideas.six .idea p{font-size:11px}
+.ideas.six .idea .ol{margin-top:6px;font-size:8.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--c)}
+.ideas.six .idea .q{margin-top:3px;font-size:11.5px}
+#s6 .calbar{margin-bottom:6px}
+#s6 .wd{margin-top:4px}
+#s6 .d{height:60px;padding:5px 8px}
+#s6 .d .tt{font-size:11px;margin-top:4px}
+#s6 .cal{gap:5px}
+.d.lp{background:#FFF6F8;border-color:#F6A3C0}
+
+/* full-bleed image slides */
+.imgslide{background:#fff}
+.imgslide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.imgslide::after{display:none}
+
+/* ===== website: the app ===== */
+#w5 h2{margin-bottom:8px}
+.appsub{margin:0 0 10px;font-size:12.5px;line-height:1.45;color:var(--muted);max-width:1100px}
+.appsub b{color:var(--text);font-family:var(--serif);font-weight:600;font-size:14px;margin-right:4px}
+.appg{display:grid;grid-template-columns:1fr 1fr 330px;gap:14px}
+.apc{display:flex;flex-direction:column;gap:6px;min-width:0}
+.apc .label{margin-bottom:2px}
+.ai{background:#fff;border:1px solid rgba(36,24,41,.12);border-left:3px solid var(--pink);border-radius:4px;padding:6px 10px}
+.ai.bad{border-left-color:var(--red)}
+.ai b{display:block;font-size:11.5px;line-height:1.25;color:var(--text);font-weight:700}
+.ai p{margin:2px 0 0;font-size:10.5px;line-height:1.36;color:var(--muted)}
+.aprice{background:#fff;border:1px solid rgba(36,24,41,.12);border-radius:4px;padding:3px 10px}
+.aprice .r{display:flex;justify-content:space-between;align-items:baseline;font-size:10.5px;padding:3px 0;border-bottom:1px solid var(--line)}
+.aprice .r:last-child{border-bottom:0}
+.aprice .r i{font-style:normal;font-family:var(--serif);font-weight:600;font-size:11.5px;white-space:nowrap}
+.aprice .r s{color:var(--red);font-family:var(--sans);font-weight:500;font-size:10px;margin-left:4px}
+.astore{background:#fff;border:1px solid rgba(36,24,41,.12);border-top:3px solid var(--plum);border-radius:4px;padding:2px 12px;flex:1}
+.astore .sr{display:grid;grid-template-columns:98px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);align-items:start}
+.astore .sr:last-child{border-bottom:0}
+.astore .sr b{font-family:var(--serif);font-weight:600;font-size:12.5px;line-height:1.2;color:var(--pink-ink)}
+.astore .sr b.big{font-size:22px;line-height:1}
+.astore .sr span{font-size:10.5px;line-height:1.38;color:var(--text)}
+.appfix{margin-top:10px;display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;background:var(--panel);color:#F5EEE6;border-radius:6px;border-top:3px solid var(--pink);padding:10px 16px}
+.appfix .l{font-size:9.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.appfix p{margin:0;font-size:11.5px;line-height:1.5;color:rgba(245,238,230,.85)}
+.appfix p b{color:#fff}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{transition-duration:0s!important;transition-delay:0s!important;animation:none!important}
+}
+.static *,.static *::before,.static *::after{transition-duration:0s!important;transition-delay:0s!important}
+.deck *,.toc *{font-style:normal!important}
+h2,.cv-tx h1,.end h1{letter-spacing:-.025em}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{background:#fff;overflow:visible;height:auto}
+  .deck{position:static;transform:none!important;width:1280px;height:auto;overflow:visible}
+  .slide{position:relative;opacity:1!important;visibility:visible!important;height:720px;break-after:page}
+  .slide::after{display:none}
+  .slide .a,.slide .gx,.slide .gy{opacity:1!important;transform:none!important}
+  .slide .fb{clip-path:none!important}
+  .prog,.ctrl,.toc,.drawer,.scrim{display:none!important}
+}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+<section class="slide plain dark" id="cover" data-sec="act1" data-name="Cover">
+  <div class="cv-by a">EyeLevel Growth Studio × Her Will</div>
+  <div class="cv-ring"></div><div class="cv-ring r2"></div><div class="cv-mark a" role="img" aria-label="Her Will"></div>
+  <div class="cv-tx">
+    <div class="eyebrow a">Prepared for the Her Will team · October 2026</div>
+    <h1 class="a">Her Will<br><em>Growth Plan</em></h1>
+    <p class="a">Website, creatives, paid marketing and social media, working as one plan to reach 3,000 subscriptions by 31 January 2027.</p>
+  </div>
+  <div class="cv-flow">
+    <div class="a"><span class="n">01</span><b>Website</b></div>
+    <div class="a"><span class="n">02</span><b>Creatives &amp; Videos</b></div>
+    <div class="a"><span class="n">03</span><b>Paid Marketing</b></div>
+    <div class="a"><span class="n">04</span><b>Social Media</b></div>
+  </div>
+  <div class="cv-hint"><kbd>→</kbd> next slide &nbsp;·&nbsp; <kbd>M</kbd> contents &nbsp;·&nbsp; <kbd>F</kbd> full screen</div>
+</section>
+
+<section class="slide" id="p1" data-sec="act1" data-note="">
+  <h2>What We <em>Know</em></h2>
+  <div class="bd">
+    <div class="p1">
+      <div class="ladder">
+        <div class="card rung top a" style="left:140px;top:0"><span class="chip">This plan sells this</span><div class="pr"><span class="u">₹</span>4,000</div><h4>90-Day Transformation</h4><p>In the Her Will app on TagMango</p></div>
+        <div class="card rung a" style="left:70px;top:126px"><div class="pr"><span class="u">₹</span>99</div><h4>30-Day Live</h4><p>2 Kannada batches · 6 AM &amp; 6 PM · diet plan · WhatsApp support</p><span class="up">↗ Upgrade route to ₹4,000 · parked for now</span></div>
+        <div class="card rung a" style="left:0;top:322px"><span class="chip r">No longer sold</span><div class="pr"><span class="u">₹</span>49</div><h4>Weight-loss plan</h4></div>
+      </div>
+      <div>
+        <table class="tbl a">
+          <tbody>
+            <tr class="a"><td class="lab">Positioning</td><td>India’s first all-women health &amp; wellness platform, led by Coach Deepa and a team of coaches</td></tr>
+            <tr class="a"><td class="lab">What’s inside</td><td>Workouts · Indian diet plans · mindset coaching · community</td></tr>
+            <tr class="a"><td class="lab">Audience</td><td>Beginners · busy professionals · housewives · mothers</td></tr>
+            <tr class="a"><td class="lab">Proof points</td><td>“Lose up to 3–4 kg in 30 days” · member story: 1.9 kg in 14 days</td></tr>
+            <tr class="a"><td class="lab">Language</td><td>Live batches are in Kannada only, which limits reach beyond Karnataka</td></tr>
+            <tr class="a"><td class="lab">Gaps</td><td><div style="display:flex;flex-wrap:wrap;gap:6px"><span class="chip am">90-day price differs across pages</span><span class="chip am">No visible EMI</span><span class="chip am">Ad tracking not confirmed</span></div></td></tr>
+          </tbody>
+        </table>
+        <p class="note src a">Sources: her-will.com, the App Store listing and public search. Her Will has not shared internal data yet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide dark" id="goal" data-sec="act1">
+  <h2>The <em>Goal</em></h2>
+  <div class="bd">
+    <div class="tiles4">
+      <div class="tile hero a"><div class="k">Subscriptions</div><div class="v" data-to="3000"></div><div class="s">to the SLIM 90 Program</div></div>
+      <div class="tile a"><div class="k">Revenue</div><div class="v" data-to="1.2" data-dec="2" data-pre="₹" data-suf="Cr"></div><div class="s">about ₹40 L a month</div></div>
+      <div class="tile a"><div class="k">Campaign</div><div class="v" data-to="90" data-suf="days"></div><div class="s">1 Nov 2026 → 31 Jan 2027</div></div>
+      <div class="tile a"><div class="k">Monthly target</div><div class="v" data-to="1000"></div><div class="s">subscriptions · about 33 a day</div></div>
+    </div>
+    <div class="card tl-card a">
+      <div class="tl-ends"><span>15–31 Oct · setup &amp; prep</span><span>1 Nov → 31 Jan · 90-day campaign</span></div>
+      <div class="tl">
+        <i class="gx prep" style="width:15.6%"></i>
+        <i class="gx" style="width:27.5%;background:#8E335F"></i>
+        <i class="gx" style="width:28.4%;background:#BA4573"></i>
+        <i class="gx" style="width:28.5%;background:#EC5F94"></i>
+      </div>
+      <div class="tl-lab">
+        <div style="width:15.6%"><b>Oct</b>Setup &amp; prep</div>
+        <div style="width:27.5%"><b>Nov</b>1,000 subscriptions</div>
+        <div style="width:28.4%"><b>Dec</b>1,000 subscriptions</div>
+        <div style="width:28.5%"><b>Jan</b>1,000 subscriptions</div>
+      </div>
+    </div>
+    <div class="goal-sub a"><b>SLIM 90 Program – ₹4,000</b> · 15–31 Oct is setup and prep time, not campaign days</div>
+  </div>
+</section>
+
+<section class="slide" id="journey" data-sec="act1">
+  <h2>Customer <em>Journey</em></h2>
+  <div class="bd">
+    <div class="jpath">
+      <div class="card jn a" data-n="1"><span class="no">1</span><h4>Sees the ad</h4><p>On Instagram or Facebook, in Kannada or English.</p></div>
+      <div class="card jn a" data-n="2"><span class="no">2</span><h4>Opens the page</h4><p>The SLIM 90 page on her-will.com. Website only, no instant forms.</p></div>
+      <div class="card jn a" data-n="3"><span class="no">3</span><h4>Taps Join</h4><p>She goes to checkout.</p></div>
+      <div class="card jn a" data-n="4"><span class="no">4</span><h4>Pays ₹4,000</h4><p>Her subscription is done.</p></div>
+      <div class="card jn win a" data-n="5"><span class="no">5</span><h4>WhatsApp welcome</h4><p>Confirmation and her first steps, on WhatsApp.</p></div>
+    </div>
+    <div class="jhd a"><div class="k">If she doesn’t buy</div><button class="jbuy sel" type="button" data-path="buy">Show the full purchase</button></div>
+    <div class="jbr">
+      <button class="card jb a" type="button" data-path="a"><div class="from">Leaves after step 2</div><h5>Leaves the page</h5><p>Remarketing ads for 14 days: member stories, Deepa and the offer.</p></button>
+      <button class="card jb a" type="button" data-path="b"><div class="from">Leaves after step 3</div><h5>Leaves at the cart</h5><p>A WhatsApp reminder, then a closing offer, for example ₹300–₹500 off if she joins today. Remarketing for 7 days.</p></button>
+      <button class="card jb a" type="button" data-path="c"><div class="from">Stops at step 4</div><h5>Payment fails</h5><p>A WhatsApp message or call within 30 minutes, with a fresh payment link. Remarketing for 3 days.</p></button>
+    </div>
+  </div>
+</section>
+
+<section class="slide dark" id="engine" data-sec="act1">
+  <h2>The Growth <em>Engine</em></h2>
+  <div class="bd">
+    <div class="engine">
+      <button class="card eng a" data-go="w1" type="button">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg></div>
+        <div class="num">01</div>
+        <h3>Website</h3>
+        <div class="role">Where she joins</div>
+        <p>Fix what stops her from buying, inside TagMango.</p>
+        <span class="chip p">In this deck →</span>
+      </button>
+      <div class="eng-arrow a">→</div>
+      <button class="card eng a" data-go="c1" type="button">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5z"/></svg></div>
+        <div class="num">02</div>
+        <h3>Creatives &amp; Videos</h3>
+        <div class="role">What makes her stop scrolling</div>
+        <p>The ads and videos that every other part runs on.</p>
+        <span class="chip p">In this deck →</span>
+      </button>
+      <div class="eng-arrow a">→</div>
+      <button class="card eng a" data-go="p2" type="button">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></div>
+        <div class="num">03</div>
+        <h3>Paid Marketing</h3>
+        <div class="role">Puts it in front of the right women</div>
+        <p>Meta ads, run against weekly numbers.</p>
+        <span class="chip p">In this deck →</span>
+      </button>
+      <div class="eng-arrow a">→</div>
+      <button class="card eng a" data-go="s1" type="button">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H10l-6 4z"/></svg></div>
+        <div class="num">04</div>
+        <h3>Social Media</h3>
+        <div class="role">Trust and community</div>
+        <p>The long game that makes every ad cheaper over time.</p>
+        <span class="chip p">In this deck →</span>
+      </button>
+    </div>
+    <div class="loop a">
+      <svg viewBox="0 0 1152 56" preserveAspectRatio="none" fill="none"><path d="M1012 4 V 30 Q1012 44 998 44 H154 Q140 44 140 30 V 10" stroke="#EC5F94" stroke-width="2" stroke-dasharray="6 6"/><path d="M133 16 L140 4 L147 16" stroke="#EC5F94" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Her results become the next round of ads and posts</span>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="w1" data-sec="01">
+  <h2>UI &amp; <em>Speed</em></h2>
+  <div class="bd">
+    <div class="split">
+      <div>
+        <div class="label a">What we found</div>
+        <ul class="found">
+          <li class="a">On a phone, text appears after <b>7.3 s</b> and the main image after <b>24.2 s</b>. Speed score is <b>58/100</b>.</li>
+          <li class="a">The first screen is a photo and a slogan: <b>no offer, no price, no CTA button</b>.</li>
+          <li class="a"><b>4 of 6</b> program buttons go nowhere.</li>
+          <li class="a"><b>SLIM 90</b>, the main product, only appears in the menu.</li>
+        </ul>
+        <div class="do a">
+          <div class="label">What we’ll do</div>
+          <ul>
+            <li><b>New homepage</b> with SLIM 90, price and Buy button on the first screen</li>
+            <li><b>Link every program button</b>, or remove programs no longer sold</li>
+            <li><b>Compress images</b>, make the page lighter, re-test speed</li>
+          </ul>
+        </div>
+      </div>
+      <div class="vis">
+        <div class="browser a" style="left:0;top:16px;width:392px">
+          <div class="bar"><i></i><i></i><i></i><span>her-will.com · Her Will Plans</span></div>
+          <img src="assets/proof/p03-dead-program-buttons.jpg" alt="Program cards on her-will.com with four buttons marked as having no link">
+          <div class="cap red">Red box = button with no link</div>
+        </div>
+        <div class="phone a" style="left:372px;top:0;width:228px;height:460px">
+          <img src="assets/proof/p02-home-phone-first-screen.jpg" alt="her-will.com first screen on a phone">
+          <div class="cap">Screen one: no offer, no price, no CTA button</div>
+        </div>
+        <div class="card speed a" style="left:0;top:350px;width:352px">
+          <div class="k">Google PageSpeed · phone · 11 Oct</div>
+          <div class="row">
+            <div><b data-to="58"></b><small>score / 100</small></div>
+            <div><b data-to="7.3" data-dec="1" data-suf="s"></b><small>first text</small></div>
+            <div><b data-to="24.2" data-dec="1" data-suf="s"></b><small>main image</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="w2" data-sec="01">
+  <h2>Pricing &amp; <em>Trust</em></h2>
+  <div class="bd">
+    <div class="split">
+      <div>
+        <div class="label a">What we found</div>
+        <ul class="found">
+          <li class="a"><b>₹3,499 → ₹4,000 → ₹4,720</b> <span class="chip r">+35%</span> from the website to checkout.</li>
+          <li class="a">SLIM 90 pages say <b>“Total worth ₹2,13,000”</b>, then sell for ₹4,000. A <b>98% discount</b> is hard to believe and makes the program look cheap.</li>
+          <li class="a">Weight-loss promises differ by page: <b>10 kg, 12–15 kg, 15 kg+</b>.</li>
+          <li class="a"><b>No FAQ, refund policy, WhatsApp or coach credentials</b> on any of the 5 pages.</li>
+          <li class="a">Testimonials praise a <b>₹49 plan</b> no longer sold. Typos, and the brand spelled <b>3 ways</b>.</li>
+        </ul>
+        <div class="do a">
+          <div class="label">What we’ll do</div>
+          <ul>
+            <li><b>One final price</b> on every page, the same as checkout</li>
+            <li><b>A believable value:</b> show what’s included at a realistic worth, about <b>₹38,000–₹40,000</b>, so ₹4,000 feels like a great deal</li>
+            <li><b>One name and one promise</b> per program, chosen by Her Will</li>
+            <li>Add <b>FAQ, WhatsApp, coach bios</b> and current testimonials; clean the copy</li>
+          </ul>
+        </div>
+      </div>
+      <div class="vis">
+        <div class="path">
+          <div class="step a"><div class="k">Website button</div><b><span class="u">₹</span>3,499</b><small>her-will.com</small></div>
+          <div class="arrow a">→</div>
+          <div class="step a"><div class="k">Sales page</div><b><span class="u">₹</span>4,000</b><small>SLIM 90 page</small></div>
+          <div class="arrow a">→</div>
+          <div class="step hot a"><div class="k">Checkout</div><b><span class="u">₹</span>4,720<span class="pct">+35%</span></b><small>after OTP</small></div>
+        </div>
+        <div class="browser a" style="left:0;top:138px;width:290px">
+          <div class="bar"><i></i><i></i><i></i><span>admin.her-will.com · checkout</span></div>
+          <div class="crop" style="height:152px"><img style="top:-267px" src="assets/proof/p05-thyroid-checkout-4720.jpg" alt="Checkout asking ₹4,720 to be paid"></div>
+          <div class="cap">Checkout total: ₹4,720</div>
+        </div>
+        <div class="browser a" style="left:310px;top:138px;width:290px">
+          <div class="bar"><i></i><i></i><i></i><span>admin.her-will.com · SLIM 90 page</span></div>
+          <div class="crop" style="height:152px"><img style="top:-14px" src="assets/proof/p05-worth-213000.jpg?v=2" alt="SLIM 90 page: Total worth ₹2,13,000, now only ₹4,000"></div>
+          <div class="cap" style="left:auto;right:10px">98% off</div>
+        </div>
+        <div class="card miss wide a" style="left:0;top:336px;width:600px">
+          <div class="k">Missing on all 5 website pages</div>
+          <ul><li>FAQ</li><li>Refund policy</li><li>WhatsApp or social links</li><li>Coach credentials</li></ul>
+          <div class="foot">SLIM 90 sales pages: <b>no member stories</b>, no before/after.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="w3" data-sec="01">
+  <h2><em>SEO</em></h2>
+  <div class="bd">
+    <div class="split">
+      <div>
+        <div class="label a">What we found</div>
+        <ul class="found">
+          <li class="a">The homepage title is just <b>“Her Will | Home Page”</b>.</li>
+          <li class="a">Page descriptions are <b>empty on all 5 pages</b>.</li>
+          <li class="a">The <b>second Google result</b> is the member login page.</li>
+          <li class="a">Bing shows <b>0 pages</b> for her-will.com.</li>
+        </ul>
+        <div class="do a">
+          <div class="label">What we’ll do</div>
+          <ul>
+            <li><b>SEO and AI-platform optimized</b> title and description for every page</li>
+            <li><b>Submit the website</b> to Google and Bing</li>
+            <li><b>Get pages crawled again</b> with the updated content</li>
+          </ul>
+        </div>
+      </div>
+      <div class="vis">
+        <div class="browser a" style="left:0;top:0;width:480px">
+          <div class="bar"><i></i><i></i><i></i><span>google.com · site:her-will.com</span></div>
+          <img src="assets/proof/p08-google-site-search.jpg" alt="Google results for her-will.com with the login page as the second result">
+          <div class="cap">2nd result: the member login page</div>
+        </div>
+        <div class="browser a" style="left:290px;top:250px;width:310px;z-index:2">
+          <div class="bar"><i></i><i></i><i></i><span>bing.com · site:her-will.com</span></div>
+          <img src="assets/proof/p08-bing-zero-pages.jpg" alt="Bing showing no results for her-will.com">
+          <div class="cap red">Bing: 0 pages</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="w4" data-sec="01">
+  <h2><em>Tracking</em></h2>
+  <div class="bd">
+    <div class="split">
+      <div>
+        <div class="label a">What we found</div>
+        <ul class="found">
+          <li class="a"><b>0 Meta Pixels</b> on the website, the SLIM 90 pages or the checkout.</li>
+          <li class="a"><b>0 analytics</b> on the website pages.</li>
+          <li class="a">Nobody can see <b>which ad sells</b>, and women who leave checkout <b>can’t be shown a reminder ad</b>.</li>
+        </ul>
+        <div class="do a">
+          <div class="label">What we’ll do</div>
+          <ul>
+            <li>Add <b>Meta Pixel and GA4</b> to every website page</li>
+            <li><b>Test them before ads scale</b></li>
+            <li>Checkout tracking stays as TagMango has it</li>
+          </ul>
+        </div>
+      </div>
+      <div class="vis">
+        <div class="card zero a" style="top:0"><b data-to="0">0</b><span>Meta Pixels<em>On the website, the SLIM 90 pages or the checkout</em></span></div>
+        <div class="card zero a" style="top:118px"><b data-to="0">0</b><span>Analytics on website pages<em>Visits to her-will.com are not counted</em></span></div>
+        <div class="bridge a" style="top:250px">
+          <div class="k">Why this comes first</div>
+          <p>Paid ads need the Pixel live. Without it we can’t see which ad sells, or remind women who left checkout.</p>
+          <button class="go-btn" type="button" data-go="p2">See 03 · Paid Marketing →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="w5" data-sec="01" data-note="Reviewed live, 14 October 2026, on a new account and the India App Store">
+  <h2>The <em>App</em></h2>
+  <div class="bd">
+    <p class="appsub a"><b>You have an app. It is working against you.</b> Reviewed live on 14 October on a brand new account, which is exactly what a first-time customer sees. Everything below is on your App Store listing or inside the app right now.</p>
+    <div class="appg">
+      <div class="apc a">
+        <div class="label">What a new customer meets</div><div class="ai bad"><b>The storefront prices are not believable</b><p>SLIM&nbsp;90 shows ₹4,000 struck through from ₹2,13,000. A 98% discount. In India an unsubstantiated “was” price is exposure under ASCI and the consumer protection rules.</p></div><div class="ai bad"><b>Every product image is a blank grey box</b><p>All five programmes. No photograph, no Deepa, nothing. The shop window is empty.</p></div><div class="ai"><b>A new signup sees one course, then “That’s it! No more to show.”</b><p>No sample, no trial, no preview of what ₹4,000 actually buys.</p></div><div class="ai"><b>The welcome post is an instruction manual</b><p>Pinned, and it tells people to “restart the app for a smooth experience.” 2 likes and 1 comment against 2,000 views.</p></div>
+      </div>
+      <div class="apc a">
+        <div class="label">What is broken or dormant</div><div class="ai bad"><b>The Live tab says “Whoops! No lives found!”</b><p>You run two live sessions every day. The tab built to show them is empty.</p></div><div class="ai bad"><b>The community has been silent since 22 September</b><p>Three weeks. 43 unread. Every message is a broadcast from the brand, no member conversation.</p></div><div class="ai"><b>Customers are shown your bank and affiliate settings</b><p>“Payment Details: add or update your bank details” sits in a fitness customer’s menu. A platform feature meant for you, exposed to them.</p></div><div class="ai"><b>Small things that read as neglect</b><p>An audio player pinned over the product list with nothing playing. Messages sitting on loading bars for seconds. The brand named as “Her-will.com” throughout, a web address used as a name.</p></div>
+        <div class="aprice">
+          <div class="r"><span>Metabolic Reset masterclass</span><i>₹89 <s>₹19,996</s></i></div>
+          <div class="r"><span>SLIM‑90 recorded</span><i>₹4,000 <s>₹2,13,000</s></i></div>
+          <div class="r"><span>SLIM‑90 live, 7am English</span><i>₹4,444 <s>₹2,13,000</s></i></div>
+          <div class="r"><span>ReSHAPE‑30 recorded</span><i>₹499 <s>₹25,000</s></i></div>
+        </div>
+      </div>
+      <div class="apc a">
+        <div class="label">The App Store listing</div>
+        <div class="astore"><div class="sr"><b>TagMango Inc</b><span>is the publisher. Your brand does not appear as the seller, and nothing links back to her‑will.com.</span></div><div class="sr"><b>Education</b><span>is the category. Not Health &amp; Fitness. Nobody browsing fitness will ever find you.</span></div><div class="sr"><b class="big">2</b><span>ratings in eleven months. Zero written reviews, in India or anywhere.</span></div><div class="sr"><b>13 Nov 2025</b><span>was the last update. The day after launch. No release notes have ever been written.</span></div><div class="sr"><b>English only</b><span>is the listed language, while you deliver in Kannada.</span></div><div class="sr"><b>Not once</b><span>does the description mention SLIM&nbsp;90, Deepa, Kannada, Bangalore, or a single result. It sells yoga, meditation and nutrition tips.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="appfix a">
+      <div class="l">What we would do about it</div>
+      <p><b>Week one, free:</b> recategorise to Health &amp; Fitness, rewrite the listing around SLIM 90 and real outcomes, remove the strike-through prices before they become a liability, and put a real image on every programme. <b>Then:</b> make the first screen a customer sees sell the programme rather than explain the app, switch the Live tab on, and restart the community. None of this needs a new app built.</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide cj" id="c1" data-sec="02" data-note="" data-name="Not a funnel. A loop.">
+  <h2><span class="eb">Paid ads · one conversion campaign, three audiences</span>Not a funnel. A <em>loop</em>.</h2>
+  <div class="bd">
+    <div class="loophd a">
+      <p class="jsub">Meta shows the same ad to the same woman many times, and she can buy at any point. So: <b>one campaign for subscriptions</b>, one creative per life stage.</p>
+      <div class="loopstrip"><span>Sees the ad</span><i>→</i><span>Sees it again</span><i>→</i><span>Visits the site</span><i>→</i><span class="fin">Subscribes</span></div>
+    </div>
+    <div class="opts2">
+      <div class="card op a">
+        <div class="optop"><img src="assets/creatives/j-ad1.jpg" alt="Poster: Strength starts with movement">
+          <div><div class="k">Option 1</div><h4>Young and on the go</h4><div class="age">Ages 22–28</div><q>No time for the gym? You don’t need one.</q></div></div>
+        <dl><dt>Her reality</dt><dd>Wants to look her best, often before her wedding. Some are told by a doctor to manage weight (PCOD). Free only on weekends.</dd>
+        <dt>How we speak</dt><dd>Convenience. No gym, no fixed timings: home, hostel or office.</dd></dl>
+        <div class="cr">Creative: “Strength starts with movement.”</div>
+      </div>
+      <div class="card op a">
+        <div class="optop"><img src="assets/creatives/j-ad2.jpg" alt="Poster: From this to a Healthier, Happier You">
+          <div><div class="k">Option 2</div><h4>New mom at home</h4><div class="age">Married women, 26–35</div><q>Baby naps, you move.</q></div></div>
+        <dl><dt>Her reality</dt><dd>A gym isn’t always possible with a young child and family at home. Her confidence dipped after the baby.</dd>
+        <dt>How we speak</dt><dd>Reassurance. The gym comes home, with women-only coaching.</dd></dl>
+        <div class="cr">Creative: “From this… to a Healthier, Happier You.”</div>
+      </div>
+      <div class="card op a">
+        <div class="optop"><img src="assets/creatives/j-ad3.jpg" alt="Poster: Your Fitness Journey From Home">
+          <div><div class="k">Option 3</div><h4>Finally, her time</h4><div class="age">Ages 35–55</div><q>You cared for everyone. Now, you.</q></div></div>
+        <dl><dt>Her reality</dt><dd>Years spent raising children. Now she has time, but thyroid and weight concerns show.</dd>
+        <dt>How we speak</dt><dd>Self-care and health. Now it’s her turn. This creative also runs as our retargeting ad.</dd></dl>
+        <div class="cr">Creative: “Your Fitness Journey From Home.”</div>
+      </div>
+    </div>
+    <div class="chiprow a"><span class="chip p">Meta</span><span class="chip p">Women 22–55</span><span class="chip p">KA · TN · KL · AP · TS</span><span class="chip p">Kannada &amp; English</span><span class="chip p">Retargeting: 14-day visitors, cart &amp; checkout drop-offs</span><span class="chip k2">Ads never name a health condition</span></div>
+  </div>
+</section>
+
+<section class="slide cj" id="cp" data-sec="02" data-note="Weekly rhythm: motivate, prove, teach." data-name="The feed builds trust">
+  <h2><span class="eb">Social media management · content pillars</span>The feed builds <em>trust</em> so the ads don’t have to</h2>
+  <div class="bd">
+    <p class="jsub a">A pillar is a type of content we come back to every week, whatever we are promoting. Three of our pillars, each with a sample post. The full pillar plan and calendar follow in the social media section.</p>
+    <div class="jp3"><div class="card jp a"><img src="assets/creatives/j-pillar1.jpg" alt="Sample post: Your living room can be your starting line"><div><div class="k">Pillar · Motivation</div><h4>“Your living room can be your starting line.”</h4><p>Small nudges for every kind of woman: “Start your workout from your bed.” “A sip of water, 10 minutes of movement, then get ready for office.”</p></div></div><div class="card jp a"><img src="assets/creatives/j-pillar2.jpg" alt="Sample post: Same Me. A Healthier Me."><div><div class="k">Pillar · Her Will Diaries</div><h4>“Same Me. A Healthier Me.”</h4><p>Real members become part of the brand story, in their own words and with their consent. Lives on the feed, a Results highlight and the sales page.</p></div></div><div class="card jp a"><img src="assets/creatives/j-pillar3.jpg" alt="Sample post: Healthy eating should still look like food you love"><div><div class="k">Pillar · Food without fear</div><h4>“Food you love.”</h4><p>Kannada home-food swaps: ragi, dosa, palya. Useful posts get saved, and saves push the account into more feeds for free.</p></div></div></div>
+  </div>
+</section>
+
+<section class="slide plain imgslide" id="vd1" data-sec="02" data-name="Visual direction 1 · Vivid Momentum">
+  <img class="a" src="assets/brand/direction-1-vivid-momentum.webp" alt="Brand guidelines, visual direction 1 of 3: Vivid Momentum. Bold, high-energy, confident. Pink-to-violet power.">
+</section>
+
+<section class="slide plain imgslide" id="vd2" data-sec="02" data-name="Visual direction 2 · Soft Strength">
+  <img class="a" src="assets/brand/direction-2-soft-strength.webp" alt="Brand guidelines, visual direction 2 of 3: Soft Strength. Calm, holistic, airy. Wellness as self-care.">
+</section>
+
+<section class="slide cj" id="c5" data-sec="02" data-note="&lt;b&gt;Language:&lt;/b&gt; Kannada and English, the two languages our audience speaks. Every Kannada line is written and checked by a native speaker." data-name="How Her Will sounds">
+  <h2><span class="eb">Brand guidelines · tonality</span>How Her Will <em>sounds</em></h2>
+  <div class="bd">
+    <p class="jsub a">We are as careful with our words as with our fonts, colours and pictures. One tone across social media, paid ads and every reply in the comments and DMs.</p>
+    <div class="tones">
+      <div class="card tone a"><h4>Feminine</h4><p>Soft and warm. Women speaking to women.</p></div>
+      <div class="card tone a"><h4>Humble</h4><p>We guide, we don’t boast. No tall promises.</p></div>
+      <div class="card tone a"><h4>Friendly</h4><p>Like a friend who has been there. Simple words, no jargon.</p></div>
+      <div class="card tone dk a"><h4>Empathetic</h4><p>Many women starting out feel scared, low or ashamed of their body. We meet them with kindness, never pressure.</p></div>
+    </div>
+    <div class="tw">
+      <div class="card saybox a"><div class="k">We say</div>
+        <p class="sayl">“Start where you are.” · “Small steps add up.”<br>“Your body, your pace.” · “You’re not alone in this.”</p></div>
+      <div class="card a"><div class="k">We never</div>
+        <ul class="dotl">
+          <li>Shame or guilt about anyone’s body</li>
+          <li>Sexist lines or jokes about men. We lift women up without putting anyone down</li>
+          <li>Extreme promises like “lose 10 kg in 10 days”</li>
+        </ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide cj" id="c2" data-sec="02" data-note="" data-name="Ad film · founder-led">
+  <h2><span class="eb">Ad films · concept 01 · founder-led · 9:16 · 30–45 seconds</span>3 Fitness Mistakes Women Make, <em>with Deepa</em></h2>
+  <div class="bd">
+    <div class="sb6"><div class="card sbc a"><img src="assets/creatives/f1-hook.jpg" alt="Deepa speaking to camera"><div><div class="t">00–06s</div><h5>The hook</h5><p>“A thousand weight-loss programmes. So why Her Will? Because I understand women.”</p></div></div><div class="card sbc a"><img src="assets/creatives/f2-sees-herself.jpg" alt="A working woman and a homemaker"><div><div class="t">06–10s</div><h5>She sees herself</h5><p>A working woman and a homemaker. Different days, same challenges.</p></div></div><div class="card sbc a"><img src="assets/creatives/f3-mistakes.jpg" alt="Deepa explaining common mistakes"><div><div class="t">10–24s</div><h5>Mistakes 1 &amp; 2</h5><p>Intense workouts every day. Giving up the food you love.</p></div></div><div class="card sbc a"><img src="assets/creatives/f4-fix.jpg" alt="Deepa pointing to Her Will’s trust points"><div><div class="t">24–34s</div><h5>Mistake 3, the fix</h5><p>Expecting results in weeks. “That’s why Her Will is different.”</p></div></div><div class="card sbc a"><img src="assets/creatives/f5-not-alone.jpg" alt="Women joining a live class from home"><div><div class="t">34–41s</div><h5>Not alone</h5><p>Women joining her live class from home. “This is your time.”</p></div></div><div class="card sbc a"><img src="assets/creatives/f6-offer.jpg" alt="End card: Slim 90 Program ₹4,000, Enrol now"><div><div class="t">41–45s</div><h5>The offer</h5><p>Slim 90 Program – ₹4,000. CTA: Enrol now.</p></div></div></div>
+    <div class="fl2">
+      <div class="bxl a"><h4>Why founder-led</h4><ul><li>Answers her first doubt: why Her Will?</li><li>Deepa, face to face, builds trust fast</li><li>Shot in Kannada and English</li></ul></div>
+      <div class="bxd a"><h4>Deepa’s four trust points</h4><ul><li>Women-only coaching</li><li>Live classes in Kannada</li><li>Real home-food guidance · a supportive community</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide cj" id="c3" data-sec="02" data-note="" data-name="Ad film · docudrama">
+  <h2><span class="eb">Ad films · concept 02 · docudrama · 9:16 · 25–30 seconds</span>Two Lives. <em>One</em> Goal.</h2>
+  <div class="bd">
+    <div class="sb6"><div class="card sbc a"><img src="assets/creatives/j-dd1.jpg" alt="Split screen: a working woman and a homemaker"><div><div class="t">00–02s</div><h5>The hook</h5><p>Split screen freezes. Text: “Who has time for fitness?”</p></div></div><div class="card sbc a"><img src="assets/creatives/j-dd2.jpg" alt="Quick cuts of office work and housework"><div><div class="t">02–07s</div><h5>Full days</h5><p>Fast cuts: office, kitchen, kids. A ticking clock under it.</p></div></div><div class="card sbc a"><img src="assets/creatives/j-dd3.jpg" alt="Woman getting ready for a home workout"><div><div class="t">07–14s</div><h5>Her 15 minutes</h5><p>6 AM, laptop open, Deepa’s live Kannada class.</p></div></div><div class="card sbc a"><img src="assets/creatives/j-dd4.jpg" alt="Woman stretching calmly at home"><div><div class="t">14–20s</div><h5>The change</h5><p>Lighter, calmer, smiling. Mood shows it, no body shots.</p></div></div><div class="card sbc a"><img src="assets/creatives/j-dd5.jpg" alt="Both women smiling side by side"><div><div class="t">20–26s</div><h5>The offer</h5><p>Slim 90 Program – ₹4,000 · 90 days. CTA: Enrol now.</p></div></div><div class="card sbc a"><img src="assets/creatives/j-dd6.jpg" alt="Yoga mat, bottle and towel at home"><div><div class="t">26–30s</div><h5>End card</h5><p>Pink “her will” logo. Make Wellness Your Will.</p></div></div></div>
+    <div class="fl2">
+      <div class="bxl a"><h4>Built as an ad, not a reel</h4><ul><li>Hook in the first second; the draft opened slow</li><li>Deepa’s live class on screen, so she sees the product</li><li>One clear offer: Slim 90 Program – ₹4,000</li></ul></div>
+      <div class="bxd a"><h4>One shoot, three ad cuts</h4><ul><li>30s feed ad</li><li>15s Reels and Stories ad: hook, her 15 minutes, offer</li><li>6s bumper: hook and logo</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="p2" data-sec="03">
+  <h2>The <em>Funnel</em></h2>
+  <div class="bd">
+    <div class="fx">
+      <div>
+        <div class="funnel">
+          <div class="frow"><div class="fb" style="width:100%;background:#241530"><b>3.12<span class="u">Cr</span></b><span>Ad views</span></div></div>
+          <div class="rate a" data-rate="ctr">1.3% tap the ad</div>
+          <div class="frow"><div class="fb" style="width:85%;background:#44203F"><b data-fv="clicks" data-to="0"></b><span>Clicks</span></div></div>
+          <div class="rate a" data-rate="load">75% load the page</div>
+          <div class="frow"><div class="fb" style="width:70%;background:#64294E"><b data-fv="views" data-to="0"></b><span>Page views</span></div></div>
+          <div class="rate a" data-rate="atc">4.5% reach the payment page</div>
+          <div class="frow"><div class="fb" style="width:55%;background:#8E335F"><b data-fv="carts" data-to="0"></b><span>Payment page</span></div></div>
+          <div class="rate a" data-rate="pay">16% pay</div>
+          <div class="frow"><div class="fb" style="width:40%;background:#EC5F94"><b data-fv="subs" data-to="0"></b><span>Subscriptions</span></div></div>
+        </div>
+        <div class="fnote a">3 months of ads. Funnel shape is not to scale; the numbers are exact.</div>
+      </div>
+      <div>
+        <div class="ctl a">
+          <table class="fgrid">
+            <thead><tr><th></th><th>Best</th><th>Expected</th><th>Unexpected</th></tr></thead>
+            <tbody>
+              <tr data-g="ctr"><td><b>Click rate</b><small>Of 100 who see the ad, how many tap it</small></td><td><button type="button" data-v="1.6">1.6%</button></td><td><button type="button" data-v="1.3" class="on">1.3%</button></td><td><button type="button" data-v="1">1%</button></td></tr>
+              <tr data-g="load"><td><b>Load rate</b><small>Of 100 who tap the ad, how many see the page load</small></td><td><button type="button" data-v="85">85%</button></td><td><button type="button" data-v="75" class="on">75%</button></td><td><button type="button" data-v="60">60%</button></td></tr>
+              <tr data-g="atc"><td><b>Join rate</b><small>Of 100 who open the page, how many reach payment</small></td><td><button type="button" data-v="5">5%</button></td><td><button type="button" data-v="4.5" class="on">4.5%</button></td><td><button type="button" data-v="4">4%</button></td></tr>
+              <tr data-g="pay"><td><b>Pay rate</b><small>Of 100 on the payment page, how many pay</small></td><td><button type="button" data-v="24">24%</button></td><td><button type="button" data-v="16" class="on">16%</button></td><td><button type="button" data-v="10">10%</button></td></tr>
+              <tr class="roasr" data-g="roas"><td><b>ROAS</b><small>Revenue for every ₹1 of ads</small></td><td><button type="button" data-v="3.2">3.20x</button></td><td><button type="button" data-v="2" class="on">2x</button></td><td><button type="button" data-v="1.57">1.57x</button></td></tr>
+            </tbody>
+          </table>
+          <div class="fixd">Held the same: ₹37.5 L of ads over 3 months, ₹120 per 1,000 views.</div>
+        </div>
+        <div class="res a">
+          <div class="rp lt"><div class="k">Every month</div><dl>
+            <dt>Ad spend</dt><dd>₹12.5 L</dd>
+            <dt>Subscriptions</dt><dd data-fv="msubs" data-to="0"></dd>
+            <dt>Cost per subscription</dt><dd data-fv="cac" data-pre="₹" data-to="0"></dd></dl></div>
+          <div class="rp"><div class="k">3 months</div><dl>
+            <dt>Ad spend</dt><dd>₹37.5 L</dd>
+            <dt>Subscriptions</dt><dd data-fv="subs2" data-to="0"></dd>
+            <dt>Revenue</dt><dd data-fv="rev">–</dd></dl></div>
+        </div>
+        <div class="gbar a"><div class="tr"><i id="fnGoal"></i></div><div class="lb"><span id="fnGoalTx"></span><span>Goal: 3,000</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="p3" data-sec="03">
+  <h2>Budget &amp; <em>Scenarios</em></h2>
+  <div class="bd">
+    <div class="bs">
+      <div class="bsc a">
+        <div class="k">Pick a scenario</div>
+        <div class="scb">
+          <button type="button" data-sc="best">Best <small>everything as planned</small></button>
+          <button type="button" data-sc="exp" class="on">Expected <small>page converts less</small></button>
+          <button type="button" data-sc="unexp">Unexpected <small>page and ad costs slip</small></button>
+        </div>
+        <p class="ass" id="scAss"></p>
+        <label class="lock"><input type="checkbox" id="scLock"> Lock 3,000 subscriptions and show the budget needed</label>
+      </div>
+      <div class="bt">
+        <div class="tile hero a"><div class="k" id="tBudK">Total budget</div><div class="v" id="tBud" data-to="41.2" data-dec="1" data-pre="₹" data-suf="L"></div><div class="s" id="tBudS">₹37.5 L plan + ₹3.7 L reserve</div></div>
+        <div class="tile a"><div class="k">Average per day</div><div class="v" id="tDay" data-to="44826" data-pre="₹"></div><div class="s">over the 92 days, Nov–Jan</div></div>
+        <div class="tile a"><div class="k">Subscriptions</div><div class="v" id="tSub" data-to="2021"></div><div class="s" id="tSubS">out of the 3,000 goal</div></div>
+        <div class="tile a"><div class="k">3-month revenue</div><div class="v" id="tRev" data-to="80.8" data-dec="1" data-pre="₹" data-suf="L"></div><div class="s">subscriptions × ₹4,000</div></div>
+        <div class="tile a"><div class="k">ROAS</div><div class="v" id="tRoas" data-to="1.96" data-dec="2" data-suf="x"></div><div class="s">revenue for every ₹1 of ads</div></div>
+        <div class="tile a"><div class="k">Cost per subscription</div><div class="v" id="tCac" data-to="2041" data-pre="₹"></div><div class="s">what each new member costs</div></div>
+      </div>
+    </div>
+    <table class="tbl sct a">
+      <thead><tr><th>Scenario</th><th>Assumptions</th><th class="r">Subs with ₹41.2 L</th><th class="r">Revenue</th><th class="r">ROAS</th><th class="r">Cost per sub</th><th class="r">Budget for 3,000</th></tr></thead>
+      <tbody>
+        <tr data-sc="best"><td><b>Best</b></td><td>Page 5% / 40% / 40% · ₹120 per 1,000 views</td><td class="r">3,000</td><td class="r">₹1.20 Cr</td><td class="r">3.20x</td><td class="r">₹1,250</td><td class="r">₹37.5 L</td></tr>
+        <tr data-sc="exp" class="on"><td><b>Expected</b></td><td>Page 4% / 35% / 35% · ₹120 per 1,000 views</td><td class="r">2,021</td><td class="r">₹80.8 L</td><td class="r">1.96x</td><td class="r">₹2,041</td><td class="r">₹61.2 L</td></tr>
+        <tr data-sc="unexp"><td><b>Unexpected</b></td><td>Page 4% / 35% / 35% · ₹150 per 1,000 views</td><td class="r">1,617</td><td class="r">₹64.7 L</td><td class="r">1.57x</td><td class="r">₹2,551</td><td class="r">₹76.5 L</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="slide" id="p5" data-sec="03">
+  <h2>Month by <em>Month</em></h2>
+  <div class="bd">
+    <div class="p5">
+      <div>
+        <table class="tbl months a">
+          <thead><tr><th>Month</th><th class="r">Ad spend</th><th class="r">Subscriptions</th><th class="r">Running total</th><th class="r">Cost per subscription</th></tr></thead>
+          <tbody>
+            <tr class="prep"><td><b>15–31 Oct</b></td><td colspan="4">Setup and prep. A learning phase may start around 23–24 Oct if everything is ready; it isn’t counted.</td></tr>
+            <tr data-m="0"><td><b>November</b></td><td class="r">₹12.5 L</td><td class="r">1,000</td><td class="r">1,000</td><td class="r">₹1,250</td></tr>
+            <tr data-m="1"><td><b>December</b></td><td class="r">₹12.5 L</td><td class="r">1,000</td><td class="r">2,000</td><td class="r">₹1,250</td></tr>
+            <tr data-m="2"><td><b>January</b></td><td class="r">₹12.5 L</td><td class="r">1,000</td><td class="r">3,000</td><td class="r">₹1,250</td></tr>
+            <tr class="hl"><td>Total</td><td class="r">₹37.5 L</td><td class="r">3,000</td><td class="r"></td><td class="r">₹1,250</td></tr>
+          </tbody>
+        </table>
+        <div class="wording a">Monthly target: 1,000 subscriptions. The ₹3.7 L reserve is held back for surprises.</div>
+      </div>
+      <div class="card a" style="padding:18px 20px 0">
+        <div class="k">Subscriptions so far</div>
+        <div class="mchart">
+          <div class="target" style="bottom:270px"><i>Goal 3,000</i></div>
+          <div class="mcol" data-m="0"><div class="mbar gy" style="height:90px"><b>1,000</b></div><span>Nov</span></div>
+          <div class="mcol" data-m="1"><div class="mbar gy" style="height:180px"><b>2,000</b></div><span>Dec</span></div>
+          <div class="mcol" data-m="2"><div class="mbar gy" style="height:270px"><b>3,000</b></div><span>Jan</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="p6" data-sec="03">
+  <h2><em>Targeting</em></h2>
+  <div class="bd">
+    <div class="tg3">
+      <div class="card tgc a"><div class="k">Where</div><div class="big">5 South Indian states</div>
+        <div class="states"><span class="chip p">Karnataka</span><span class="chip p">Tamil Nadu</span><span class="chip p">Kerala</span><span class="chip p">Andhra Pradesh</span><span class="chip p">Telangana</span></div>
+        <small>All three months, Nov–Jan. No all-India push.</small></div>
+      <div class="card tgc a"><div class="k">Who</div><div class="big">Women, 22–55</div><small>Split into three groups by age; see Ad Options.</small></div>
+      <div class="card tgc a"><div class="k">Language</div><div class="big">Kannada and English</div><small>Every ad in both languages.</small></div>
+    </div>
+    <div class="p6b">
+      <div class="card box a">
+        <div class="k">Always-on retargeting</div>
+        <div class="rfun">
+          <div class="fb" style="width:100%;background:#64294E">Page visitors <small>last 14 days</small></div>
+          <div class="fb" style="width:80%;background:#8E335F">Cart adds <small>last 7 days</small></div>
+          <div class="fb" style="width:60%;background:#EC5F94">Checkout drop-offs <small>last 3 days</small></div>
+        </div>
+      </div>
+      <div class="card box a">
+        <div class="k">Spend by audience</div>
+        <div class="stack">
+          <div class="gx" style="width:50%;background:#241530"></div>
+          <div class="gx" style="width:20%;background:#64294E"></div>
+          <div class="gx" style="width:25%;background:#BA4573"></div>
+          <div class="gx" style="width:5%;background:#EC5F94"></div>
+        </div>
+        <div class="lg">
+          <div><i style="background:#241530"></i>Cold<b>50%</b></div>
+          <div><i style="background:#64294E"></i>Warm<b>20%</b></div>
+          <div><i style="background:#BA4573"></i>Retargeting<b>25%</b></div>
+          <div><i style="background:#EC5F94"></i>Past members<b>5%</b></div>
+        </div>
+        <div class="k" style="margin-top:16px">Why ad costs stay low</div>
+        <div class="why"><span class="chip p">South India regional targeting</span><span class="chip p">Broad audiences</span><span class="chip p">Member-story video leads</span><span class="chip p">Spend flat through Diwali week</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="s1" data-sec="04" data-name="Three competitors, one open gap" data-note="Public pages and Instagram read 10 to 13 Oct 2026. WOWFIT does not publish its full price. SLIM 90 shows ₹3,500 and ₹4,000 at checkout, to be confirmed. Samples are small, so treat them as signals.">
+  <h2>Three competitors, <em>one open gap.</em></h2>
+  <div class="bd">
+    <div class="cmp3">
+      <div class="card cpc a"><h4>FitWithPari</h4><div class="mt">Bangalore, women-only live online. ₹2,999 a month. 16.1K followers.</div>
+        <span class="k">What their content does</span><p>Workouts and member medals. The medal post got 82 likes against 4 to 37 on the rest.</p>
+        <span class="k">What we take</span><p class="tk">Recognition beats demonstrations.</p>
+        <span class="k">Where Her Will wins</span><p>A small but engaged community. Her Will’s first job is an engaged audience, not a bigger one.</p></div>
+      <div class="card cpc a"><h4>WOWFIT</h4><div class="mt">Women’s home programme by Vibha Mahajan. ₹27 entry offer. 330K followers.</div>
+        <span class="k">What their content does</span><p>Problem workouts ending “Comment LEGS”. That post: 2,299 likes and 852 comments.</p>
+        <span class="k">What we take</span><p class="tk">A keyword ending multiplies comments.</p>
+        <span class="k">Where Her Will wins</span><p>Its page leads with promises like “Lose 6 to 7 kg”. Her Will can be the honest alternative.</p></div>
+      <div class="card cpc a"><h4>YourTrainer</h4><div class="mt">Female coaches. ₹5,000 to ₹14,000 a month. 9.6K followers.</div>
+        <span class="k">What their content does</span><p>Myth-versus-fact food and hormone carousels. 39 to 99 likes on a small account.</p>
+        <span class="k">What we take</span><p class="tk">Food myths work at any size.</p>
+        <span class="k">Where Her Will wins</span><p>Useful content, but a small audience and a high monthly price. Her Will costs far less over 90 days.</p></div>
+    </div>
+    <div class="band a">
+      <div><div class="k">Her Will today</div><div class="nums"><div><div class="num">36,581</div><div class="nl">followers, not organic, so we track engagement</div></div><div><div class="num">17</div><div class="nl">median likes per reel, nine reels, 16 Sep to 3 Oct</div></div></div></div>
+      <div><div class="k">The price gap: three months at published monthly prices</div><div class="pb" id="pbr"></div></div>
+      <div><p class="ins">Two of the three charge by the month. Her Will sells 90 days in one payment, for about what others charge for one month.</p><div class="itl">Lead with the price, and with what is included.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="s3" data-sec="04" data-note="" data-name="One promise. Six pillars.">
+  <h2>One promise. <em>Six pillars.</em></h2>
+  <div class="bd">
+    <p class="prom a">Her Will gives women <b>a live coach</b>, <b>a women-only room</b> and <b>a 90-day plan at home</b>.</p>
+    <div class="pgrp a"><b>Pillars 1 to 3</b>Teach and help: something she can use today</div>
+    <div class="pl3c"><div class="pc a"><div class="hd2"><span class="n">01</span><span class="nm">Move Your Way</span></div><div class="sb">Training · Practical fitness</div>
+        <dl><dt>The idea</dt><dd>Make movement feel accessible, achievable and less intimidating.</dd>
+        <dt>Her thought</dt><dd>“What do I do? I have no time.”</dd>
+        <dt>Content could include</dt><dd><ul><li>Beginner-friendly demonstrations</li><li>Home versus gym workouts</li><li>Common mistakes and form tips</li><li>Short routines for busy days</li></ul></dd>
+        <dt>Why it matters</dt><dd>Practical value that shows Her Will is more than motivation.</dd></dl><span class="wk">2 posts a week</span></div><div class="pc a"><div class="hd2"><span class="n">02</span><span class="nm">Food Without Fear</span></div><div class="sb">Food · Nutrition · Everyday habits</div>
+        <dl><dt>The idea</dt><dd>Talk about food without making women feel guilty.</dd>
+        <dt>Her thought</dt><dd>“Do I have to give up rice?”</dd>
+        <dt>Content could include</dt><dd><ul><li>Everyday Indian meals</li><li>Meal ideas for working women</li><li>Food myths, explained</li><li>Eating out and everyday choices</li></ul></dd>
+        <dt>Why it matters</dt><dd>Makes the brand useful every day. Claims are reviewed by professionals.</dd></dl><span class="wk">1 post a week</span></div><div class="pc a"><div class="hd2"><span class="n">03</span><span class="nm">Ask the Expert</span></div><div class="sb">Expert talks · Podcast</div>
+        <dl><dt>The idea</dt><dd>Deepa answers real questions in conversation with a doctor or a host.</dd>
+        <dt>Her thought</dt><dd>“Is this safe? Does she know her subject?”</dd>
+        <dt>Content could include</dt><dd><ul><li>Thyroid, hormones and weight</li><li>Sleep, stress and weight</li><li>Myths, answered with a doctor</li><li>Questions from members</li></ul></dd>
+        <dt>Why it matters</dt><dd>Expert proof that builds credibility for a ₹4,000 programme. One long episode becomes many short reels.</dd></dl><span class="wk">1 post a week</span></div></div>
+    <div class="strip2 one a"><div><b>Every post, three rules.</b> Say her problem in the first 3 seconds. One idea only. End with one next step: a keyword to comment, then a DM, then WhatsApp, then the SLIM 90 link.</div></div>
+  </div>
+</section>
+
+<section class="slide" id="s3b" data-sec="04" data-note="" data-name="Trust and join in, pillars 4 to 6">
+  <h2>Trust and join in, <em>pillars 4 to 6.</em></h2>
+  <div class="bd">
+    <p class="prom a">She trusts the person, believes women like her, then joins in.</p>
+    <div class="pgrp a"><b>Pillars 4 to 6</b>Trust and join in: why she should believe it, and how she starts</div>
+    <div class="pl3c"><div class="pc a"><div class="hd2"><span class="n">04</span><span class="nm">Deepa Unfiltered</span></div><div class="sb">Founder-led · Connection</div>
+        <dl><dt>The idea</dt><dd>Make Deepa the face and voice of Her Will.</dd>
+        <dt>Her thought</dt><dd>“Can I trust her?”</dd>
+        <dt>Content could include</dt><dd><ul><li>Honest talks on body image</li><li>Her view on common struggles</li><li>What she wishes women knew</li><li>Her own routine, behind the scenes</li></ul></dd>
+        <dt>Why it matters</dt><dd>People trust a person before they trust a programme.</dd></dl><span class="wk">1 post a week</span></div><div class="pc a"><div class="hd2"><span class="n">05</span><span class="nm">Her Will Diaries</span></div><div class="sb">Community · Real members</div>
+        <dl><dt>The idea</dt><dd>Let real members tell their own story, in their own words, on their own phones.</dd>
+        <dt>Her thought</dt><dd>“Will it work for me?”</dd>
+        <dt>Content could include</dt><dd><ul><li>Small wins beyond the scale</li><li>A member’s journey, start to now</li><li>A setback and the comeback</li><li>A day in her life, with a workout</li></ul></dd>
+        <dt>Why it matters</dt><dd>Real women, not a company broadcasting advice. Shared with consent. Results vary.</dd></dl><span class="wk">1 a week, 3 in January</span></div><div class="pc a"><div class="hd2"><span class="n">06</span><span class="nm">Her Will Challenges</span></div><div class="sb">Challenges · Join in</div>
+        <dl><dt>The idea</dt><dd>Give women a small challenge to take on together, so followers become participants.</dd>
+        <dt>Her thought</dt><dd>“Will I keep going? I need a push.”</dd>
+        <dt>Content could include</dt><dd><ul><li>A 7-day beginner challenge</li><li>Do it with me: one minute together</li><li>A small daily habit, like steps or stretching</li><li>A weekend challenge, then a thank-you</li></ul></dd>
+        <dt>Why it matters</dt><dd>Gives followers a reason to come back every day. Each challenge ends with an invite to SLIM 90.</dd></dl><span class="wk">1 post a week</span></div></div>
+    <div class="strip2 a"><div><b>The voice.</b> Warm, direct, practical and a little funny. We never promise kilos, shame a body or show one result as typical.</div><div><b>Seven posts a week.</b> Move 2, Food 1, Expert 1, Deepa 1, Diaries 1, Challenges 1.</div></div>
+  </div>
+</section>
+
+<section class="slide" id="s5" data-sec="04" data-name="Twelve post ideas" data-note="Opening lines are examples. Health and food posts are reviewed by a doctor or nutritionist. Member stories have consent, and results vary. Full scripts are separate.">
+  <h2>Twelve post ideas, <em>two for each pillar.</em></h2>
+  <div class="bd">
+    <p class="jsub a">Each idea is a format we repeat, with a new topic every time. Every reel runs about one minute, and never beyond one and a half.</p>
+    <div class="ideas six"><div class="ic a" style="--c:#EC5F94"><div class="ph2"><div class="pn">Move Your Way</div><div class="pt">Training</div></div><div class="idea"><div class="nm">A workout for your problem</div><p>Three moves for one common problem.</p><div class="ol">Opening line</div><div class="q">“Back hurts from sitting all day? Try these three moves.”</div></div><div class="idea"><div class="nm">Are you doing it wrong?</div><p>The common mistakes in one exercise, and the fix.</p><div class="ol">Opening line</div><div class="q">“You are probably doing your squats wrong. Here is how to tell.”</div></div></div><div class="ic a" style="--c:#B58A3C"><div class="ph2"><div class="pn">Food Without Fear</div><div class="pt">Food</div></div><div class="idea"><div class="nm">Fix this plate</div><p>A follower’s real meal with one smart change.</p><div class="ol">Opening line</div><div class="q">“Same dosa. Smarter plate.”</div></div><div class="idea"><div class="nm">Eat it, just swap one thing</div><p>Keep the food you love, change one part.</p><div class="ol">Opening line</div><div class="q">“You do not have to give up rice. Just swap this.”</div></div></div><div class="ic a" style="--c:#3F7FC1"><div class="ph2"><div class="pn">Ask the Expert</div><div class="pt">Podcast</div></div><div class="idea"><div class="nm">From the podcast</div><p>A doctor or host asks Deepa one question. A one-minute clip.</p><div class="ol">Opening line</div><div class="q">“Thyroid and weight: what is true? A doctor asks, Deepa answers.”</div></div><div class="idea"><div class="nm">Myth or fact?</div><p>A common belief, and the real answer from a doctor.</p><div class="ol">Opening line</div><div class="q">“Does sweating more mean burning more fat? Here is the truth.”</div></div></div><div class="ic a" style="--c:#7C5CB0"><div class="ph2"><div class="pn">Deepa Unfiltered</div><div class="pt">Founder-led</div></div><div class="idea"><div class="nm">You asked, I answered</div><p>Deepa answers one real follower question.</p><div class="ol">Opening line</div><div class="q">“A woman wrote: I feel too shy to exercise in front of my family. Here is what I told her.”</div></div><div class="idea"><div class="nm">Missed a week? Read this</div><p>How to start again without guilt.</p><div class="ol">Opening line</div><div class="q">“You missed a week. You did not fail.”</div></div></div><div class="ic a" style="--c:#3E9C86"><div class="ph2"><div class="pn">Her Will Diaries</div><div class="pt">Real members</div></div><div class="idea"><div class="nm">A small win</div><p>A member shares a win beyond the scale.</p><div class="ol">Opening line</div><div class="q">“I climbed three floors without stopping.”</div></div><div class="idea"><div class="nm">Her journey, in her own words</div><p>A member films her story on her phone.</p><div class="ol">Opening line</div><div class="q">“Eight weeks ago I could not climb one flight. Here is my story.”</div></div></div><div class="ic a" style="--c:#D2603A"><div class="ph2"><div class="pn">Her Will Challenges</div><div class="pt">Join in</div></div><div class="idea"><div class="nm">7 days, 10 minutes</div><p>A small challenge, one day at a time, with a check-in each day.</p><div class="ol">Opening line</div><div class="q">“Seven days. Ten minutes a day. Start tomorrow. Comment JOIN.”</div></div><div class="idea"><div class="nm">Do it with me</div><p>One minute of movement, filmed so she does it alongside.</p><div class="ol">Opening line</div><div class="q">“Press play and move with me for one minute. Comment DONE.”</div></div></div></div>
+  </div>
+</section>
+
+<section class="slide" id="s6" data-sec="04" data-name="Content calendar, 1 to 30 November" data-note="One post a day, 30 posts: Move 10, Food, Expert, Deepa and Diaries 4 each, Challenges 3, and 1 launch post. Reels run about one minute. Full scripts are separate.">
+  <h2>Content calendar, <em>1 to 30 November.</em></h2>
+  <div class="bd">
+    <div class="calbar a">
+      <button class="pf on" type="button" data-pf="all">All pillars</button><button class="pf" type="button" data-pf="m" style="--c:#EC5F94"><i></i>Move Your Way</button><button class="pf" type="button" data-pf="f" style="--c:#B58A3C"><i></i>Food Without Fear</button><button class="pf" type="button" data-pf="e" style="--c:#3F7FC1"><i></i>Ask the Expert</button><button class="pf" type="button" data-pf="u" style="--c:#7C5CB0"><i></i>Deepa Unfiltered</button><button class="pf" type="button" data-pf="d" style="--c:#3E9C86"><i></i>Her Will Diaries</button><button class="pf" type="button" data-pf="s" style="--c:#D2603A"><i></i>Her Will Challenges</button>
+    </div>
+    <div class="calbar a"><span class="php"><b>15 to 31 Oct</b>Preparation: shoots, approvals, setup</span><span class="php"><b>1 to 30 Nov</b>Daily posts. Launch post moves to the confirmed launch date</span></div>
+    <div class="wd a"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+    <div class="cal a" id="cal"></div>
+  </div>
+</section>
+
+<section class="slide plain dark" id="end" data-sec="act3" data-name="Thank you">
+  <div class="cv-ring"></div><div class="cv-ring r2"></div><div class="cv-mark a" role="img" aria-label="Her Will"></div>
+  <div class="end">
+    <div class="eyebrow a">Her Will Growth Plan · October 2026</div>
+    <h1 class="a">Thank <em>you</em></h1>
+    <div class="rowx">
+      <div class="a"><div class="k">In this deck</div><h4>01 · Website on TagMango<br>02 · Creatives &amp; Videos</h4></div>
+      <div class="a"><div class="k">&nbsp;</div><h4>03 · Paid Marketing<br>04 · Social Media</h4></div>
+    </div>
+  </div>
+  <div class="end-hint">Prepared by EyeLevel Growth Studio for the Her Will team &nbsp;·&nbsp; <kbd>M</kbd> contents</div>
+</section>
+
+<div class="prog"><i id="progress"></i></div>
+</div>
+
+<div class="ctrl" aria-label="Slide controls">
+  <button type="button" id="prev" aria-label="Previous slide">←</button>
+  <span id="count"></span>
+  <button type="button" id="next" aria-label="Next slide">→</button>
+  <button type="button" id="tocBtn" aria-label="Contents">☰</button>
+  <button type="button" id="fsBtn" aria-label="Full screen">⤢</button>
+</div>
+
+<aside class="toc" id="toc" aria-label="Contents">
+  <header><b>Contents</b><button class="x" type="button" id="tocClose" aria-label="Close contents">×</button></header>
+  <nav id="tocNav"></nav>
+</aside>
+
+<script>
+(() => {
+  const deck = document.getElementById('deck');
+  const slides = [...deck.querySelectorAll('.slide')];
+  const isStatic = /[?&]static\b/.test(location.search);
+  if (isStatic) document.documentElement.classList.add('static');
+  const reduce = isStatic || matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const SECS = {
+    act1: { label: 'Overview' },
+    '01': { label: 'Website on TagMango', foot: '<b>All fixes inside TagMango</b> · same domain, same checkout, same app' },
+    '02': { label: 'Creatives & Videos', foot: '' },
+    '04': { label: 'Social Media', foot: '' },
+    '03': { label: 'Paid Marketing', foot: 'Plan numbers use <b>2026 India health &amp; wellness benchmarks</b> · reviewed every week' },
+    act3: { label: 'Bringing it together' }
+  };
+  const TRACK = [['01', 'Website'], ['02', 'Creatives &amp; Videos'], ['03', 'Paid Marketing'], ['04', 'Social Media']];
+  const pad = n => String(n).padStart(2, '0');
+
+  /* ---------- header, footer ---------- */
+  slides.forEach((s, i) => {
+    if (s.classList.contains('plain')) return;
+    const sec = s.dataset.sec, info = SECS[sec];
+    const hd = document.createElement('div');
+    hd.className = 'hd';
+    hd.innerHTML = `<div class="trk">${TRACK.map(([n, t]) => `<span class="${n === sec ? 'on' : ''}">${n} ${t}</span>`).join('')}</div><div class="mark" role="img" aria-label="Her Will"></div>`;
+    s.prepend(hd);
+    const ft = document.createElement('div');
+    ft.className = 'ft';
+    ft.innerHTML = `<div class="ft-note">${s.dataset.note !== undefined ? s.dataset.note : (info.foot || '')}</div><div class="ft-brand"><span>Her Will · Growth plan</span><span>EyeLevel Growth Studio · ${pad(i + 1)}</span></div>`;
+    s.append(ft);
+  });
+
+  /* ---------- stagger ---------- */
+  slides.forEach(s => {
+    let k = 0;
+    s.querySelectorAll('.a,.fb,.gx,.gy').forEach(el => {
+      if (!el.style.getPropertyValue('--d')) el.style.setProperty('--d', Math.min(0.1 + k * 0.06, 1.5).toFixed(2) + 's');
+      k++;
+    });
+  });
+
+  /* ---------- numbers ---------- */
+  const fmt = (v, dec) => v.toLocaleString('en-IN', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  const unit = t => t ? `<span class="u">${t}</span>` : '';
+  function render(el, v) {
+    const dec = +(el.dataset.dec || 0);
+    el.innerHTML = unit(el.dataset.pre) + fmt(v, dec) + unit(el.dataset.suf);
+    el._v = v;
+  }
+  function countEl(el, from, to, dur = 1100, delay = 0) {
+    cancelAnimationFrame(el._raf);
+    clearTimeout(el._end);
+    if (reduce) { render(el, to); return; }
+    el._end = setTimeout(() => { cancelAnimationFrame(el._raf); render(el, to); }, delay + dur + 80);
+    const t0 = performance.now() + delay;
+    const step = now => {
+      const p = Math.min(1, Math.max(0, (now - t0) / dur));
+      const e = 1 - Math.pow(1 - p, 3);
+      render(el, p >= 1 ? to : from + (to - from) * e);
+      if (p < 1) el._raf = requestAnimationFrame(step);
+    };
+    el._raf = requestAnimationFrame(step);
+  }
+  document.querySelectorAll('[data-to]').forEach(el => render(el, +el.dataset.to));
+  function runCounts(s) {
+    s.querySelectorAll('[data-to]').forEach(el => {
+      const d = parseFloat(getComputedStyle(el).getPropertyValue('--d')) || 0;
+      render(el, 0);
+      countEl(el, 0, +el.dataset.to, 1100, 150 + d * 600);
+    });
+  }
+
+  /* ---------- navigation ---------- */
+  const bar = document.getElementById('progress');
+  const count = document.getElementById('count');
+  const toc = document.getElementById('toc');
+  const tocNav = document.getElementById('tocNav');
+  let cur = -1;
+
+  function go(n) {
+    n = Math.max(0, Math.min(slides.length - 1, n));
+    if (n === cur) return;
+    const prev = slides[cur];
+    if (prev) { prev.classList.remove('active', 'in', 'wi-open'); }
+    cur = n;
+    const s = slides[n];
+    s.classList.add('active');
+    if (s._reset) s._reset();
+    setTimeout(() => { if (slides[cur] === s) { s.classList.add('in'); runCounts(s); } }, 40);
+    bar.style.width = ((n + 1) / slides.length * 100) + '%';
+    count.textContent = `${n + 1} / ${slides.length}`;
+    history.replaceState(null, '', '#' + (n + 1));
+    tocNav.querySelectorAll('button').forEach(b => b.classList.toggle('on', +b.dataset.i === n));
+  }
+  const goId = id => go(slides.findIndex(s => s.id === id));
+
+  function fit() {
+    const s = Math.min(innerWidth / 1280, innerHeight / 720) * (innerWidth > 900 ? 0.94 : 1);
+    deck.style.setProperty('--s', s);
+  }
+  addEventListener('resize', fit);
+  fit();
+
+  /* contents */
+  let lastSec = null;
+  slides.forEach((s, i) => {
+    const sec = s.dataset.sec;
+    if (sec !== lastSec) {
+      const h = document.createElement('h5');
+      h.textContent = /^\d+$/.test(sec) ? `${sec} · ${SECS[sec].label}` : SECS[sec].label;
+      tocNav.append(h);
+      lastSec = sec;
+    }
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.dataset.i = i;
+    b.innerHTML = `<i>${pad(i + 1)}</i>${s.dataset.name || s.querySelector('h2').textContent}`;
+    b.onclick = () => { go(i); toc.classList.remove('open'); };
+    tocNav.append(b);
+  });
+  const toggleToc = () => toc.classList.toggle('open');
+  document.getElementById('tocBtn').onclick = toggleToc;
+  document.getElementById('tocClose').onclick = () => toc.classList.remove('open');
+  document.getElementById('prev').onclick = () => go(cur - 1);
+  document.getElementById('next').onclick = () => go(cur + 1);
+  const fullscreen = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen().catch(() => {});
+  document.getElementById('fsBtn').onclick = fullscreen;
+
+  addEventListener('keydown', e => {
+    const t = e.target instanceof Element ? e.target : document.body;
+    if (t.closest('input,textarea,select')) return;
+    const k = e.key;
+    if (k === 'Escape') { toc.classList.remove('open'); slides[cur].classList.remove('wi-open'); return; }
+    if (k === 'ArrowRight' || k === 'PageDown' || (k === ' ' && !t.closest('button'))) { e.preventDefault(); go(cur + 1); }
+    else if (k === 'ArrowLeft' || k === 'PageUp') { e.preventDefault(); go(cur - 1); }
+    else if (k === 'Home') go(0);
+    else if (k === 'End') go(slides.length - 1);
+    else if (k === 'f' || k === 'F') fullscreen();
+    else if (k === 'm' || k === 'M') toggleToc();
+  });
+
+  document.querySelectorAll('[data-go]').forEach(el => el.addEventListener('click', () => goId(el.dataset.go)));
+
+  /* ---------- hover / click sync helper ---------- */
+  function sync(scope, attr, onSet) {
+    const els = [...scope.querySelectorAll(`[${attr}]`)];
+    const set = v => {
+      els.forEach(el => el.classList.toggle('hi', el.getAttribute(attr) === v));
+      if (onSet) onSet(v);
+    };
+    els.forEach(el => {
+      el.addEventListener('mouseenter', () => set(el.getAttribute(attr)));
+      el.addEventListener('click', () => set(el.getAttribute(attr)));
+    });
+    return set;
+  }
+
+  /* ---------- customer journey ---------- */
+  (() => {
+    const s = document.getElementById('journey'); if (!s) return;
+    const reach = { buy: 5, a: 2, b: 3, c: 4 };
+    const pick = p => {
+      s.querySelectorAll('.jn').forEach(n => n.classList.toggle('off', +n.dataset.n > reach[p]));
+      s.querySelectorAll('[data-path]').forEach(b => b.classList.toggle('sel', b.dataset.path === p));
+    };
+    s.querySelectorAll('[data-path]').forEach(b => b.addEventListener('click', () => pick(b.dataset.path)));
+    pick('buy');
+  })();
+
+  const lakh = x => '₹' + (x / 1e5).toFixed(1) + ' L';
+  const inr = x => x >= 1e7 ? '₹' + (x / 1e7).toFixed(2) + ' Cr' : lakh(x);
+
+  /* ---------- funnel calculator ---------- */
+  (() => {
+    const s = document.getElementById('p2'); if (!s) return;
+    const SPEND = 3750000, CPM = 120, PRICE = 4000, GOAL = 3000;
+    const SCN = { best: { ctr: 1.6, load: 85, atc: 5, pay: 24 }, exp: { ctr: 1.3, load: 75, atc: 4.5, pay: 16 }, unexp: { ctr: 1, load: 60, atc: 4, pay: 10 } };
+    const sel = { ...SCN.exp, roas: 2 };
+    const fv = k => s.querySelector(`[data-fv="${k}"]`);
+    function update(animate) {
+      const imp = SPEND / CPM * 1000;
+      const clicks = imp * sel.ctr / 100, views = clicks * sel.load / 100, carts = views * sel.atc / 100;
+      const subs = Math.round(carts * sel.pay / 100);
+      const vals = { clicks, views, carts, subs, subs2: subs, msubs: subs / 3, cac: SPEND / subs };
+      Object.entries(vals).forEach(([k, v]) => {
+        const el = fv(k); if (!el) return;
+        const to = Math.round(v);
+        el.dataset.to = to;
+        if (animate) countEl(el, el._v || 0, to, 600); else render(el, to);
+      });
+      fv('rev').textContent = inr(subs * PRICE);
+      s.querySelector('[data-rate="ctr"]').textContent = `${sel.ctr}% tap the ad`;
+      s.querySelector('[data-rate="load"]').textContent = `${sel.load}% load the page`;
+      s.querySelector('[data-rate="atc"]').textContent = `${sel.atc}% reach the payment page`;
+      s.querySelector('[data-rate="pay"]').textContent = `${sel.pay}% pay`;
+      document.getElementById('fnGoal').style.width = Math.min(100, subs / GOAL * 100) + '%';
+      document.getElementById('fnGoalTx').textContent = `${subs.toLocaleString('en-IN')} of the 3,000 goal`;
+      s.querySelectorAll('tr[data-g]').forEach(r => r.querySelectorAll('button').forEach(b => b.classList.toggle('on', +b.dataset.v === sel[r.dataset.g])));
+    }
+    s.querySelectorAll('tr[data-g] button').forEach(b => b.addEventListener('click', () => {
+      const g = b.closest('tr').dataset.g;
+      sel[g] = +b.dataset.v;
+      if (g === 'roas') s.querySelectorAll('tr[data-g="roas"] button').forEach(x => x.classList.toggle('on', x === b));
+      else update(true);
+    }));
+    s._reset = () => { Object.assign(sel, SCN.exp, { roas: 2 }); update(false); };
+    update(false);
+  })();
+
+  /* ---------- budget scenarios ---------- */
+  (() => {
+    const s = document.getElementById('p3'); if (!s) return;
+    const BUD = 4124000, DAYS = 92, PRICE = 4000, GOAL = 3000;
+    const SCN = {
+      best: { subs: 3000, roas: 3.20, cac: 1250, need: 3750000, ass: 'Page: 5% tap Join, 40% start checkout, 40% pay. ₹120 per 1,000 ad views.' },
+      exp: { subs: 2021, roas: 1.96, cac: 2041, need: 6120000, ass: 'Page: 4% tap Join, 35% start checkout, 35% pay. ₹120 per 1,000 ad views.' },
+      unexp: { subs: 1617, roas: 1.57, cac: 2551, need: 7650000, ass: 'Page: 4% tap Join, 35% start checkout, 35% pay. Ad costs rise to ₹150 per 1,000 views.' }
+    };
+    let cur = 'exp';
+    const lock = document.getElementById('scLock');
+    const el = id => document.getElementById(id);
+    function set(id, to, animate) { const e = el(id); e.dataset.to = to; if (animate) countEl(e, e._v || 0, to, 600); else render(e, to); }
+    function update(animate) {
+      const v = SCN[cur], locked = lock.checked;
+      const budget = locked ? v.need : BUD;
+      const subs = locked ? GOAL : v.subs;
+      const rev = subs * PRICE;
+      set('tBud', +(budget / 1e5).toFixed(1), animate);
+      set('tDay', Math.round(budget / DAYS), animate);
+      set('tSub', subs, animate);
+      const tRev = el('tRev');
+      if (rev >= 1e7) { tRev.dataset.dec = 2; tRev.dataset.suf = 'Cr'; set('tRev', +(rev / 1e7).toFixed(2), animate); }
+      else { tRev.dataset.dec = 1; tRev.dataset.suf = 'L'; set('tRev', +(rev / 1e5).toFixed(1), animate); }
+      set('tRoas', v.roas, animate);
+      set('tCac', v.cac, animate);
+      el('tBudK').textContent = locked ? 'Budget needed' : 'Total budget';
+      el('tBudS').textContent = locked ? 'to reach 3,000 in this scenario' : (cur === 'best' ? '₹37.5 L used · ₹3.7 L left over' : '₹37.5 L plan + ₹3.7 L reserve');
+      el('tSubS').textContent = locked ? 'locked at the goal' : (subs >= GOAL ? 'goal reached' : 'out of the 3,000 goal');
+      el('scAss').textContent = v.ass;
+      s.querySelectorAll('[data-sc]').forEach(b => b.classList.toggle('on', b.dataset.sc === cur));
+    }
+    s.querySelectorAll('[data-sc]').forEach(b => b.addEventListener('click', () => { cur = b.dataset.sc; update(true); }));
+    lock.addEventListener('change', () => update(true));
+    update(false);
+  })();
+
+  /* ---------- competitor price bars ---------- */
+  (() => {
+    const host = document.getElementById('pbr'); if (!host) return;
+    const W = 300, max = 42000, w = v => v / max * W;
+    const rows = [['Her Will', '90 days', 4000, 4000, '₹4,000', true], ['FitWithPari', '3 months', 8997, 8997, '₹8,997', false], ['YourTrainer', '3 months', 15000, 42000, '₹15,000 to ₹42,000', false]];
+    host.innerHTML = rows.map(r => {
+      const end = w(r[3]);
+      const range = r[2] !== r[3] ? `<div class="f" style="left:${w(r[2])}px;width:${end - w(r[2])}px;opacity:.5"></div>` : '';
+      return `<div class="r"><div class="n">${r[0]}<small>${r[1]}</small></div><div class="b"><div class="f${r[5] ? ' her' : ''}" style="width:${Math.max(6, w(r[2]))}px"></div>${range}<div class="v" style="left:${Math.max(6, end) + 10}px${r[5] ? ';color:#F6A3C0' : ''}">${r[4]}</div></div></div>`;
+    }).join('');
+  })();
+
+  /* ---------- content calendar ---------- */
+  (() => {
+    const host = document.getElementById('cal'); if (!host) return;
+    const P = { m: ['Move', '#EC5F94'], f: ['Food', '#B58A3C'], e: ['Expert', '#3F7FC1'], u: ['Deepa', '#7C5CB0'], d: ['Diaries', '#3E9C86'], s: ['Challenge', '#D2603A'], l: ['Launch', '#241830'] };
+    const posts = [
+      ['m', 'Full-body starter for beginners'], ['m', 'Back pain from sitting: 3 moves'], ['u', 'Too shy to work out at home?'], ['f', 'Dosa plate: one smart change'], ['e', 'Thyroid and weight: what is true?'], ['d', 'A member’s first week, honestly'], ['s', 'Challenge: 7 days, 10 minutes a day'],
+      ['m', 'Squats: 3 mistakes you make'], ['m', 'Tight hips from sitting: 3 stretches'], ['u', 'Missed a week? Do not quit'], ['f', 'Rice: eat it, swap one thing'], ['e', 'Does sweating burn more fat?'], ['d', 'A small win: climbing stairs'], ['l', 'What you get in SLIM 90', 'LAUNCH POST'],
+      ['m', 'No time? A quick leg workout'], ['m', 'Desk posture: fix it in a minute'], ['u', 'Family teasing you for working out?'], ['f', 'Eating out without the guilt'], ['e', 'Do crunches burn belly fat?'], ['d', 'How a mother of two finds time'], ['s', 'Challenge: do it with me'],
+      ['m', 'Arms workout, no weights'], ['m', 'Push-ups: beginner to pro'], ['u', 'Guilty for taking time for yourself?'], ['f', 'Idli plate: one smart change'], ['e', 'The scale went up? A doctor explains'], ['d', 'A member’s journey, in her own words'], ['s', 'Challenge finale and a thank-you offer'],
+      ['m', 'Lunges: the common mistakes'], ['m', 'Neck and shoulder relief']
+    ];
+    const mon = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const start = Date.UTC(2026, 10, 1);
+    const lead = (new Date(start).getUTCDay() + 6) % 7;
+    let html = '<div class="d e"></div>'.repeat(lead);
+    posts.forEach((p, i) => {
+      const t = start + i * 864e5, d = new Date(t), info = P[p[0]];
+      html += `<div class="d${p[0] === 'l' ? ' lp' : ''}" data-p="${p[0]}" style="--c:${info[1]}"><div class="dt">${d.getUTCDate()}<small>${mon[d.getUTCMonth()]}</small></div><div class="pl3">${info[0]}</div><div class="tt">${p[1]}</div>${p[2] ? `<div class="fl">${p[2]}</div>` : ''}</div>`;
+    });
+    host.innerHTML = html;
+    const s = document.getElementById('s6');
+    s.querySelectorAll('[data-pf]').forEach(b => b.addEventListener('click', () => {
+      const f = b.dataset.pf;
+      s.querySelectorAll('[data-pf]').forEach(x => x.classList.toggle('on', x === b));
+      host.querySelectorAll('.d[data-p]').forEach(d => d.classList.toggle('dim', f !== 'all' && d.dataset.p !== f));
+    }));
+  })();
+
+  /* P5 months, P11 checkpoints */
+  sync(document.getElementById('p5'), 'data-m');
+
+  /* ---------- tick lists (saved in this browser only) ---------- */
+  const KEY = 'herwill-deck-checks-v1';
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { saved = {}; }
+  const groups = {};
+  document.querySelectorAll('[data-check]').forEach(row => {
+    const id = row.dataset.check, g = id.split(':')[0];
+    (groups[g] = groups[g] || []).push(row);
+    if (saved[id]) row.classList.add('done');
+    row.querySelector('.chk').addEventListener('click', () => {
+      row.classList.toggle('done');
+      saved[id] = row.classList.contains('done');
+      try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+      refresh(g);
+    });
+  });
+  function refresh(g) {
+    const all = groups[g], n = all.filter(r => r.classList.contains('done')).length;
+    const word = g === 'launch' ? 'ready' : 'received';
+    document.querySelectorAll(`[data-count-of="${g}"]`).forEach(el => el.textContent = `${n} of ${all.length} ${word}`);
+    document.querySelectorAll(`[data-bar-of="${g}"]`).forEach(el => el.style.width = (n / all.length * 100) + '%');
+  }
+  Object.keys(groups).forEach(refresh);
+
+  /* hide controls while presenting */
+  let idleT;
+  const wake = () => { document.body.classList.remove('idle'); clearTimeout(idleT); idleT = setTimeout(() => document.body.classList.add('idle'), 2500); };
+  addEventListener('mousemove', wake);
+  wake();
+
+  /* ---------- start ---------- */
+  go((parseInt(location.hash.slice(1), 10) || 1) - 1);
+})();
+</script>
+</body>
+</html>
