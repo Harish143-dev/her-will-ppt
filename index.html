@@ -1834,7 +1834,7 @@ h2,.cv-tx h1,.end h1{letter-spacing:-.025em}
     const rate = v => v.ctr / 100 * v.load / 100 * v.atc / 100 * v.pay / 100;
     const cacOf = v => CPM / 1000 / rate(v);
     const roasOf = v => Math.floor(PRICE / cacOf(v) * 100 + 1e-9) / 100;
-    const ROAS = { best: '3.20x', exp: '2.56x', unexp: '1.57x' };
+    const ROAS = { best: '2.56x', exp: '1.96x', unexp: '1.57x' };
     s.querySelectorAll('.rv').forEach(el => { el.textContent = ROAS[el.dataset.col]; });
     const set = (k, to, animate) => { const el = fv(k); el.dataset.to = to; if (animate) countEl(el, el._v || 0, to, 600); else render(el, to); };
     function update(animate) {
