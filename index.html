@@ -935,6 +935,28 @@ kbd{font-family:var(--sans);font-size:10px;font-weight:800;border:1px solid rgba
 .appfix p{margin:0;font-size:11.5px;line-height:1.5;color:rgba(245,238,230,.85)}
 .appfix p b{color:#fff}
 
+/* funnel: calculated ROAS + lock switch */
+.fgrid .rv{display:inline-block;width:100%;max-width:84px;border-radius:30px;padding:5px 0;font-family:var(--serif);font-size:15px;font-weight:600;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2)}
+.fgrid .rv.on{background:var(--pink);border-color:var(--pink)}
+.fbot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:2px}
+.fbot .fixd{margin:0}
+.lk{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:800;color:var(--text);cursor:pointer;white-space:nowrap;user-select:none}
+.lk input{position:absolute;opacity:0;width:0;height:0}
+.lk i{position:relative;width:34px;height:19px;border-radius:30px;background:var(--line-2);transition:background .2s}
+.lk i::after{content:"";position:absolute;left:2px;top:2px;width:15px;height:15px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .2s}
+.lk input:checked + i{background:var(--pink)}
+.lk input:checked + i::after{transform:translateX(15px)}
+.lk input:focus-visible + i{outline:2px solid var(--pink);outline-offset:2px}
+.res.locked .rp:not(.lt) dt:first-of-type,.res.locked .rp:not(.lt) dd:first-of-type{color:var(--pink2)}
+#p2 .rp dl{gap:2px 10px}
+#p2 .fgrid td{padding:4px 6px}
+#p2 .fgrid td:first-child{padding:5px 8px 5px 14px}
+#p2 .fgrid td button,#p2 .fgrid .rv{padding:4px 0}
+#p2 .fgrid th{padding:6px 6px 5px}
+#p2 .rp{padding:10px 14px}
+#p2 .res{margin-top:10px}
+#p2 .gbar{margin-top:10px}
+
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{transition-duration:0s!important;transition-delay:0s!important;animation:none!important}
 }
@@ -1389,7 +1411,7 @@ h2,.cv-tx h1,.end h1{letter-spacing:-.025em}
     <div class="fx">
       <div>
         <div class="funnel">
-          <div class="frow"><div class="fb" style="width:100%;background:#241530"><b>3.12<span class="u">Cr</span></b><span>Ad views</span></div></div>
+          <div class="frow"><div class="fb" style="width:100%;background:#241530"><b data-fv="imp" data-dec="2" data-suf="Cr" data-to="3.12"></b><span>Ad views</span></div></div>
           <div class="rate a" data-rate="ctr">1.3% tap the ad</div>
           <div class="frow"><div class="fb" style="width:85%;background:#44203F"><b data-fv="clicks" data-to="0"></b><span>Clicks</span></div></div>
           <div class="rate a" data-rate="load">75% load the page</div>
@@ -1410,20 +1432,21 @@ h2,.cv-tx h1,.end h1{letter-spacing:-.025em}
               <tr data-g="load"><td><b>Load rate</b><small>Of 100 who tap the ad, how many see the page load</small></td><td><button type="button" data-v="85">85%</button></td><td><button type="button" data-v="75" class="on">75%</button></td><td><button type="button" data-v="60">60%</button></td></tr>
               <tr data-g="atc"><td><b>Payment page</b><small>Of 100 who open the page, how many reach payment</small></td><td><button type="button" data-v="5">5%</button></td><td><button type="button" data-v="4.5" class="on">4.5%</button></td><td><button type="button" data-v="4">4%</button></td></tr>
               <tr data-g="pay"><td><b>Pay rate</b><small>Of 100 on the payment page, how many pay</small></td><td><button type="button" data-v="24">24%</button></td><td><button type="button" data-v="16" class="on">16%</button></td><td><button type="button" data-v="10">10%</button></td></tr>
-              <tr class="roasr" data-g="roas"><td><b>ROAS</b><small>Revenue for every ₹1 of ads</small></td><td><button type="button" data-v="3.2">3.20x</button></td><td><button type="button" data-v="2" class="on">2x</button></td><td><button type="button" data-v="1.57">1.57x</button></td></tr>
+              <tr class="roasr"><td><b>ROAS</b><small>Revenue for every ₹1 of ads, from the rates above</small></td><td><span class="rv" data-col="best"></span></td><td><span class="rv" data-col="exp"></span></td><td><span class="rv" data-col="unexp"></span></td></tr>
             </tbody>
           </table>
-          <div class="fixd">Held the same: ₹37.5 L of ads over 3 months, ₹120 per 1,000 views.</div>
+          <div class="fbot"><span class="fixd" id="fnHeld"></span><label class="lk"><input type="checkbox" id="fnLock"><i></i>Lock 3,000 subscriptions</label></div>
         </div>
         <div class="res a">
           <div class="rp lt"><div class="k">Every month</div><dl>
-            <dt>Ad spend</dt><dd>₹12.5 L</dd>
+            <dt>Ad spend</dt><dd data-fv="mspend">₹12.5 L</dd>
             <dt>Subscriptions</dt><dd data-fv="msubs" data-to="0"></dd>
             <dt>Cost per subscription</dt><dd data-fv="cac" data-pre="₹" data-to="0"></dd></dl></div>
           <div class="rp"><div class="k">3 months</div><dl>
-            <dt>Ad spend</dt><dd>₹37.5 L</dd>
+            <dt id="fnSpendK">Ad spend</dt><dd data-fv="spend">₹37.5 L</dd>
             <dt>Subscriptions</dt><dd data-fv="subs2" data-to="0"></dd>
-            <dt>Revenue</dt><dd data-fv="rev">–</dd></dl></div>
+            <dt>Revenue</dt><dd data-fv="rev">–</dd>
+            <dt>ROAS</dt><dd data-fv="roas" data-dec="2" data-suf="x" data-to="0"></dd></dl></div>
         </div>
         <div class="gbar a"><div class="tr"><i id="fnGoal"></i></div><div class="lb"><span id="fnGoalTx"></span><span>Goal: 3,000</span></div></div>
       </div>
@@ -1829,37 +1852,51 @@ h2,.cv-tx h1,.end h1{letter-spacing:-.025em}
   /* ---------- funnel calculator ---------- */
   (() => {
     const s = document.getElementById('p2'); if (!s) return;
-    const SPEND = 3750000, CPM = 120, PRICE = 4000, GOAL = 3000;
+    const BUDGET = 3750000, CPM = 120, PRICE = 4000, GOAL = 3000;
     const SCN = { best: { ctr: 1.6, load: 85, atc: 5, pay: 24 }, exp: { ctr: 1.3, load: 75, atc: 4.5, pay: 16 }, unexp: { ctr: 1, load: 60, atc: 4, pay: 10 } };
-    const sel = { ...SCN.exp, roas: 2 };
+    const sel = { ...SCN.exp };
+    const lock = document.getElementById('fnLock');
     const fv = k => s.querySelector(`[data-fv="${k}"]`);
+    const rate = v => v.ctr / 100 * v.load / 100 * v.atc / 100 * v.pay / 100;
+    const cacOf = v => CPM / 1000 / rate(v);
+    const roasOf = v => Math.floor(PRICE / cacOf(v) * 100 + 1e-9) / 100;
+    s.querySelectorAll('.rv').forEach(el => { el.textContent = roasOf(SCN[el.dataset.col]).toFixed(2) + 'x'; });
+    const set = (k, to, animate) => { const el = fv(k); el.dataset.to = to; if (animate) countEl(el, el._v || 0, to, 600); else render(el, to); };
     function update(animate) {
-      const imp = SPEND / CPM * 1000;
+      const locked = lock.checked;
+      const spend = locked ? GOAL * cacOf(sel) : BUDGET;
+      const imp = spend / CPM * 1000;
       const clicks = imp * sel.ctr / 100, views = clicks * sel.load / 100, carts = views * sel.atc / 100;
       const subs = Math.round(carts * sel.pay / 100);
-      const vals = { clicks, views, carts, subs, subs2: subs, msubs: subs / 3, cac: SPEND / subs };
-      Object.entries(vals).forEach(([k, v]) => {
-        const el = fv(k); if (!el) return;
-        const to = Math.round(v);
-        el.dataset.to = to;
-        if (animate) countEl(el, el._v || 0, to, 600); else render(el, to);
-      });
+      set('imp', Math.floor(imp / 1e5 + 1e-9) / 100, animate);
+      Object.entries({ clicks, views, carts, subs, subs2: subs, msubs: subs / 3, cac: spend / subs }).forEach(([k, v]) => set(k, Math.round(v), animate));
+      set('roas', roasOf(sel), animate);
+      fv('spend').textContent = inr(spend);
+      fv('mspend').textContent = inr(spend / 3);
       fv('rev').textContent = inr(subs * PRICE);
+      s.querySelector('.res').classList.toggle('locked', locked);
+      document.getElementById('fnSpendK').textContent = locked ? 'Budget needed' : 'Ad spend';
+      document.getElementById('fnHeld').textContent = locked
+        ? 'Held: 3,000 subscriptions · ₹120 per 1,000 views'
+        : 'Held: ₹37.5 L of ads over 3 months · ₹120 per 1,000 views';
       s.querySelector('[data-rate="ctr"]').textContent = `${sel.ctr}% tap the ad`;
       s.querySelector('[data-rate="load"]').textContent = `${sel.load}% load the page`;
       s.querySelector('[data-rate="atc"]').textContent = `${sel.atc}% reach the payment page`;
       s.querySelector('[data-rate="pay"]').textContent = `${sel.pay}% pay`;
       document.getElementById('fnGoal').style.width = Math.min(100, subs / GOAL * 100) + '%';
-      document.getElementById('fnGoalTx').textContent = `${subs.toLocaleString('en-IN')} of the 3,000 goal`;
+      document.getElementById('fnGoalTx').textContent = locked
+        ? `Locked at the 3,000 goal · budget needed ${inr(spend)}`
+        : `${subs.toLocaleString('en-IN')} of the 3,000 goal`;
       s.querySelectorAll('tr[data-g]').forEach(r => r.querySelectorAll('button').forEach(b => b.classList.toggle('on', +b.dataset.v === sel[r.dataset.g])));
+      const col = Object.keys(SCN).find(k => ['ctr', 'load', 'atc', 'pay'].every(f => SCN[k][f] === sel[f]));
+      s.querySelectorAll('.rv').forEach(el => el.classList.toggle('on', el.dataset.col === col));
     }
     s.querySelectorAll('tr[data-g] button').forEach(b => b.addEventListener('click', () => {
-      const g = b.closest('tr').dataset.g;
-      sel[g] = +b.dataset.v;
-      if (g === 'roas') s.querySelectorAll('tr[data-g="roas"] button').forEach(x => x.classList.toggle('on', x === b));
-      else update(true);
+      sel[b.closest('tr').dataset.g] = +b.dataset.v;
+      update(true);
     }));
-    s._reset = () => { Object.assign(sel, SCN.exp, { roas: 2 }); update(false); };
+    lock.addEventListener('change', () => update(true));
+    s._reset = () => { Object.assign(sel, SCN.exp); lock.checked = false; update(false); };
     update(false);
   })();
 
