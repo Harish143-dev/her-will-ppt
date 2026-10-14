@@ -1455,40 +1455,6 @@ h2,.cv-tx h1,.end h1{letter-spacing:-.025em}
   </div>
 </section>
 
-<section class="slide" id="p3" data-sec="03">
-  <h2>Budget &amp; <em>Scenarios</em></h2>
-  <div class="bd">
-    <div class="bs">
-      <div class="bsc a">
-        <div class="k">Pick a scenario</div>
-        <div class="scb">
-          <button type="button" data-sc="best">Best <small>everything as planned</small></button>
-          <button type="button" data-sc="exp" class="on">Expected <small>page converts less</small></button>
-          <button type="button" data-sc="unexp">Unexpected <small>page and ad costs slip</small></button>
-        </div>
-        <p class="ass" id="scAss"></p>
-        <label class="lock"><input type="checkbox" id="scLock"> Lock 3,000 subscriptions and show the budget needed</label>
-      </div>
-      <div class="bt">
-        <div class="tile hero a"><div class="k" id="tBudK">Total budget</div><div class="v" id="tBud" data-to="41.2" data-dec="1" data-pre="₹" data-suf="L"></div><div class="s" id="tBudS">₹37.5 L plan + ₹3.7 L reserve</div></div>
-        <div class="tile a"><div class="k">Average per day</div><div class="v" id="tDay" data-to="44826" data-pre="₹"></div><div class="s">over the 92 days, Nov–Jan</div></div>
-        <div class="tile a"><div class="k">Subscriptions</div><div class="v" id="tSub" data-to="2021"></div><div class="s" id="tSubS">out of the 3,000 goal</div></div>
-        <div class="tile a"><div class="k">3-month revenue</div><div class="v" id="tRev" data-to="80.8" data-dec="1" data-pre="₹" data-suf="L"></div><div class="s">subscriptions × ₹4,000</div></div>
-        <div class="tile a"><div class="k">ROAS</div><div class="v" id="tRoas" data-to="1.96" data-dec="2" data-suf="x"></div><div class="s">revenue for every ₹1 of ads</div></div>
-        <div class="tile a"><div class="k">Cost per subscription</div><div class="v" id="tCac" data-to="2041" data-pre="₹"></div><div class="s">what each new member costs</div></div>
-      </div>
-    </div>
-    <table class="tbl sct a">
-      <thead><tr><th>Scenario</th><th>Assumptions</th><th class="r">Subs with ₹41.2 L</th><th class="r">Revenue</th><th class="r">ROAS</th><th class="r">Cost per sub</th><th class="r">Budget for 3,000</th></tr></thead>
-      <tbody>
-        <tr data-sc="best"><td><b>Best</b></td><td>Page 5% / 40% / 40% · ₹120 per 1,000 views</td><td class="r">3,000</td><td class="r">₹1.20 Cr</td><td class="r">3.20x</td><td class="r">₹1,250</td><td class="r">₹37.5 L</td></tr>
-        <tr data-sc="exp" class="on"><td><b>Expected</b></td><td>Page 4% / 35% / 35% · ₹120 per 1,000 views</td><td class="r">2,021</td><td class="r">₹80.8 L</td><td class="r">1.96x</td><td class="r">₹2,041</td><td class="r">₹61.2 L</td></tr>
-        <tr data-sc="unexp"><td><b>Unexpected</b></td><td>Page 4% / 35% / 35% · ₹150 per 1,000 views</td><td class="r">1,617</td><td class="r">₹64.7 L</td><td class="r">1.57x</td><td class="r">₹2,551</td><td class="r">₹76.5 L</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
 <section class="slide" id="p5" data-sec="03">
   <h2>Month by <em>Month</em></h2>
   <div class="bd">
@@ -1899,43 +1865,6 @@ h2,.cv-tx h1,.end h1{letter-spacing:-.025em}
     lock.addEventListener('change', () => update(true));
     s.querySelectorAll('.rv').forEach(b => b.addEventListener('click', () => { Object.assign(sel, SCN[b.dataset.col]); update(true); }));
     s._reset = () => { Object.assign(sel, SCN.exp); lock.checked = false; update(false); };
-    update(false);
-  })();
-
-  /* ---------- budget scenarios ---------- */
-  (() => {
-    const s = document.getElementById('p3'); if (!s) return;
-    const BUD = 4124000, DAYS = 92, PRICE = 4000, GOAL = 3000;
-    const SCN = {
-      best: { subs: 3000, roas: 3.20, cac: 1250, need: 3750000, ass: 'Page: 5% tap Join, 40% start checkout, 40% pay. ₹120 per 1,000 ad views.' },
-      exp: { subs: 2021, roas: 1.96, cac: 2041, need: 6120000, ass: 'Page: 4% tap Join, 35% start checkout, 35% pay. ₹120 per 1,000 ad views.' },
-      unexp: { subs: 1617, roas: 1.57, cac: 2551, need: 7650000, ass: 'Page: 4% tap Join, 35% start checkout, 35% pay. Ad costs rise to ₹150 per 1,000 views.' }
-    };
-    let cur = 'exp';
-    const lock = document.getElementById('scLock');
-    const el = id => document.getElementById(id);
-    function set(id, to, animate) { const e = el(id); e.dataset.to = to; if (animate) countEl(e, e._v || 0, to, 600); else render(e, to); }
-    function update(animate) {
-      const v = SCN[cur], locked = lock.checked;
-      const budget = locked ? v.need : BUD;
-      const subs = locked ? GOAL : v.subs;
-      const rev = subs * PRICE;
-      set('tBud', +(budget / 1e5).toFixed(1), animate);
-      set('tDay', Math.round(budget / DAYS), animate);
-      set('tSub', subs, animate);
-      const tRev = el('tRev');
-      if (rev >= 1e7) { tRev.dataset.dec = 2; tRev.dataset.suf = 'Cr'; set('tRev', +(rev / 1e7).toFixed(2), animate); }
-      else { tRev.dataset.dec = 1; tRev.dataset.suf = 'L'; set('tRev', +(rev / 1e5).toFixed(1), animate); }
-      set('tRoas', v.roas, animate);
-      set('tCac', v.cac, animate);
-      el('tBudK').textContent = locked ? 'Budget needed' : 'Total budget';
-      el('tBudS').textContent = locked ? 'to reach 3,000 in this scenario' : (cur === 'best' ? '₹37.5 L used · ₹3.7 L left over' : '₹37.5 L plan + ₹3.7 L reserve');
-      el('tSubS').textContent = locked ? 'locked at the goal' : (subs >= GOAL ? 'goal reached' : 'out of the 3,000 goal');
-      el('scAss').textContent = v.ass;
-      s.querySelectorAll('[data-sc]').forEach(b => b.classList.toggle('on', b.dataset.sc === cur));
-    }
-    s.querySelectorAll('[data-sc]').forEach(b => b.addEventListener('click', () => { cur = b.dataset.sc; update(true); }));
-    lock.addEventListener('change', () => update(true));
     update(false);
   })();
 
