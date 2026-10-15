@@ -980,13 +980,14 @@ kbd{font-family:var(--sans);font-size:10px;font-weight:800;border:1px solid rgba
 h2,.cv-tx h1,.end h1{letter-spacing:-.025em}
 @media print{
   @page{size:1280px 720px;margin:0}
+  *,*::before,*::after{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
   html,body{background:#fff;overflow:visible;height:auto}
   .deck{position:static;transform:none!important;width:1280px;height:auto;overflow:visible}
   .slide{position:relative;opacity:1!important;visibility:visible!important;height:720px;break-after:page}
   .slide::after{display:none}
   .slide .a,.slide .gx,.slide .gy{opacity:1!important;transform:none!important}
   .slide .fb{clip-path:none!important}
-  .prog,.ctrl,.toc,.drawer,.scrim{display:none!important}
+  .prog,.ctrl,.toc,.drawer,.scrim,.cv-hint,.kh,.lk{display:none!important}
 }
 </style>
 </head>
@@ -1016,8 +1017,8 @@ h2,.cv-tx h1,.end h1{letter-spacing:-.025em}
     <div class="p1">
       <div class="ladder">
         <div class="card rung top a" style="left:140px;top:0"><span class="chip">This plan sells this</span><div class="pr"><span class="u">₹</span>4,000</div><h4>90-Day Transformation</h4><p>In the Her Will app on TagMango</p></div>
-        <div class="card rung a" style="left:70px;top:126px"><div class="pr"><span class="u">₹</span>99</div><h4>30-Day Live</h4><p>2 Kannada batches · 6 AM &amp; 6 PM · diet plan · WhatsApp support</p><span class="up">↗ Upgrade route to ₹4,000 · parked for now</span></div>
-        <div class="card rung a" style="left:0;top:322px"><span class="chip r">No longer sold</span><div class="pr"><span class="u">₹</span>49</div><h4>Weight-loss plan</h4></div>
+        <div class="card rung a" style="left:70px;top:142px"><div class="pr"><span class="u">₹</span>99</div><h4>30-Day Live</h4><p>2 Kannada batches · 6 AM &amp; 6 PM · diet plan · WhatsApp support</p><span class="up">↗ Upgrade route to ₹4,000 · parked for now</span></div>
+        <div class="card rung a" style="left:0;top:340px"><span class="chip r">No longer sold</span><div class="pr"><span class="u">₹</span>49</div><h4>Weight-loss plan</h4></div>
       </div>
       <div>
         <table class="tbl a">
@@ -1631,7 +1632,7 @@ h2,.cv-tx h1,.end h1{letter-spacing:-.025em}
       <div class="a"><div class="k">&nbsp;</div><h4>03 · Paid Marketing<br>04 · Social Media</h4></div>
     </div>
   </div>
-  <div class="end-hint">Prepared by EyeLevel Growth Studio for the Her Will team &nbsp;·&nbsp; <kbd>M</kbd> contents</div>
+  <div class="end-hint">Prepared by EyeLevel Growth Studio for the Her Will team<span class="kh"> &nbsp;·&nbsp; <kbd>M</kbd> contents</span></div>
 </section>
 
 <div class="prog"><i id="progress"></i></div>
