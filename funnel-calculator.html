@@ -69,6 +69,7 @@ h1 em{font-style:normal;color:var(--pink)}
 .roas .big{font-family:var(--head);font-weight:600;font-size:56px;line-height:1;color:#fff;margin-top:8px}
 .roas .big small{font-size:22px;color:var(--pink2);margin-left:2px}
 .roas p{margin:8px 0 0;font-size:12.5px;line-height:1.45;color:rgba(245,238,230,.75)}
+.roas .froas{margin-top:10px;font-size:11.5px;color:rgba(245,238,230,.6)}
 .verdict{margin-top:14px;padding-top:12px;border-top:1px solid rgba(199,161,95,.35);font-size:13px;font-weight:700;color:#fff}
 
 .tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
@@ -151,6 +152,7 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
         <div class="fld"><label for="load">Load rate</label><small>Of 100 who tap, how many see the page load</small><div class="box"><input id="load" type="number" inputmode="decimal" min="0" max="100" step="1"><i>%</i></div></div>
         <div class="fld"><label for="atc">Payment page</label><small>Of 100 who open the page, how many reach payment</small><div class="box"><input id="atc" type="number" inputmode="decimal" min="0" max="100" step="0.1"><i>%</i></div></div>
         <div class="fld"><label for="pay">Pay rate</label><small>Of 100 on the payment page, how many pay</small><div class="box"><input id="pay" type="number" inputmode="decimal" min="0" max="100" step="1"><i>%</i></div></div>
+        <div class="fld"><label for="roas">ROAS</label><small>Revenue for every ₹1 spent on ads</small><div class="box"><input id="roas" type="number" inputmode="decimal" min="0" step="0.01"><i>x</i></div></div>
       </div>
       <div class="grp">
         <h2>Campaign</h2>
@@ -188,12 +190,13 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
           <div class="big" id="o-roas">–</div>
           <p>Revenue for every ₹1 spent on ads.</p>
           <div class="verdict" id="o-verdict"></div>
+          <p class="froas" id="o-froas"></p>
         </div>
       </section>
 
       <div class="tiles">
         <div class="card tile dark"><div class="k">Subscriptions</div><div class="v" id="t-subs">–</div><div class="s" id="t-subs-s"></div></div>
-        <div class="card tile"><div class="k">Revenue</div><div class="v" id="t-rev">–</div><div class="s">subscriptions × price</div></div>
+        <div class="card tile"><div class="k">Revenue</div><div class="v" id="t-rev">–</div><div class="s">ad budget × ROAS</div></div>
         <div class="card tile"><div class="k">Cost per subscription</div><div class="v" id="t-cac">–</div><div class="s">ad budget ÷ subscriptions</div></div>
         <div class="card tile"><div class="k">Ad spend per day</div><div class="v" id="t-day">–</div><div class="s" id="t-day-s"></div></div>
       </div>
@@ -230,7 +233,7 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
   </div>
 
   <footer>
-    <span>Ad views = budget ÷ CPM × 1,000 · Subscriptions = ad views × click × load × payment page × pay rate</span>
+    <span>Ad views = budget ÷ CPM × 1,000 · Subscriptions = ad views × click × load × payment page × pay rate · Revenue = ad budget × ROAS</span>
     <span>EyeLevel Growth Studio · Her Will Growth Plan</span>
   </footer>
 </div>
@@ -238,9 +241,9 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
 <script>
 (() => {
   const PRESETS = {
-    best:  { ctr: 1.6, load: 85, atc: 5,   pay: 24 },
-    exp:   { ctr: 1.3, load: 75, atc: 4.5, pay: 16 },
-    unexp: { ctr: 1,   load: 60, atc: 4,   pay: 10 }
+    best:  { ctr: 1.6, load: 85, atc: 5,   pay: 24, roas: 2.56 },
+    exp:   { ctr: 1.3, load: 75, atc: 4.5, pay: 16, roas: 1.96 },
+    unexp: { ctr: 1,   load: 60, atc: 4,   pay: 10, roas: 1.57 }
   };
   const BASE = { budget: 37.5, cpm: 120, price: 4000, goal: 3000, months: 3, ...PRESETS.exp };
   const IDS = Object.keys(BASE);
@@ -282,7 +285,7 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
     const { v, bad } = read();
     const err = $('err');
     if (bad.length) {
-      err.textContent = 'Check ' + bad.join(', ') + '. Use a number of 0 or more; rates must be between 0 and 100%.';
+      err.textContent = 'Check ' + bad.join(', ') + '. Use a number of 0 or more; the % rates must be between 0 and 100.';
       err.classList.add('show');
       return;
     }
@@ -295,7 +298,8 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
     if (locked && !isFinite(spend)) { err.textContent = 'Every funnel rate must be above 0% to reach the goal.'; err.classList.add('show'); return; }
     const imp = spend / v.cpm * 1000;
     const clicks = imp * v.ctr / 100, views = clicks * v.load / 100, pp = views * v.atc / 100, subs = pp * v.pay / 100;
-    const rev = subs * v.price, cac = subs > 0 ? spend / subs : Infinity, roas = spend > 0 ? rev / spend : 0;
+    const rev = spend * v.roas, cac = subs > 0 ? spend / subs : Infinity;
+    const funnelRoas = spend > 0 ? subs * v.price / spend : 0;
     const days = v.months * DAYS_PER_MONTH;
 
     $('o-imp').textContent = big(imp);
@@ -308,8 +312,9 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
     $('r-atc').textContent = pct(v.atc) + ' reach the payment page';
     $('r-pay').textContent = pct(v.pay) + ' pay';
 
-    $('o-roas').innerHTML = roas.toFixed(2) + '<small>x</small>';
+    $('o-roas').innerHTML = (+v.roas.toFixed(2)) + '<small>x</small>';
     $('o-verdict').textContent = `${money(rev)} revenue from ${money(spend)} of ads`;
+    $('o-froas').textContent = `From the funnel alone: ${funnelRoas.toFixed(2)}x (${num(subs)} subscriptions × ${money(v.price)})`;
 
     $('t-subs').textContent = num(subs);
     $('t-subs-s').textContent = v.goal > 0 ? `${Math.round(subs / v.goal * 100)}% of the ${num(v.goal)} goal` : '';
@@ -338,7 +343,7 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
     $('g-imp').textContent = isFinite(need) ? big(need / v.cpm * 1000) : '–';
     $('g-short').textContent = subs >= v.goal ? '0' : num(v.goal - subs);
 
-    const match = Object.keys(PRESETS).find(k => ['ctr', 'load', 'atc', 'pay'].every(f => PRESETS[k][f] === v[f]));
+    const match = Object.keys(PRESETS).find(k => ['ctr', 'load', 'atc', 'pay', 'roas'].every(f => PRESETS[k][f] === v[f]));
     document.querySelectorAll('[data-preset]').forEach(b => b.classList.toggle('on', b.dataset.preset === match));
   }
 
