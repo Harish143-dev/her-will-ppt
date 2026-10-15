@@ -93,7 +93,7 @@ h1 em{font-style:normal;color:var(--pink)}
 .goal .lb{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-top:8px}
 .goal .lb b{color:var(--text)}
 
-.lockrow{display:flex;flex-direction:column;gap:4px;margin:12px 0 2px;padding:12px 14px;border-radius:8px;background:var(--blush)}
+.lockrow{display:flex;flex-direction:column;gap:4px;margin:16px 0 0;padding:12px 14px;border-radius:8px;background:var(--blush)}
 .lockrow small{font-size:11.5px;color:#8E2E5A;line-height:1.4}
 .lk{display:inline-flex;align-items:center;gap:10px;font:600 14px var(--head);color:var(--text);cursor:pointer;user-select:none}
 .lk input{position:absolute;opacity:0;width:0;height:0}
@@ -144,21 +144,21 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
 
   <div class="grid">
     <form class="card inputs" id="form" autocomplete="off" onsubmit="return false">
-      <div class="grp">
-        <h2>Campaign</h2>
-        <div class="fld" id="f-budget"><label for="budget" id="budget-lb">Ad budget</label><small id="budget-hint">Total for the whole campaign</small><div class="box"><i>₹</i><input id="budget" type="number" inputmode="decimal" min="0" step="0.1"><i>lakh</i></div></div>
-        <div class="fld"><label for="cpm">Cost per 1,000 views</label><small>CPM on Meta</small><div class="box"><i>₹</i><input id="cpm" type="number" inputmode="decimal" min="0" step="1"></div></div>
-        <div class="fld"><label for="price">Price</label><small>Per subscription</small><div class="box"><i>₹</i><input id="price" type="number" inputmode="decimal" min="0" step="1"></div></div>
-        <div class="fld"><label for="goal">Subscription goal</label><small>For the whole campaign</small><div class="box"><input id="goal" type="number" inputmode="numeric" min="0" step="1"></div></div>
-        <div class="lockrow"><label class="lk"><input type="checkbox" id="lock"><i></i><span id="lock-tx">Lock 3,000 subscriptions</span></label><small>Keep subscriptions at the goal and calculate the budget needed instead.</small></div>
-        <div class="fld"><label for="months">Campaign months</label><small>Used for the monthly numbers</small><div class="box"><input id="months" type="number" inputmode="numeric" min="1" step="1"></div></div>
-      </div>
+      <div class="lockrow"><label class="lk"><input type="checkbox" id="lock"><i></i><span id="lock-tx">Lock 3,000 subscriptions</span></label><small>Keep subscriptions at the goal and calculate the budget needed instead.</small></div>
       <div class="grp">
         <h2>Funnel rates</h2>
         <div class="fld"><label for="ctr">Click rate</label><small>Of 100 who see the ad, how many tap it</small><div class="box"><input id="ctr" type="number" inputmode="decimal" min="0" max="100" step="0.1"><i>%</i></div></div>
         <div class="fld"><label for="load">Load rate</label><small>Of 100 who tap, how many see the page load</small><div class="box"><input id="load" type="number" inputmode="decimal" min="0" max="100" step="1"><i>%</i></div></div>
         <div class="fld"><label for="atc">Payment page</label><small>Of 100 who open the page, how many reach payment</small><div class="box"><input id="atc" type="number" inputmode="decimal" min="0" max="100" step="0.1"><i>%</i></div></div>
         <div class="fld"><label for="pay">Pay rate</label><small>Of 100 on the payment page, how many pay</small><div class="box"><input id="pay" type="number" inputmode="decimal" min="0" max="100" step="1"><i>%</i></div></div>
+      </div>
+      <div class="grp">
+        <h2>Campaign</h2>
+        <div class="fld" id="f-budget"><label for="budget" id="budget-lb">Ad budget</label><small id="budget-hint">Total for the whole campaign</small><div class="box"><i>₹</i><input id="budget" type="number" inputmode="decimal" min="0" step="0.1"><i>lakh</i></div></div>
+        <div class="fld"><label for="cpm">Cost per 1,000 views</label><small>CPM on Meta</small><div class="box"><i>₹</i><input id="cpm" type="number" inputmode="decimal" min="0" step="1"></div></div>
+        <div class="fld"><label for="price">Price</label><small>Per subscription</small><div class="box"><i>₹</i><input id="price" type="number" inputmode="decimal" min="0" step="1"></div></div>
+        <div class="fld"><label for="goal">Subscription goal</label><small>For the whole campaign</small><div class="box"><input id="goal" type="number" inputmode="numeric" min="0" step="1"></div></div>
+        <div class="fld"><label for="months">Campaign months</label><small>Used for the monthly numbers</small><div class="box"><input id="months" type="number" inputmode="numeric" min="1" step="1"></div></div>
       </div>
       <div class="foot">
         <p>Starts on Expected. Every field can be changed.</p>
