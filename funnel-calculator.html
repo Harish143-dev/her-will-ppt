@@ -69,7 +69,6 @@ h1 em{font-style:normal;color:var(--pink)}
 .roas .big{font-family:var(--head);font-weight:600;font-size:56px;line-height:1;color:#fff;margin-top:8px}
 .roas .big small{font-size:22px;color:var(--pink2);margin-left:2px}
 .roas p{margin:8px 0 0;font-size:12.5px;line-height:1.45;color:rgba(245,238,230,.75)}
-.roas .froas{margin-top:10px;font-size:11.5px;color:rgba(245,238,230,.6)}
 .verdict{margin-top:14px;padding-top:12px;border-top:1px solid rgba(199,161,95,.35);font-size:13px;font-weight:700;color:#fff}
 
 .tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
@@ -163,7 +162,7 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
         <div class="fld"><label for="months">Campaign months</label><small>Used for the monthly numbers</small><div class="box"><input id="months" type="number" inputmode="numeric" min="1" step="1"></div></div>
       </div>
       <div class="foot">
-        <p>Starts on Expected. Every field can be changed.</p>
+        <p>Starts on Expected, the same numbers as the deck. Every field can be changed.</p>
         <button type="button" class="reset" id="reset">Reset to Expected</button>
       </div>
     </form>
@@ -190,13 +189,12 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
           <div class="big" id="o-roas">–</div>
           <p>Revenue for every ₹1 spent on ads.</p>
           <div class="verdict" id="o-verdict"></div>
-          <p class="froas" id="o-froas"></p>
         </div>
       </section>
 
       <div class="tiles">
         <div class="card tile dark"><div class="k">Subscriptions</div><div class="v" id="t-subs">–</div><div class="s" id="t-subs-s"></div></div>
-        <div class="card tile"><div class="k">Revenue</div><div class="v" id="t-rev">–</div><div class="s">ad budget × ROAS</div></div>
+        <div class="card tile"><div class="k">Revenue</div><div class="v" id="t-rev">–</div><div class="s">subscriptions × price</div></div>
         <div class="card tile"><div class="k">Cost per subscription</div><div class="v" id="t-cac">–</div><div class="s">ad budget ÷ subscriptions</div></div>
         <div class="card tile"><div class="k">Ad spend per day</div><div class="v" id="t-day">–</div><div class="s" id="t-day-s"></div></div>
       </div>
@@ -233,7 +231,7 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
   </div>
 
   <footer>
-    <span>Ad views = budget ÷ CPM × 1,000 · Subscriptions = ad views × click × load × payment page × pay rate · Revenue = ad budget × ROAS</span>
+    <span>Ad views = budget ÷ CPM × 1,000 · Subscriptions = ad views × click × load × payment page × pay rate · Revenue = subscriptions × price</span>
     <span>EyeLevel Growth Studio · Her Will Growth Plan</span>
   </footer>
 </div>
@@ -249,6 +247,7 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
   const IDS = Object.keys(BASE);
   const $ = id => document.getElementById(id);
   const IN = Object.fromEntries(IDS.map(id => [id, $(id)]));
+  const NAMES = { best: 'Best', exp: 'Expected', unexp: 'Unexpected' };
   const DAYS_PER_MONTH = 92 / 3;
   const lock = $('lock');
   let ownBudget = BASE.budget;
@@ -297,9 +296,9 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
     if (locked) IN.budget.value = isFinite(spend) ? (spend / 1e5).toFixed(1) : '';
     if (locked && !isFinite(spend)) { err.textContent = 'Every funnel rate must be above 0% to reach the goal.'; err.classList.add('show'); return; }
     const imp = spend / v.cpm * 1000;
-    const clicks = imp * v.ctr / 100, views = clicks * v.load / 100, pp = views * v.atc / 100, subs = pp * v.pay / 100;
-    const rev = spend * v.roas, cac = subs > 0 ? spend / subs : Infinity;
-    const funnelRoas = spend > 0 ? subs * v.price / spend : 0;
+    const clicks = imp * v.ctr / 100, views = clicks * v.load / 100, pp = views * v.atc / 100, subs = Math.round(pp * v.pay / 100);
+    const rev = subs * v.price, cac = subs > 0 ? spend / subs : Infinity;
+    const match = Object.keys(PRESETS).find(k => ['ctr', 'load', 'atc', 'pay', 'roas'].every(f => PRESETS[k][f] === v[f]));
     const days = v.months * DAYS_PER_MONTH;
 
     $('o-imp').textContent = big(imp);
@@ -313,8 +312,7 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
     $('r-pay').textContent = pct(v.pay) + ' pay';
 
     $('o-roas').innerHTML = (+v.roas.toFixed(2)) + '<small>x</small>';
-    $('o-verdict').textContent = `${money(rev)} revenue from ${money(spend)} of ads`;
-    $('o-froas').textContent = `From the funnel alone: ${funnelRoas.toFixed(2)}x (${num(subs)} subscriptions × ${money(v.price)})`;
+    $('o-verdict').textContent = match ? `${NAMES[match]} scenario` : 'Your own numbers';
 
     $('t-subs').textContent = num(subs);
     $('t-subs-s').textContent = v.goal > 0 ? `${Math.round(subs / v.goal * 100)}% of the ${num(v.goal)} goal` : '';
@@ -343,7 +341,6 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
     $('g-imp').textContent = isFinite(need) ? big(need / v.cpm * 1000) : '–';
     $('g-short').textContent = subs >= v.goal ? '0' : num(v.goal - subs);
 
-    const match = Object.keys(PRESETS).find(k => ['ctr', 'load', 'atc', 'pay', 'roas'].every(f => PRESETS[k][f] === v[f]));
     document.querySelectorAll('[data-preset]').forEach(b => b.classList.toggle('on', b.dataset.preset === match));
   }
 
@@ -359,7 +356,7 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
   }
   lock.addEventListener('change', () => setLock(lock.checked));
   IDS.forEach(id => IN[id].addEventListener('input', calc));
-  document.querySelectorAll('[data-preset]').forEach(b => b.addEventListener('click', () => fill(PRESETS[b.dataset.preset])));
+  document.querySelectorAll('[data-preset]').forEach(b => b.addEventListener('click', () => { ownBudget = BASE.budget; fill({ ...BASE, ...PRESETS[b.dataset.preset] }); }));
   $('reset').addEventListener('click', () => { ownBudget = BASE.budget; setLock(false); fill(BASE); });
   fill(BASE);
 })();
