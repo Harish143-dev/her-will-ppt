@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F7F1E8">
 <title>Her Will Funnel Calculator</title>
-<meta name="description" content="Type any budget and funnel rates to see Her Will subscriptions, revenue, ROAS and the budget needed for the goal.">
+<meta name="description" content="Type any budget and funnel rates to see Her Will subscriptions, revenue and the budget needed for the goal.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700&display=swap">
@@ -13,227 +14,264 @@
   --ink:#16101A; --plum:#241530; --ivory:#F7F1E8; --paper:#FFFBF5;
   --pink:#EC5F94; --pink2:#F6A3C0; --pink-ink:#C93F7A; --blush:#F4D9DD;
   --gold:#C7A15F; --text:#241829; --muted:#76697C; --line:rgba(36,24,41,.13); --line2:rgba(36,24,41,.22);
-  --green:#2F8A73; --red:#C8324F;
+  --red:#C8324F;
   --head:'Poppins','Segoe UI',Arial,sans-serif; --sans:'Inter','Segoe UI',Arial,sans-serif;
   --panel:linear-gradient(180deg,#241530,#16101A);
 }
 *{box-sizing:border-box}
-html{font-variant-numeric:lining-nums tabular-nums}
-body{margin:0;min-height:100vh;font-family:var(--sans);color:var(--text);-webkit-font-smoothing:antialiased;
+html{font-variant-numeric:lining-nums tabular-nums;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--sans);color:var(--text);-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
   background:radial-gradient(900px 500px at 95% -10%,rgba(236,95,148,.13),transparent 60%),radial-gradient(700px 420px at -5% 110%,rgba(199,161,95,.14),transparent 60%),var(--ivory)}
+button,input{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--pink);outline-offset:2px}
-.wrap{max-width:1240px;margin:0 auto;padding:32px 24px 40px}
-header{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:22px}
-.eb{font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--pink-ink)}
-h1{margin:6px 0 4px;font-family:var(--head);font-weight:600;font-size:clamp(28px,4vw,40px);line-height:1.08;letter-spacing:-.02em;color:var(--plum)}
+
+.wrap{max-width:1360px;margin:0 auto;padding:18px 24px;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;justify-content:center;gap:14px}
+
+/* header */
+header{display:flex;align-items:center;justify-content:space-between;gap:12px 20px;flex-wrap:wrap}
+.eb{font-size:10.5px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--pink-ink)}
+h1{margin:3px 0 0;font-family:var(--head);font-weight:600;font-size:28px;line-height:1.1;letter-spacing:-.02em;color:var(--plum)}
 h1 em{font-style:normal;color:var(--pink)}
-.lede{margin:0;font-size:14px;color:var(--muted);max-width:640px;line-height:1.5}
-.presets{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-.presets span{font-size:11px;font-weight:700;color:var(--muted);margin-right:4px}
-.presets button{border:1px solid var(--line2);background:#fff;border-radius:30px;padding:8px 14px;font:700 12.5px var(--sans);color:var(--text);cursor:pointer}
-.presets button:hover{border-color:var(--pink)}
-.presets button.on{background:var(--plum);border-color:var(--plum);color:#fff}
+.tools{display:flex;align-items:center;gap:8px 14px;flex-wrap:wrap}
+.seg{display:flex;padding:3px;border-radius:30px;background:#fff;border:1px solid var(--line2)}
+.seg button{border:0;background:none;border-radius:30px;padding:8px 16px;font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap;touch-action:manipulation}
+.seg button:hover{color:var(--pink-ink)}
+.seg button.on{background:var(--plum);color:#fff}
+.reset{border:0;background:none;color:var(--pink-ink);font-weight:700;font-size:12.5px;cursor:pointer;padding:8px 2px;white-space:nowrap}
 
-.grid{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:22px;align-items:start}
+/* layout */
+.grid{display:grid;grid-template-columns:minmax(0,360px) minmax(0,1.1fr) minmax(0,1fr);grid-template-rows:auto 1fr;grid-template-areas:"inputs tiles tiles" "inputs funnel lists";gap:14px}
 .card{background:#fff;border:1px solid rgba(36,24,41,.12);border-radius:10px;box-shadow:0 14px 34px -22px rgba(36,21,48,.3)}
-.inputs{padding:6px 20px 20px}
-.grp{margin-top:16px}
-.grp h2{margin:0 0 4px;font-size:10.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--pink-ink)}
-.fld{display:grid;grid-template-columns:minmax(0,1fr) 132px;gap:4px 12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
-.fld:last-child{border-bottom:0}
-.fld label{font-family:var(--head);font-weight:600;font-size:14px;color:var(--text)}
-.fld small{grid-column:1;font-size:11.5px;color:var(--muted);line-height:1.35}
-.box{grid-row:1/span 2;grid-column:2;display:flex;align-items:center;border:1.5px solid var(--line2);border-radius:8px;background:var(--paper);overflow:hidden;transition:border-color .15s}
-.box:focus-within{border-color:var(--pink);background:#fff}
-.box.bad{border-color:var(--red)}
-.box i{font-style:normal;font-size:12px;font-weight:700;color:var(--muted);padding:0 8px;white-space:nowrap}
-.box input + i{padding-left:0}
-.box input{flex:1;min-width:0;width:100%;border:0;background:transparent;padding:9px 10px;font:600 15px var(--head);color:var(--text);text-align:right;outline:none}
-.box input::-webkit-inner-spin-button{opacity:.4}
-.foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px dashed var(--line2)}
-.foot p{margin:0;font-size:11.5px;color:var(--muted);line-height:1.4}
-.reset{border:0;background:none;color:var(--pink-ink);font:700 12px var(--sans);cursor:pointer;white-space:nowrap;padding:6px 0}
-
-.right{display:grid;gap:18px;min-width:0}
-.funnel-card{padding:20px 22px 18px;display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:22px}
-.funnel{display:flex;flex-direction:column;align-items:center}
-.fb{min-width:max-content;padding:0 14px;height:46px;border-radius:7px;display:flex;align-items:center;justify-content:center;gap:10px;color:#fff;transition:width .35s ease}
-.fb b{font-family:var(--head);font-weight:600;font-size:21px}
-.fb span{font-size:12.5px;font-weight:700;opacity:.9}
-.rate{margin:6px 0;font-size:12px;font-weight:700;background:#fff;border:1px solid var(--line);border-radius:30px;padding:3px 11px;color:var(--text)}
-.rate::before{content:"↓ ";color:var(--pink)}
-.fnote{margin:10px 0 0;font-size:11.5px;color:var(--muted);text-align:center}
-.roas{border-radius:10px;background:var(--panel);color:#F5EEE6;padding:20px;display:flex;flex-direction:column;justify-content:center}
 .k{font-size:10.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--pink-ink)}
-.roas .k{color:var(--gold)}
-.roas .big{font-family:var(--head);font-weight:600;font-size:56px;line-height:1;color:#fff;margin-top:8px}
-.roas .big small{font-size:22px;color:var(--pink2);margin-left:2px}
-.roas p{margin:8px 0 0;font-size:12.5px;line-height:1.45;color:rgba(245,238,230,.75)}
-.verdict{margin-top:14px;padding-top:12px;border-top:1px solid rgba(199,161,95,.35);font-size:13px;font-weight:700;color:#fff}
 
-.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-.tile{padding:14px 16px}
-.tile .v{font-family:var(--head);font-weight:600;font-size:26px;line-height:1.1;margin-top:8px;color:var(--text)}
-.tile .s{font-size:11.5px;color:var(--muted);margin-top:4px}
+/* result cards */
+.tiles{grid-area:tiles;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.tile{padding:12px 16px;min-width:0}
+.tile .k{letter-spacing:.14em}
+.tile .v{font-family:var(--head);font-weight:600;font-size:26px;line-height:1.1;margin-top:6px;white-space:nowrap}
+.tile .s{font-size:11.5px;color:var(--muted);margin-top:3px}
 .tile.dark{background:var(--panel);border-color:transparent}
 .tile.dark .k{color:var(--gold)}
 .tile.dark .v{color:#fff}
-.tile.dark .s{color:rgba(245,238,230,.7)}
+.tile.dark .s{color:rgba(245,238,230,.72)}
+.mini{height:5px;border-radius:30px;background:rgba(255,255,255,.14);margin-top:8px;overflow:hidden}
+.mini i{display:block;height:100%;width:0;border-radius:30px;background:linear-gradient(90deg,var(--gold),var(--pink));transition:width .4s ease}
+.badge{display:none;margin-left:6px;font-size:9px;letter-spacing:.12em;color:#fff;background:var(--pink);border-radius:30px;padding:2px 7px;vertical-align:1px}
+.is-locked .badge{display:inline-block}
 
-.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-.list{padding:16px 20px}
-.list dl{margin:10px 0 0;display:grid;grid-template-columns:1fr auto;gap:0}
-.list dt,.list dd{padding:8px 0;border-bottom:1px solid var(--line);font-size:13.5px}
-.list dd{margin:0;text-align:right;font-family:var(--head);font-weight:600;font-size:15px}
-.list dt:nth-last-child(2),.list dd:last-child{border-bottom:0}
-.list dd.hi{color:var(--pink-ink)}
-.goal{padding:16px 20px}
-.bar{height:10px;border-radius:30px;background:rgba(36,24,41,.08);overflow:hidden;margin-top:12px}
-.bar i{display:block;height:100%;width:0;border-radius:30px;background:linear-gradient(90deg,var(--gold),var(--pink));transition:width .4s ease}
-.goal .lb{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-top:8px}
-.goal .lb b{color:var(--text)}
-
-.lockrow{display:flex;flex-direction:column;gap:4px;margin:16px 0 0;padding:12px 14px;border-radius:8px;background:var(--blush)}
-.lockrow small{font-size:11.5px;color:#8E2E5A;line-height:1.4}
-.lk{display:inline-flex;align-items:center;gap:10px;font:600 14px var(--head);color:var(--text);cursor:pointer;user-select:none}
+/* inputs */
+.inputs{grid-area:inputs;padding:14px 18px 10px;align-self:start}
+.lockrow{display:flex;flex-direction:column;gap:3px;padding:10px 12px;border-radius:8px;background:var(--blush)}
+.lockrow small{font-size:11px;color:#8E2E5A;line-height:1.35}
+.lk{display:flex;align-items:center;gap:10px;font:600 14px var(--head);cursor:pointer;user-select:none;-webkit-user-select:none}
 .lk input{position:absolute;opacity:0;width:0;height:0}
 .lk i{position:relative;flex:none;width:38px;height:22px;border-radius:30px;background:rgba(36,24,41,.25);transition:background .2s}
 .lk i::after{content:"";position:absolute;left:3px;top:3px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .2s}
 .lk input:checked + i{background:var(--pink)}
 .lk input:checked + i::after{transform:translateX(16px)}
 .lk input:focus-visible + i{outline:2px solid var(--pink);outline-offset:2px}
-.box.calc{background:var(--blush);border-color:var(--pink2)}
-.box.calc input{color:var(--pink-ink);cursor:default}
-.box.calc input::-webkit-inner-spin-button,.box.calc input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
-.box.calc input{-moz-appearance:textfield}
-.locked-note{display:none;margin-left:8px;font:700 10px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--pink);border-radius:30px;padding:3px 8px;vertical-align:3px}
-.is-locked .locked-note{display:inline-block}
-.err{margin:0 0 12px;padding:10px 14px;border-radius:8px;background:#FBE3E6;color:#8E1F35;font-size:13px;font-weight:600;display:none}
+.err{margin:10px 0 0;padding:9px 12px;border-radius:8px;background:#FBE3E6;color:#8E1F35;font-size:12.5px;font-weight:600;display:none}
 .err.show{display:block}
-footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.grp{margin-top:12px;min-width:0}
+.grp h2{margin:0 0 2px;font-size:10.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--pink-ink)}
+.fld{display:grid;grid-template-columns:minmax(0,1fr) 116px;gap:1px 10px;align-items:center;padding:5px 0;border-bottom:1px solid var(--line);scroll-margin-top:84px}
+.fld:last-child{border-bottom:0}
+.fld label{font-family:var(--head);font-weight:600;font-size:13.5px;line-height:1.25}
+.fld small{grid-column:1;font-size:11px;color:var(--muted);line-height:1.3}
+.box{grid-row:1/span 2;grid-column:2;display:flex;align-items:center;height:36px;border:1.5px solid var(--line2);border-radius:8px;background:var(--paper);overflow:hidden;transition:border-color .15s}
+.box:focus-within{border-color:var(--pink);background:#fff}
+.box.bad{border-color:var(--red)}
+.box .u{font-size:12px;font-weight:700;color:var(--muted);padding:0 8px;white-space:nowrap}
+.box input + .u{padding-left:0}
+.box input{flex:1;min-width:0;width:100%;height:100%;border:0;background:transparent;padding:0 8px;font:600 15px var(--head);text-align:right;outline:none}
+.box input::-webkit-inner-spin-button{opacity:.4}
+.box.calc{background:var(--blush);border-color:var(--pink2)}
+.box.calc input{color:var(--pink-ink);cursor:default;-moz-appearance:textfield}
+.box.calc input::-webkit-inner-spin-button,.box.calc input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.st{display:none;flex:none;width:36px;height:100%;border:0;background:rgba(36,24,41,.05);font-size:19px;font-weight:600;line-height:1;color:var(--plum);cursor:pointer;align-items:center;justify-content:center;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.st:active{background:var(--pink2)}
+.box.calc .st{opacity:.3;pointer-events:none}
 
-@media (max-width:1060px){.grid{grid-template-columns:minmax(0,1fr)}.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:680px){
-  .wrap{padding:22px 16px 30px}
-  .funnel-card{grid-template-columns:minmax(0,1fr);padding:16px}
-  .two{grid-template-columns:minmax(0,1fr)}
-  .inputs{padding:4px 16px 16px}
-  .tile .v{font-size:22px}
-  .k{letter-spacing:.14em}
-  .fb b{font-size:18px}.fb span{font-size:11px}
-  .fld{grid-template-columns:minmax(0,1fr) 118px}
+/* funnel */
+.funnel-card{grid-area:funnel;padding:16px 18px 12px;display:flex;flex-direction:column;min-width:0}
+.funnel-card > .k{margin-bottom:12px}
+.funnel{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.fb{min-width:max-content;max-width:100%;padding:0 14px;height:44px;border-radius:7px;display:flex;align-items:center;justify-content:center;gap:10px;color:#fff;transition:width .35s ease}
+.fb b{font-family:var(--head);font-weight:600;font-size:20px}
+.fb span{font-size:12px;font-weight:700;opacity:.9}
+.rate{margin:6px 0;font-size:11.5px;font-weight:700;background:#fff;border:1px solid var(--line);border-radius:30px;padding:3px 11px;white-space:nowrap}
+.rate::before{content:"↓ ";color:var(--pink)}
+.fnote{margin:10px 0 0;font-size:10.5px;color:var(--muted);text-align:center;line-height:1.4}
+
+/* lists */
+.lists{grid-area:lists;display:grid;grid-template-rows:1fr 1fr;gap:14px;min-width:0}
+.list{padding:13px 18px 8px;display:flex;flex-direction:column;min-width:0}
+.list dl{margin:4px 0 0;flex:1;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-auto-rows:minmax(30px,1fr)}
+.list dt,.list dd{display:flex;align-items:center;border-bottom:1px solid var(--line);font-size:13px}
+.list dd{margin:0;justify-content:flex-end;font-family:var(--head);font-weight:600;font-size:14.5px;white-space:nowrap;padding-left:10px}
+.list dt:nth-last-child(2),.list dd:last-child{border-bottom:0}
+.list dd.hi{color:var(--pink-ink)}
+
+/* phone summary bar */
+.mbar{position:fixed;left:0;right:0;top:0;z-index:20;display:none;justify-content:space-around;gap:6px;padding:8px 12px;padding-top:calc(8px + env(safe-area-inset-top));background:rgba(36,21,48,.97);color:#fff;transform:translateY(-110%);visibility:hidden;transition:transform .25s ease,visibility .25s}
+.mbar.show{transform:none;visibility:visible;box-shadow:0 10px 24px -12px rgba(0,0,0,.45)}
+.mbar div{display:flex;flex-direction:column;align-items:center;min-width:0;text-align:center}
+.mbar span{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+.mbar b{font-family:var(--head);font-weight:600;font-size:17px;line-height:1.2;white-space:nowrap}
+
+/* short laptop screens */
+@media (min-width:1100px) and (max-height:700px){
+  .wrap{padding-top:12px;padding-bottom:12px;gap:10px}
+  h1{font-size:24px}
+  .grid{gap:12px}
+  .fld{padding:3px 0}
+  .box{height:33px}
+  .grp{margin-top:9px}
+  .lockrow{padding:8px 12px}
+  .tile{padding:10px 14px}.tile .v{font-size:23px}
+  .fb{height:40px}
 }
+
+/* touch: show − / + buttons */
+@media (max-width:1099px),(pointer:coarse){
+  .st{display:flex}
+  .fld{grid-template-columns:minmax(0,1fr) 150px}
+  .box{height:42px}
+  .box .u{padding:0 3px;font-size:12.5px}
+  .box input{text-align:center;padding:0 2px;font-size:16px;-moz-appearance:textfield}
+  .box input::-webkit-inner-spin-button,.box input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+}
+
+/* tablet */
+@media (max-width:1099px){
+  .wrap{justify-content:flex-start}
+  .grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto;grid-template-areas:"tiles tiles" "inputs inputs" "funnel lists"}
+  .inputs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:28px;align-items:start}
+  .inputs .lockrow,.inputs .err{grid-column:1/-1}
+  .lists{grid-template-rows:auto}
+  .mbar{display:flex}
+}
+
+/* phone */
+@media (max-width:760px){
+  .wrap{padding:14px 16px calc(28px + env(safe-area-inset-bottom));gap:12px}
+  header{flex-direction:column;align-items:stretch}
+  h1{font-size:26px}
+  .tools{flex-direction:column;align-items:stretch;gap:4px}
+  .seg button{flex:1;min-height:44px;padding:0 6px;font-size:14px}
+  .reset{align-self:center;min-height:40px}
+  .grid{grid-template-columns:minmax(0,1fr);grid-template-areas:"tiles" "inputs" "funnel" "lists";gap:12px}
+  .tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .tile{padding:12px 14px}
+  .tile .v{font-size:22px}
+  .inputs{grid-template-columns:minmax(0,1fr);padding:12px 14px 8px}
+  .lockrow{padding:12px}
+  .lk{min-height:30px}
+  .fld{grid-template-columns:minmax(0,1fr) 148px;padding:8px 0}
+  .fld label{font-size:14.5px}
+  .fld small{font-size:11.5px}
+  .box{height:44px}
+  .grp{margin-top:16px}
+  .funnel-card{padding:16px 12px 12px}
+  .fb{height:42px}
+  .fb b{font-size:18px}.fb span{font-size:11px}
+  .k{letter-spacing:.14em}
+}
+@media (max-width:360px){.fld{grid-template-columns:minmax(0,1fr) 136px}.st{width:32px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
+<div class="mbar" id="mbar" aria-hidden="true">
+  <div><span>Subscriptions</span><b id="b-subs">–</b></div>
+  <div><span>Revenue</span><b id="b-rev">–</b></div>
+  <div><span id="b-bud-k">Ad budget</span><b id="b-bud">–</b></div>
+</div>
+
 <div class="wrap">
   <header>
     <div>
       <div class="eb">Her Will · Paid marketing</div>
       <h1>Funnel <em>calculator</em></h1>
-      <p class="lede">Type any budget and rates. Subscriptions, revenue, ROAS and the budget needed for the goal update as you type.</p>
     </div>
-    <div class="presets" role="group" aria-label="Fill with a scenario">
-      <span>Fill with</span>
-      <button type="button" data-preset="best">Best</button>
-      <button type="button" data-preset="exp">Expected</button>
-      <button type="button" data-preset="unexp">Unexpected</button>
+    <div class="tools">
+      <div class="seg" role="group" aria-label="Scenario">
+        <button type="button" data-preset="best">Best</button>
+        <button type="button" data-preset="exp">Expected</button>
+        <button type="button" data-preset="unexp">Unexpected</button>
+      </div>
+      <button type="button" class="reset" id="reset">Reset to Expected</button>
     </div>
   </header>
 
-  <div class="grid">
+  <main class="grid">
+    <section class="tiles" id="tiles" aria-label="Results">
+      <div class="card tile dark"><div class="k">Subscriptions <span class="badge">Locked</span></div><div class="v" id="t-subs">–</div><div class="s" id="t-subs-s"></div><div class="mini"><i id="t-bar"></i></div></div>
+      <div class="card tile"><div class="k">Revenue</div><div class="v" id="t-rev">–</div><div class="s">subscriptions × price</div></div>
+      <div class="card tile"><div class="k">Cost per subscription</div><div class="v" id="t-cac">–</div><div class="s">ad budget ÷ subscriptions</div></div>
+      <div class="card tile"><div class="k">Ad spend per day</div><div class="v" id="t-day">–</div><div class="s" id="t-day-s"></div></div>
+    </section>
+
     <form class="card inputs" id="form" autocomplete="off" onsubmit="return false">
       <div class="lockrow"><label class="lk"><input type="checkbox" id="lock"><i></i><span id="lock-tx">Lock 3,000 subscriptions</span></label><small>Keep subscriptions at the goal and calculate the budget needed instead.</small></div>
+      <p class="err" id="err" role="alert"></p>
       <div class="grp">
         <h2>Funnel rates</h2>
-        <div class="fld"><label for="ctr">Click rate</label><small>Of 100 who see the ad, how many tap it</small><div class="box"><input id="ctr" type="number" inputmode="decimal" min="0" max="100" step="0.1"><i>%</i></div></div>
-        <div class="fld"><label for="load">Load rate</label><small>Of 100 who tap, how many see the page load</small><div class="box"><input id="load" type="number" inputmode="decimal" min="0" max="100" step="1"><i>%</i></div></div>
-        <div class="fld"><label for="atc">Payment page</label><small>Of 100 who open the page, how many reach payment</small><div class="box"><input id="atc" type="number" inputmode="decimal" min="0" max="100" step="0.1"><i>%</i></div></div>
-        <div class="fld"><label for="pay">Pay rate</label><small>Of 100 on the payment page, how many pay</small><div class="box"><input id="pay" type="number" inputmode="decimal" min="0" max="100" step="1"><i>%</i></div></div>
-        <div class="fld"><label for="roas">ROAS</label><small>Revenue for every ₹1 spent on ads</small><div class="box"><input id="roas" type="number" inputmode="decimal" min="0" step="0.01"><i>x</i></div></div>
+        <div class="fld"><label for="ctr">Click rate</label><small>Of 100 ad viewers, how many tap</small><div class="box"><input id="ctr" type="number" inputmode="decimal" enterkeyhint="done" min="0" max="100" step="0.1"><span class="u">%</span></div></div>
+        <div class="fld"><label for="load">Load rate</label><small>Of 100 taps, how many pages load</small><div class="box"><input id="load" type="number" inputmode="decimal" enterkeyhint="done" min="0" max="100" step="1"><span class="u">%</span></div></div>
+        <div class="fld"><label for="atc">Payment page</label><small>Of 100 visitors, how many reach it</small><div class="box"><input id="atc" type="number" inputmode="decimal" enterkeyhint="done" min="0" max="100" step="0.1"><span class="u">%</span></div></div>
+        <div class="fld"><label for="pay">Pay rate</label><small>Of 100 on that page, how many pay</small><div class="box"><input id="pay" type="number" inputmode="decimal" enterkeyhint="done" min="0" max="100" step="1"><span class="u">%</span></div></div>
+        <div class="fld"><label for="roas">ROAS</label><small>Revenue for every ₹1 of ads</small><div class="box"><input id="roas" type="number" inputmode="decimal" enterkeyhint="done" min="0" step="0.01"><span class="u">x</span></div></div>
       </div>
       <div class="grp">
         <h2>Campaign</h2>
-        <div class="fld" id="f-budget"><label for="budget" id="budget-lb">Ad budget</label><small id="budget-hint">Total for the whole campaign</small><div class="box"><i>₹</i><input id="budget" type="number" inputmode="decimal" min="0" step="0.1"><i>lakh</i></div></div>
-        <div class="fld"><label for="cpm">Cost per 1,000 views</label><small>CPM on Meta</small><div class="box"><i>₹</i><input id="cpm" type="number" inputmode="decimal" min="0" step="1"></div></div>
-        <div class="fld"><label for="price">Price</label><small>Per subscription</small><div class="box"><i>₹</i><input id="price" type="number" inputmode="decimal" min="0" step="1"></div></div>
-        <div class="fld"><label for="goal">Subscription goal</label><small>For the whole campaign</small><div class="box"><input id="goal" type="number" inputmode="numeric" min="0" step="1"></div></div>
-        <div class="fld"><label for="months">Campaign months</label><small>Used for the monthly numbers</small><div class="box"><input id="months" type="number" inputmode="numeric" min="1" step="1"></div></div>
-      </div>
-      <div class="foot">
-        <p>Starts on Expected, the same numbers as the deck. Every field can be changed.</p>
-        <button type="button" class="reset" id="reset">Reset to Expected</button>
+        <div class="fld"><label for="budget" id="budget-lb">Ad budget</label><small id="budget-hint">In lakh, for the whole campaign</small><div class="box"><span class="u">₹</span><input id="budget" type="number" inputmode="decimal" enterkeyhint="done" min="0" step="0.1"><span class="u">L</span></div></div>
+        <div class="fld"><label for="cpm">Cost per 1,000 views</label><small>CPM on Meta</small><div class="box"><span class="u">₹</span><input id="cpm" type="number" inputmode="decimal" enterkeyhint="done" min="0" step="1"></div></div>
+        <div class="fld"><label for="price">Price</label><small>Per subscription</small><div class="box"><span class="u">₹</span><input id="price" type="number" inputmode="decimal" enterkeyhint="done" min="0" step="1"></div></div>
+        <div class="fld"><label for="goal">Subscription goal</label><small>For the whole campaign</small><div class="box"><input id="goal" type="number" inputmode="numeric" enterkeyhint="done" min="0" step="1"></div></div>
+        <div class="fld"><label for="months">Campaign months</label><small>Used for the monthly numbers</small><div class="box"><input id="months" type="number" inputmode="numeric" enterkeyhint="done" min="1" step="1"></div></div>
       </div>
     </form>
 
-    <div class="right">
-      <p class="err" id="err" role="alert"></p>
-      <section class="card funnel-card" aria-label="Funnel">
-        <div>
-          <div class="funnel">
-            <div class="fb" style="width:100%;background:#241530"><b id="o-imp">–</b><span>Ad views</span></div>
-            <div class="rate" id="r-ctr"></div>
-            <div class="fb" style="width:85%;background:#44203F"><b id="o-clicks">–</b><span>Clicks</span></div>
-            <div class="rate" id="r-load"></div>
-            <div class="fb" style="width:70%;background:#64294E"><b id="o-views">–</b><span>Page views</span></div>
-            <div class="rate" id="r-atc"></div>
-            <div class="fb" style="width:55%;background:#8E335F"><b id="o-pp">–</b><span>Payment page</span></div>
-            <div class="rate" id="r-pay"></div>
-            <div class="fb" style="width:40%;background:#EC5F94"><b id="o-subs">–</b><span>Subscriptions</span></div>
-          </div>
-          <p class="fnote">Funnel shape is not to scale; the numbers are exact.</p>
-        </div>
-        <div class="roas" aria-live="polite">
-          <div class="k">ROAS</div>
-          <div class="big" id="o-roas">–</div>
-          <p>Revenue for every ₹1 spent on ads.</p>
-          <div class="verdict" id="o-verdict"></div>
-        </div>
-      </section>
-
-      <div class="tiles">
-        <div class="card tile dark"><div class="k">Subscriptions</div><div class="v" id="t-subs">–</div><div class="s" id="t-subs-s"></div></div>
-        <div class="card tile"><div class="k">Revenue</div><div class="v" id="t-rev">–</div><div class="s">subscriptions × price</div></div>
-        <div class="card tile"><div class="k">Cost per subscription</div><div class="v" id="t-cac">–</div><div class="s">ad budget ÷ subscriptions</div></div>
-        <div class="card tile"><div class="k">Ad spend per day</div><div class="v" id="t-day">–</div><div class="s" id="t-day-s"></div></div>
+    <section class="card funnel-card" aria-label="Funnel">
+      <div class="k">The funnel</div>
+      <div class="funnel">
+        <div class="fb" style="width:100%;background:#241530"><b id="o-imp">–</b><span>Ad views</span></div>
+        <div class="rate" id="r-ctr"></div>
+        <div class="fb" style="width:85%;background:#44203F"><b id="o-clicks">–</b><span>Clicks</span></div>
+        <div class="rate" id="r-load"></div>
+        <div class="fb" style="width:70%;background:#64294E"><b id="o-views">–</b><span>Page views</span></div>
+        <div class="rate" id="r-atc"></div>
+        <div class="fb" style="width:55%;background:#8E335F"><b id="o-pp">–</b><span>Payment page</span></div>
+        <div class="rate" id="r-pay"></div>
+        <div class="fb" style="width:40%;background:#EC5F94"><b id="o-subs">–</b><span>Subscriptions</span></div>
       </div>
+      <p class="fnote">Ad views = budget ÷ CPM × 1,000. Each step uses the rate above it.</p>
+    </section>
 
-      <section class="card goal">
-        <div class="k">Against the goal <span class="locked-note">Locked</span></div>
-        <div class="bar"><i id="o-bar"></i></div>
-        <div class="lb"><span id="o-goaltx"></span><span id="o-goalr"></span></div>
+    <div class="lists">
+      <section class="card list">
+        <div class="k">Every month</div>
+        <dl>
+          <dt>Ad spend</dt><dd id="m-spend">–</dd>
+          <dt>Subscriptions</dt><dd id="m-subs">–</dd>
+          <dt>Revenue</dt><dd id="m-rev">–</dd>
+          <dt>Cost per click</dt><dd id="m-cpc">–</dd>
+          <dt>Ad view → subscription</dt><dd id="m-conv">–</dd>
+        </dl>
       </section>
-
-      <div class="two">
-        <section class="card list">
-          <div class="k">Every month</div>
-          <dl>
-            <dt>Ad spend</dt><dd id="m-spend">–</dd>
-            <dt>Subscriptions</dt><dd id="m-subs">–</dd>
-            <dt>Revenue</dt><dd id="m-rev">–</dd>
-            <dt>Cost per click</dt><dd id="m-cpc">–</dd>
-            <dt>Ad view → subscription</dt><dd id="m-conv">–</dd>
-          </dl>
-        </section>
-        <section class="card list">
-          <div class="k">To reach the goal</div>
-          <dl>
-            <dt>Budget needed</dt><dd id="g-need" class="hi">–</dd>
-            <dt>Budget needed per month</dt><dd id="g-month">–</dd>
-            <dt>Extra over your budget</dt><dd id="g-extra">–</dd>
-            <dt>Ad views needed</dt><dd id="g-imp">–</dd>
-            <dt>Subscriptions short</dt><dd id="g-short">–</dd>
-          </dl>
-        </section>
-      </div>
+      <section class="card list">
+        <div class="k">To reach the goal</div>
+        <dl>
+          <dt>Budget needed</dt><dd id="g-need" class="hi">–</dd>
+          <dt>Budget needed per month</dt><dd id="g-month">–</dd>
+          <dt>Extra over your budget</dt><dd id="g-extra">–</dd>
+          <dt>Ad views needed</dt><dd id="g-imp">–</dd>
+          <dt>Subscriptions short</dt><dd id="g-short">–</dd>
+        </dl>
+      </section>
     </div>
-  </div>
-
-  <footer>
-    <span>Ad views = budget ÷ CPM × 1,000 · Subscriptions = ad views × click × load × payment page × pay rate · Revenue = subscriptions × price</span>
-    <span>EyeLevel Growth Studio · Her Will Growth Plan</span>
-  </footer>
+  </main>
 </div>
 
 <script>
@@ -245,9 +283,10 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
   };
   const BASE = { budget: 37.5, cpm: 120, price: 4000, goal: 3000, months: 3, ...PRESETS.exp };
   const IDS = Object.keys(BASE);
+  const RATES = ['ctr', 'load', 'atc', 'pay'];
+  const STEP = { budget: 1, cpm: 10, price: 100, goal: 100, months: 1, ctr: 0.1, load: 1, atc: 0.1, pay: 1, roas: 0.1 };
   const $ = id => document.getElementById(id);
   const IN = Object.fromEntries(IDS.map(id => [id, $(id)]));
-  const NAMES = { best: 'Best', exp: 'Expected', unexp: 'Unexpected' };
   const DAYS_PER_MONTH = 92 / 3;
   const lock = $('lock');
   let ownBudget = BASE.budget;
@@ -263,6 +302,7 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
   };
   const big = v => v >= 1e7 ? (Math.floor(v / 1e5 + 1e-9) / 100).toFixed(2) + ' Cr' : num(v);
   const pct = v => (+v.toFixed(2)) + '%';
+  const decimals = x => (String(x).split('.')[1] || '').length;
 
   function fill(vals) { IDS.forEach(id => { if (vals[id] !== undefined) IN[id].value = vals[id]; }); calc(); }
 
@@ -272,7 +312,7 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
       const raw = IN[id].value.trim();
       const x = parseFloat(raw);
       if (id === 'budget' && lock.checked) { IN[id].closest('.box').classList.remove('bad'); v[id] = ownBudget; return; }
-      const ok = raw !== '' && isFinite(x) && x >= 0 && (!['ctr', 'load', 'atc', 'pay'].includes(id) || x <= 100) && !(id === 'months' && x < 1) && !(id === 'cpm' && x === 0);
+      const ok = raw !== '' && isFinite(x) && x >= 0 && (!RATES.includes(id) || x <= 100) && !(id === 'months' && x < 1) && !(id === 'cpm' && x === 0);
       IN[id].closest('.box').classList.toggle('bad', !ok);
       if (!ok) bad.push(IN[id].closest('.fld').querySelector('label').textContent);
       v[id] = x;
@@ -298,7 +338,6 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
     const imp = spend / v.cpm * 1000;
     const clicks = imp * v.ctr / 100, views = clicks * v.load / 100, pp = views * v.atc / 100, subs = Math.round(pp * v.pay / 100);
     const rev = subs * v.price, cac = subs > 0 ? spend / subs : Infinity;
-    const match = Object.keys(PRESETS).find(k => ['ctr', 'load', 'atc', 'pay', 'roas'].every(f => PRESETS[k][f] === v[f]));
     const days = v.months * DAYS_PER_MONTH;
 
     $('o-imp').textContent = big(imp);
@@ -311,22 +350,20 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
     $('r-atc').textContent = pct(v.atc) + ' reach the payment page';
     $('r-pay').textContent = pct(v.pay) + ' pay';
 
-    $('o-roas').innerHTML = (+v.roas.toFixed(2)) + '<small>x</small>';
-    $('o-verdict').textContent = match ? `${NAMES[match]} scenario` : 'Your own numbers';
-
     $('t-subs').textContent = num(subs);
-    $('t-subs-s').textContent = v.goal > 0 ? `${Math.round(subs / v.goal * 100)}% of the ${num(v.goal)} goal` : '';
+    $('t-subs-s').textContent = locked ? `Locked at the ${num(v.goal)} goal` : v.goal > 0 ? `${Math.round(subs / v.goal * 100)}% of the ${num(v.goal)} goal` : '';
+    $('t-bar').style.width = (v.goal > 0 ? Math.min(100, subs / v.goal * 100) : 0) + '%';
     $('t-rev').textContent = money(rev);
     $('t-cac').textContent = isFinite(cac) ? money(cac) : '–';
     $('t-day').textContent = money(spend / days);
     $('t-day-s').textContent = `over ${Math.round(days)} days`;
-
-    const share = v.goal > 0 ? Math.min(100, subs / v.goal * 100) : 0;
-    $('o-bar').style.width = share + '%';
-    $('o-goaltx').innerHTML = `<b>${num(subs)}</b> of the ${num(v.goal)} goal`;
-    $('o-goalr').textContent = locked ? `Budget needed ${money(spend)}` : subs >= v.goal ? 'Goal reached' : `${num(v.goal - subs)} short`;
     document.body.classList.toggle('is-locked', locked);
     $('lock-tx').textContent = `Lock ${num(v.goal)} subscriptions`;
+
+    $('b-subs').textContent = num(subs);
+    $('b-rev').textContent = money(rev);
+    $('b-bud-k').textContent = locked ? 'Budget needed' : 'Ad budget';
+    $('b-bud').textContent = money(spend);
 
     $('m-spend').textContent = money(spend / v.months);
     $('m-subs').textContent = num(subs / v.months);
@@ -341,7 +378,11 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
     $('g-imp').textContent = isFinite(need) ? big(need / v.cpm * 1000) : '–';
     $('g-short').textContent = subs >= v.goal ? '0' : num(v.goal - subs);
 
-    document.querySelectorAll('[data-preset]').forEach(b => b.classList.toggle('on', b.dataset.preset === match));
+    const match = Object.keys(PRESETS).find(k => [...RATES, 'roas'].every(f => PRESETS[k][f] === v[f]));
+    document.querySelectorAll('[data-preset]').forEach(b => {
+      b.classList.toggle('on', b.dataset.preset === match);
+      b.setAttribute('aria-pressed', b.dataset.preset === match);
+    });
   }
 
   function setLock(on) {
@@ -350,10 +391,40 @@ footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-
     IN.budget.readOnly = on;
     IN.budget.closest('.box').classList.toggle('calc', on);
     $('budget-lb').textContent = on ? 'Budget needed' : 'Ad budget';
-    $('budget-hint').textContent = on ? 'Calculated from the goal and the rates' : 'Total for the whole campaign';
+    $('budget-hint').textContent = on ? 'Calculated from the goal and the rates' : 'In lakh, for the whole campaign';
     if (!on) IN.budget.value = ownBudget;
     calc();
   }
+
+  // − / + buttons for touch screens
+  document.querySelectorAll('.box').forEach(box => {
+    const input = box.querySelector('input');
+    const name = box.closest('.fld').querySelector('label').textContent;
+    const make = (d, sym) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'st'; b.textContent = sym; b.tabIndex = -1;
+      b.setAttribute('aria-label', (d < 0 ? 'Decrease ' : 'Increase ') + name);
+      b.addEventListener('click', () => {
+        if (input.readOnly) return;
+        const id = input.id, cur = parseFloat(input.value) || 0;
+        let x = cur + d * STEP[id];
+        x = Math.max(id === 'months' ? 1 : 0, x);
+        if (RATES.includes(id)) x = Math.min(100, x);
+        input.value = +x.toFixed(Math.max(decimals(STEP[id]), decimals(cur)));
+        calc();
+      });
+      return b;
+    };
+    box.prepend(make(-1, '−'));
+    box.append(make(1, '+'));
+  });
+
+  // phone: keep the key numbers in view once the result cards scroll away
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([e]) => $('mbar').classList.toggle('show', !e.isIntersecting && e.boundingClientRect.top < 0))
+      .observe($('tiles'));
+  }
+
   lock.addEventListener('change', () => setLock(lock.checked));
   IDS.forEach(id => IN[id].addEventListener('input', calc));
   document.querySelectorAll('[data-preset]').forEach(b => b.addEventListener('click', () => { ownBudget = BASE.budget; fill({ ...BASE, ...PRESETS[b.dataset.preset] }); }));
