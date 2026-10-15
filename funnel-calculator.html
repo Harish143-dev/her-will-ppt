@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Her Will Funnel Calculator</title>
+<meta name="description" content="Type any budget and funnel rates to see Her Will subscriptions, revenue, ROAS and the budget needed for the goal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700&display=swap">
+<style>
+:root{
+  --ink:#16101A; --plum:#241530; --ivory:#F7F1E8; --paper:#FFFBF5;
+  --pink:#EC5F94; --pink2:#F6A3C0; --pink-ink:#C93F7A; --blush:#F4D9DD;
+  --gold:#C7A15F; --text:#241829; --muted:#76697C; --line:rgba(36,24,41,.13); --line2:rgba(36,24,41,.22);
+  --green:#2F8A73; --red:#C8324F;
+  --head:'Poppins','Segoe UI',Arial,sans-serif; --sans:'Inter','Segoe UI',Arial,sans-serif;
+  --panel:linear-gradient(180deg,#241530,#16101A);
+}
+*{box-sizing:border-box}
+html{font-variant-numeric:lining-nums tabular-nums}
+body{margin:0;min-height:100vh;font-family:var(--sans);color:var(--text);-webkit-font-smoothing:antialiased;
+  background:radial-gradient(900px 500px at 95% -10%,rgba(236,95,148,.13),transparent 60%),radial-gradient(700px 420px at -5% 110%,rgba(199,161,95,.14),transparent 60%),var(--ivory)}
+:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+.wrap{max-width:1240px;margin:0 auto;padding:32px 24px 40px}
+header{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:22px}
+.eb{font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--pink-ink)}
+h1{margin:6px 0 4px;font-family:var(--head);font-weight:600;font-size:clamp(28px,4vw,40px);line-height:1.08;letter-spacing:-.02em;color:var(--plum)}
+h1 em{font-style:normal;color:var(--pink)}
+.lede{margin:0;font-size:14px;color:var(--muted);max-width:640px;line-height:1.5}
+.presets{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.presets span{font-size:11px;font-weight:700;color:var(--muted);margin-right:4px}
+.presets button{border:1px solid var(--line2);background:#fff;border-radius:30px;padding:8px 14px;font:700 12.5px var(--sans);color:var(--text);cursor:pointer}
+.presets button:hover{border-color:var(--pink)}
+.presets button.on{background:var(--plum);border-color:var(--plum);color:#fff}
+
+.grid{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:22px;align-items:start}
+.card{background:#fff;border:1px solid rgba(36,24,41,.12);border-radius:10px;box-shadow:0 14px 34px -22px rgba(36,21,48,.3)}
+.inputs{padding:6px 20px 20px}
+.grp{margin-top:16px}
+.grp h2{margin:0 0 4px;font-size:10.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--pink-ink)}
+.fld{display:grid;grid-template-columns:minmax(0,1fr) 132px;gap:4px 12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.fld:last-child{border-bottom:0}
+.fld label{font-family:var(--head);font-weight:600;font-size:14px;color:var(--text)}
+.fld small{grid-column:1;font-size:11.5px;color:var(--muted);line-height:1.35}
+.box{grid-row:1/span 2;grid-column:2;display:flex;align-items:center;border:1.5px solid var(--line2);border-radius:8px;background:var(--paper);overflow:hidden;transition:border-color .15s}
+.box:focus-within{border-color:var(--pink);background:#fff}
+.box.bad{border-color:var(--red)}
+.box i{font-style:normal;font-size:12px;font-weight:700;color:var(--muted);padding:0 8px;white-space:nowrap}
+.box input + i{padding-left:0}
+.box input{flex:1;min-width:0;width:100%;border:0;background:transparent;padding:9px 10px;font:600 15px var(--head);color:var(--text);text-align:right;outline:none}
+.box input::-webkit-inner-spin-button{opacity:.4}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px dashed var(--line2)}
+.foot p{margin:0;font-size:11.5px;color:var(--muted);line-height:1.4}
+.reset{border:0;background:none;color:var(--pink-ink);font:700 12px var(--sans);cursor:pointer;white-space:nowrap;padding:6px 0}
+
+.right{display:grid;gap:18px;min-width:0}
+.funnel-card{padding:20px 22px 18px;display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:22px}
+.funnel{display:flex;flex-direction:column;align-items:center}
+.fb{min-width:max-content;padding:0 14px;height:46px;border-radius:7px;display:flex;align-items:center;justify-content:center;gap:10px;color:#fff;transition:width .35s ease}
+.fb b{font-family:var(--head);font-weight:600;font-size:21px}
+.fb span{font-size:12.5px;font-weight:700;opacity:.9}
+.rate{margin:6px 0;font-size:12px;font-weight:700;background:#fff;border:1px solid var(--line);border-radius:30px;padding:3px 11px;color:var(--text)}
+.rate::before{content:"↓ ";color:var(--pink)}
+.fnote{margin:10px 0 0;font-size:11.5px;color:var(--muted);text-align:center}
+.roas{border-radius:10px;background:var(--panel);color:#F5EEE6;padding:20px;display:flex;flex-direction:column;justify-content:center}
+.k{font-size:10.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--pink-ink)}
+.roas .k{color:var(--gold)}
+.roas .big{font-family:var(--head);font-weight:600;font-size:56px;line-height:1;color:#fff;margin-top:8px}
+.roas .big small{font-size:22px;color:var(--pink2);margin-left:2px}
+.roas p{margin:8px 0 0;font-size:12.5px;line-height:1.45;color:rgba(245,238,230,.75)}
+.verdict{margin-top:14px;padding-top:12px;border-top:1px solid rgba(199,161,95,.35);font-size:13px;font-weight:700;color:#fff}
+
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.tile{padding:14px 16px}
+.tile .v{font-family:var(--head);font-weight:600;font-size:26px;line-height:1.1;margin-top:8px;color:var(--text)}
+.tile .s{font-size:11.5px;color:var(--muted);margin-top:4px}
+.tile.dark{background:var(--panel);border-color:transparent}
+.tile.dark .k{color:var(--gold)}
+.tile.dark .v{color:#fff}
+.tile.dark .s{color:rgba(245,238,230,.7)}
+
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.list{padding:16px 20px}
+.list dl{margin:10px 0 0;display:grid;grid-template-columns:1fr auto;gap:0}
+.list dt,.list dd{padding:8px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.list dd{margin:0;text-align:right;font-family:var(--head);font-weight:600;font-size:15px}
+.list dt:nth-last-child(2),.list dd:last-child{border-bottom:0}
+.list dd.hi{color:var(--pink-ink)}
+.goal{padding:16px 20px}
+.bar{height:10px;border-radius:30px;background:rgba(36,24,41,.08);overflow:hidden;margin-top:12px}
+.bar i{display:block;height:100%;width:0;border-radius:30px;background:linear-gradient(90deg,var(--gold),var(--pink));transition:width .4s ease}
+.goal .lb{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-top:8px}
+.goal .lb b{color:var(--text)}
+.err{margin:0 0 12px;padding:10px 14px;border-radius:8px;background:#FBE3E6;color:#8E1F35;font-size:13px;font-weight:600;display:none}
+.err.show{display:block}
+footer{margin-top:22px;font-size:11.5px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media (max-width:1060px){.grid{grid-template-columns:minmax(0,1fr)}.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:680px){
+  .wrap{padding:22px 16px 30px}
+  .funnel-card{grid-template-columns:minmax(0,1fr);padding:16px}
+  .two{grid-template-columns:minmax(0,1fr)}
+  .inputs{padding:4px 16px 16px}
+  .tile .v{font-size:22px}
+  .k{letter-spacing:.14em}
+  .fb b{font-size:18px}.fb span{font-size:11px}
+  .fld{grid-template-columns:minmax(0,1fr) 118px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eb">Her Will · Paid marketing</div>
+      <h1>Funnel <em>calculator</em></h1>
+      <p class="lede">Type any budget and rates. Subscriptions, revenue, ROAS and the budget needed for the goal update as you type.</p>
+    </div>
+    <div class="presets" role="group" aria-label="Fill with a scenario">
+      <span>Fill with</span>
+      <button type="button" data-preset="best">Best</button>
+      <button type="button" data-preset="exp">Expected</button>
+      <button type="button" data-preset="unexp">Unexpected</button>
+    </div>
+  </header>
+
+  <div class="grid">
+    <form class="card inputs" id="form" autocomplete="off" onsubmit="return false">
+      <div class="grp">
+        <h2>Campaign</h2>
+        <div class="fld"><label for="budget">Ad budget</label><small>Total for the whole campaign</small><div class="box"><i>₹</i><input id="budget" type="number" inputmode="decimal" min="0" step="0.1"><i>lakh</i></div></div>
+        <div class="fld"><label for="cpm">Cost per 1,000 views</label><small>CPM on Meta</small><div class="box"><i>₹</i><input id="cpm" type="number" inputmode="decimal" min="0" step="1"></div></div>
+        <div class="fld"><label for="price">Price</label><small>Per subscription</small><div class="box"><i>₹</i><input id="price" type="number" inputmode="decimal" min="0" step="1"></div></div>
+        <div class="fld"><label for="goal">Subscription goal</label><small>For the whole campaign</small><div class="box"><input id="goal" type="number" inputmode="numeric" min="0" step="1"></div></div>
+        <div class="fld"><label for="months">Campaign months</label><small>Used for the monthly numbers</small><div class="box"><input id="months" type="number" inputmode="numeric" min="1" step="1"></div></div>
+      </div>
+      <div class="grp">
+        <h2>Funnel rates</h2>
+        <div class="fld"><label for="ctr">Click rate</label><small>Of 100 who see the ad, how many tap it</small><div class="box"><input id="ctr" type="number" inputmode="decimal" min="0" max="100" step="0.1"><i>%</i></div></div>
+        <div class="fld"><label for="load">Load rate</label><small>Of 100 who tap, how many see the page load</small><div class="box"><input id="load" type="number" inputmode="decimal" min="0" max="100" step="1"><i>%</i></div></div>
+        <div class="fld"><label for="atc">Payment page</label><small>Of 100 who open the page, how many reach payment</small><div class="box"><input id="atc" type="number" inputmode="decimal" min="0" max="100" step="0.1"><i>%</i></div></div>
+        <div class="fld"><label for="pay">Pay rate</label><small>Of 100 on the payment page, how many pay</small><div class="box"><input id="pay" type="number" inputmode="decimal" min="0" max="100" step="1"><i>%</i></div></div>
+      </div>
+      <div class="foot">
+        <p>Starts on Expected. Every field can be changed.</p>
+        <button type="button" class="reset" id="reset">Reset to Expected</button>
+      </div>
+    </form>
+
+    <div class="right">
+      <p class="err" id="err" role="alert"></p>
+      <section class="card funnel-card" aria-label="Funnel">
+        <div>
+          <div class="funnel">
+            <div class="fb" style="width:100%;background:#241530"><b id="o-imp">–</b><span>Ad views</span></div>
+            <div class="rate" id="r-ctr"></div>
+            <div class="fb" style="width:85%;background:#44203F"><b id="o-clicks">–</b><span>Clicks</span></div>
+            <div class="rate" id="r-load"></div>
+            <div class="fb" style="width:70%;background:#64294E"><b id="o-views">–</b><span>Page views</span></div>
+            <div class="rate" id="r-atc"></div>
+            <div class="fb" style="width:55%;background:#8E335F"><b id="o-pp">–</b><span>Payment page</span></div>
+            <div class="rate" id="r-pay"></div>
+            <div class="fb" style="width:40%;background:#EC5F94"><b id="o-subs">–</b><span>Subscriptions</span></div>
+          </div>
+          <p class="fnote">Funnel shape is not to scale; the numbers are exact.</p>
+        </div>
+        <div class="roas" aria-live="polite">
+          <div class="k">ROAS</div>
+          <div class="big" id="o-roas">–</div>
+          <p>Revenue for every ₹1 spent on ads.</p>
+          <div class="verdict" id="o-verdict"></div>
+        </div>
+      </section>
+
+      <div class="tiles">
+        <div class="card tile dark"><div class="k">Subscriptions</div><div class="v" id="t-subs">–</div><div class="s" id="t-subs-s"></div></div>
+        <div class="card tile"><div class="k">Revenue</div><div class="v" id="t-rev">–</div><div class="s">subscriptions × price</div></div>
+        <div class="card tile"><div class="k">Cost per subscription</div><div class="v" id="t-cac">–</div><div class="s">ad budget ÷ subscriptions</div></div>
+        <div class="card tile"><div class="k">Ad spend per day</div><div class="v" id="t-day">–</div><div class="s" id="t-day-s"></div></div>
+      </div>
+
+      <section class="card goal">
+        <div class="k">Against the goal</div>
+        <div class="bar"><i id="o-bar"></i></div>
+        <div class="lb"><span id="o-goaltx"></span><span id="o-goalr"></span></div>
+      </section>
+
+      <div class="two">
+        <section class="card list">
+          <div class="k">Every month</div>
+          <dl>
+            <dt>Ad spend</dt><dd id="m-spend">–</dd>
+            <dt>Subscriptions</dt><dd id="m-subs">–</dd>
+            <dt>Revenue</dt><dd id="m-rev">–</dd>
+            <dt>Cost per click</dt><dd id="m-cpc">–</dd>
+            <dt>Ad view → subscription</dt><dd id="m-conv">–</dd>
+          </dl>
+        </section>
+        <section class="card list">
+          <div class="k">To reach the goal</div>
+          <dl>
+            <dt>Budget needed</dt><dd id="g-need" class="hi">–</dd>
+            <dt>Budget needed per month</dt><dd id="g-month">–</dd>
+            <dt>Extra over this budget</dt><dd id="g-extra">–</dd>
+            <dt>Ad views needed</dt><dd id="g-imp">–</dd>
+            <dt>Subscriptions short</dt><dd id="g-short">–</dd>
+          </dl>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>Ad views = budget ÷ CPM × 1,000 · Subscriptions = ad views × click × load × payment page × pay rate</span>
+    <span>EyeLevel Growth Studio · Her Will Growth Plan</span>
+  </footer>
+</div>
+
+<script>
+(() => {
+  const PRESETS = {
+    best:  { ctr: 1.6, load: 85, atc: 5,   pay: 24 },
+    exp:   { ctr: 1.3, load: 75, atc: 4.5, pay: 16 },
+    unexp: { ctr: 1,   load: 60, atc: 4,   pay: 10 }
+  };
+  const BASE = { budget: 37.5, cpm: 120, price: 4000, goal: 3000, months: 3, ...PRESETS.exp };
+  const IDS = Object.keys(BASE);
+  const $ = id => document.getElementById(id);
+  const IN = Object.fromEntries(IDS.map(id => [id, $(id)]));
+  const DAYS_PER_MONTH = 92 / 3;
+
+  const nIN = new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 });
+  const num = v => nIN.format(Math.round(v));
+  const money = v => {
+    if (!isFinite(v)) return '–';
+    const a = Math.abs(v), sign = v < 0 ? '−' : '';
+    if (a >= 1e7) return sign + '₹' + (a / 1e7).toFixed(2) + ' Cr';
+    if (a >= 1e5) return sign + '₹' + (a / 1e5).toFixed(1) + ' L';
+    return sign + '₹' + nIN.format(Math.round(a));
+  };
+  const big = v => v >= 1e7 ? (Math.floor(v / 1e5 + 1e-9) / 100).toFixed(2) + ' Cr' : num(v);
+  const pct = v => (+v.toFixed(2)) + '%';
+
+  function fill(vals) { IDS.forEach(id => { if (vals[id] !== undefined) IN[id].value = vals[id]; }); calc(); }
+
+  function read() {
+    const v = {}, bad = [];
+    IDS.forEach(id => {
+      const raw = IN[id].value.trim();
+      const x = parseFloat(raw);
+      const ok = raw !== '' && isFinite(x) && x >= 0 && (!['ctr', 'load', 'atc', 'pay'].includes(id) || x <= 100) && !(id === 'months' && x < 1) && !(id === 'cpm' && x === 0);
+      IN[id].closest('.box').classList.toggle('bad', !ok);
+      if (!ok) bad.push(IN[id].closest('.fld').querySelector('label').textContent);
+      v[id] = x;
+    });
+    return { v, bad };
+  }
+
+  function calc() {
+    const { v, bad } = read();
+    const err = $('err');
+    if (bad.length) {
+      err.textContent = 'Check ' + bad.join(', ') + '. Use a number of 0 or more; rates must be between 0 and 100%.';
+      err.classList.add('show');
+      return;
+    }
+    err.classList.remove('show');
+    const spend = v.budget * 1e5;
+    const imp = spend / v.cpm * 1000;
+    const clicks = imp * v.ctr / 100, views = clicks * v.load / 100, pp = views * v.atc / 100, subs = pp * v.pay / 100;
+    const rev = subs * v.price, cac = subs > 0 ? spend / subs : Infinity, roas = spend > 0 ? rev / spend : 0;
+    const days = v.months * DAYS_PER_MONTH;
+
+    $('o-imp').textContent = big(imp);
+    $('o-clicks').textContent = num(clicks);
+    $('o-views').textContent = num(views);
+    $('o-pp').textContent = num(pp);
+    $('o-subs').textContent = num(subs);
+    $('r-ctr').textContent = pct(v.ctr) + ' tap the ad';
+    $('r-load').textContent = pct(v.load) + ' load the page';
+    $('r-atc').textContent = pct(v.atc) + ' reach the payment page';
+    $('r-pay').textContent = pct(v.pay) + ' pay';
+
+    $('o-roas').innerHTML = roas.toFixed(2) + '<small>x</small>';
+    $('o-verdict').textContent = `${money(rev)} revenue from ${money(spend)} of ads`;
+
+    $('t-subs').textContent = num(subs);
+    $('t-subs-s').textContent = v.goal > 0 ? `${Math.round(subs / v.goal * 100)}% of the ${num(v.goal)} goal` : '';
+    $('t-rev').textContent = money(rev);
+    $('t-cac').textContent = isFinite(cac) ? money(cac) : '–';
+    $('t-day').textContent = money(spend / days);
+    $('t-day-s').textContent = `over ${Math.round(days)} days`;
+
+    const share = v.goal > 0 ? Math.min(100, subs / v.goal * 100) : 0;
+    $('o-bar').style.width = share + '%';
+    $('o-goaltx').innerHTML = `<b>${num(subs)}</b> of the ${num(v.goal)} goal`;
+    $('o-goalr').textContent = subs >= v.goal ? 'Goal reached' : `${num(v.goal - subs)} short`;
+
+    $('m-spend').textContent = money(spend / v.months);
+    $('m-subs').textContent = num(subs / v.months);
+    $('m-rev').textContent = money(rev / v.months);
+    $('m-cpc').textContent = clicks > 0 ? '₹' + (spend / clicks).toFixed(2) : '–';
+    $('m-conv').textContent = (v.ctr * v.load * v.atc * v.pay / 1e6).toFixed(3) + '%';
+
+    const need = isFinite(cac) ? v.goal * cac : Infinity;
+    $('g-need').textContent = isFinite(need) ? money(need) : '–';
+    $('g-month').textContent = isFinite(need) ? money(need / v.months) : '–';
+    $('g-extra').textContent = !isFinite(need) ? '–' : need > spend ? money(need - spend) : 'None · ' + money(spend - need) + ' left';
+    $('g-imp').textContent = isFinite(need) ? big(need / v.cpm * 1000) : '–';
+    $('g-short').textContent = subs >= v.goal ? '0' : num(v.goal - subs);
+
+    const match = Object.keys(PRESETS).find(k => ['ctr', 'load', 'atc', 'pay'].every(f => PRESETS[k][f] === v[f]));
+    document.querySelectorAll('[data-preset]').forEach(b => b.classList.toggle('on', b.dataset.preset === match));
+  }
+
+  IDS.forEach(id => IN[id].addEventListener('input', calc));
+  document.querySelectorAll('[data-preset]').forEach(b => b.addEventListener('click', () => fill(PRESETS[b.dataset.preset])));
+  $('reset').addEventListener('click', () => fill(BASE));
+  fill(BASE);
+})();
+</script>
+</body>
+</html>
